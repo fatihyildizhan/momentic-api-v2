@@ -1,0 +1,2309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityCategoryID" Type="int" Nullable="false" />
+          <Property Name="ActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="SecondaryPersonID" Type="int" Nullable="false" />
+          <Property Name="IsHidden" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppVersion">
+          <Key>
+            <PropertyRef Name="VersionID" />
+          </Key>
+          <Property Name="VersionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VersionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PublishDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="StoryID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CommentDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="DeviceToken" />
+            <PropertyRef Name="DeviceTypeID" />
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="DeviceToken" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DeviceTypeID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LoginDate" Type="datetime" Nullable="false" />
+          <Property Name="OsVersion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="DeviceOSID" Type="int" Nullable="false" />
+          <Property Name="DeviceLanguageID" Type="int" Nullable="false" />
+          <Property Name="AppVersionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeviceOS">
+          <Key>
+            <PropertyRef Name="OSID" />
+          </Key>
+          <Property Name="OSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OSName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeviceType">
+          <Key>
+            <PropertyRef Name="DeviceTypeID" />
+          </Key>
+          <Property Name="DeviceTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackID" />
+          </Key>
+          <Property Name="FeedbackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="SentDate" Type="datetime" Nullable="false" />
+          <Property Name="FeedbackCategoryID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="IsReplied" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FeedbackCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moment">
+          <Key>
+            <PropertyRef Name="MomentID" />
+          </Key>
+          <Property Name="MomentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhotoUrlActivity" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhotoUrlExplore" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhotoUrlLarge" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhotoUrlOriginal" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Tag" Type="nvarchar(max)" />
+          <Property Name="UploadDate" Type="datetime" Nullable="false" />
+          <Property Name="IsSafe" Type="bit" Nullable="false" />
+          <Property Name="IsHorizontal" Type="bit" Nullable="false" />
+          <Property Name="LocationString" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MomentLike">
+          <Key>
+            <PropertyRef Name="MomentID" />
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="MomentID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="LikeDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationCaseID" Type="int" Nullable="false" />
+          <Property Name="NotificationTypeID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="RequestDate" Type="datetime" Nullable="false" />
+          <Property Name="SentDate" Type="datetime" />
+          <Property Name="IsSent" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NotificationCase">
+          <Key>
+            <PropertyRef Name="NotificationCaseID" />
+          </Key>
+          <Property Name="NotificationCaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationCaseName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NotificationType">
+          <Key>
+            <PropertyRef Name="NotificationTypeID" />
+          </Key>
+          <Property Name="NotificationTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NotificationTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="17" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhotoUrlThumbnail" Type="nvarchar(max)" />
+          <Property Name="PhotoUrlLarge" Type="nvarchar(max)" />
+          <Property Name="PhotoUrlOriginal" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountMoment" Type="int" Nullable="false" />
+          <Property Name="CountLike" Type="int" Nullable="false" />
+          <Property Name="CountStory" Type="int" Nullable="false" />
+          <Property Name="CountFollowing" Type="int" Nullable="false" />
+          <Property Name="CountFollower" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" />
+          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+          <Property Name="GenderID" Type="int" Nullable="false" />
+          <Property Name="PersonRoleID" Type="int" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="Birthdate" Type="datetime" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="About" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsPushAllowed" Type="bit" Nullable="false" />
+          <Property Name="IsEmailAllowed" Type="bit" Nullable="false" />
+          <Property Name="CountDevice" Type="int" Nullable="false" />
+          <Property Name="CountReport" Type="int" Nullable="false" />
+          <Property Name="CountFeedback" Type="int" Nullable="false" />
+          <Property Name="IsSuspended" Type="bit" Nullable="false" />
+          <Property Name="CountReportedStory" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonFollowing">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="SecondaryPersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="SecondaryPersonID" Type="int" Nullable="false" />
+          <Property Name="DateRequest" Type="datetime" Nullable="false" />
+          <Property Name="DateAccepted" Type="datetime" />
+          <Property Name="IsAccepted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonRole">
+          <Key>
+            <PropertyRef Name="PersonRoleID" />
+          </Key>
+          <Property Name="PersonRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonToken">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="Token" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Token" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonUsedTheme">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="ThemeID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="ThemeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportDate" Type="datetime" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="StoryID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsClosed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SearchHistory">
+          <Key>
+            <PropertyRef Name="SearchID" />
+          </Key>
+          <Property Name="SearchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="SearchDate" Type="datetime" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CountResult" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="StoryID" />
+          </Key>
+          <Property Name="StoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoryCategoryID" Type="int" Nullable="false" />
+          <Property Name="ThemeID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Tag" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsReported" Type="bit" Nullable="false" />
+          <Property Name="IsPrivate" Type="bit" Nullable="false" />
+          <Property Name="MomentID1" Type="int" Nullable="false" />
+          <Property Name="MomentID2" Type="int" Nullable="false" />
+          <Property Name="MomentID3" Type="int" />
+          <Property Name="MomentID4" Type="int" />
+          <Property Name="MomentID5" Type="int" />
+          <Property Name="MomentID6" Type="int" />
+          <Property Name="MomentID7" Type="int" />
+        </EntityType>
+        <EntityType Name="StoryCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CategoryIconUrl" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Theme">
+          <Key>
+            <PropertyRef Name="ThemeID" />
+          </Key>
+          <Property Name="ThemeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Timeline">
+          <Key>
+            <PropertyRef Name="TimelineID" />
+          </Key>
+          <Property Name="TimelineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="StoryID" Type="int" Nullable="false" />
+          <Property Name="FeedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Activity_0">
+          <End Role="ActivityCategory" Type="Self.ActivityCategory" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_1">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_2">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="SecondaryPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_1">
+          <End Role="Story" Type="Self.Story" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_1">
+          <End Role="DeviceType" Type="Self.DeviceType" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceType">
+              <PropertyRef Name="DeviceTypeID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_2">
+          <End Role="DeviceOS" Type="Self.DeviceOS" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceOS">
+              <PropertyRef Name="OSID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceOSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_3">
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceLanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_4">
+          <End Role="AppVersion" Type="Self.AppVersion" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppVersion">
+              <PropertyRef Name="VersionID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="AppVersionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_1">
+          <End Role="FeedbackCategory" Type="Self.FeedbackCategory" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeedbackCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="FeedbackCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Moment_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Moment" Type="Self.Moment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Moment">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MomentLike_0">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="1" />
+          <End Role="MomentLike" Type="Self.MomentLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="MomentLike">
+              <PropertyRef Name="MomentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MomentLike_1">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="MomentLike" Type="Self.MomentLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="MomentLike">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_0">
+          <End Role="NotificationCase" Type="Self.NotificationCase" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationCase">
+              <PropertyRef Name="NotificationCaseID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="NotificationCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_1">
+          <End Role="NotificationType" Type="Self.NotificationType" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationType">
+              <PropertyRef Name="NotificationTypeID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="NotificationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_2">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_0">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_1">
+          <End Role="PersonRole" Type="Self.PersonRole" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonRole">
+              <PropertyRef Name="PersonRoleID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PersonRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonFollowing_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="PersonFollowing" Type="Self.PersonFollowing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonFollowing">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonFollowing_1">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="PersonFollowing" Type="Self.PersonFollowing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonFollowing">
+              <PropertyRef Name="SecondaryPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonToken_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="PersonToken" Type="Self.PersonToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonToken">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonUsedTheme_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="PersonUsedTheme" Type="Self.PersonUsedTheme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonUsedTheme">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonUsedTheme_1">
+          <End Role="Theme" Type="Self.Theme" Multiplicity="1" />
+          <End Role="PersonUsedTheme" Type="Self.PersonUsedTheme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theme">
+              <PropertyRef Name="ThemeID" />
+            </Principal>
+            <Dependent Role="PersonUsedTheme">
+              <PropertyRef Name="ThemeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_1">
+          <End Role="Story" Type="Self.Story" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SearchHistory_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="SearchHistory" Type="Self.SearchHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="SearchHistory">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_0">
+          <End Role="StoryCategory" Type="Self.StoryCategory" Multiplicity="1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoryCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="StoryCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_1">
+          <End Role="Theme" Type="Self.Theme" Multiplicity="1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theme">
+              <PropertyRef Name="ThemeID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="ThemeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_2">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_3">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_4">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_5">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="0..1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_6">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="0..1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_7">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="0..1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID5" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_8">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="0..1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID6" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_9">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="0..1" />
+          <End Role="Story" Type="Self.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID7" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timeline_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Timeline" Type="Self.Timeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Timeline">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timeline_1">
+          <End Role="Story" Type="Self.Story" Multiplicity="1" />
+          <End Role="Timeline" Type="Self.Timeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="Timeline">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityCategory" EntityType="Self.ActivityCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppVersion" EntityType="Self.AppVersion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceOS" EntityType="Self.DeviceOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceType" EntityType="Self.DeviceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeedbackCategory" EntityType="Self.FeedbackCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moment" EntityType="Self.Moment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MomentLike" EntityType="Self.MomentLike" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationCase" EntityType="Self.NotificationCase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationType" EntityType="Self.NotificationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonFollowing" EntityType="Self.PersonFollowing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonRole" EntityType="Self.PersonRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonToken" EntityType="Self.PersonToken" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonUsedTheme" EntityType="Self.PersonUsedTheme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchHistory" EntityType="Self.SearchHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Story" EntityType="Self.Story" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoryCategory" EntityType="Self.StoryCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Theme" EntityType="Self.Theme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timeline" EntityType="Self.Timeline" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Activity_0" Association="Self.FK_Activity_0">
+            <End Role="ActivityCategory" EntitySet="ActivityCategory" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_1" Association="Self.FK_Activity_1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_2" Association="Self.FK_Activity_2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_0" Association="Self.FK_Comment_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_1" Association="Self.FK_Comment_1">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_0" Association="Self.FK_Device_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_1" Association="Self.FK_Device_1">
+            <End Role="DeviceType" EntitySet="DeviceType" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_2" Association="Self.FK_Device_2">
+            <End Role="DeviceOS" EntitySet="DeviceOS" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_3" Association="Self.FK_Device_3">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_4" Association="Self.FK_Device_4">
+            <End Role="AppVersion" EntitySet="AppVersion" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_0" Association="Self.FK_Feedback_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_1" Association="Self.FK_Feedback_1">
+            <End Role="FeedbackCategory" EntitySet="FeedbackCategory" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Moment_0" Association="Self.FK_Moment_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Moment" EntitySet="Moment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MomentLike_0" Association="Self.FK_MomentLike_0">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="MomentLike" EntitySet="MomentLike" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MomentLike_1" Association="Self.FK_MomentLike_1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="MomentLike" EntitySet="MomentLike" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_0" Association="Self.FK_Notification_0">
+            <End Role="NotificationCase" EntitySet="NotificationCase" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_1" Association="Self.FK_Notification_1">
+            <End Role="NotificationType" EntitySet="NotificationType" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_2" Association="Self.FK_Notification_2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_0" Association="Self.FK_Person_0">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_1" Association="Self.FK_Person_1">
+            <End Role="PersonRole" EntitySet="PersonRole" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonFollowing_0" Association="Self.FK_PersonFollowing_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonFollowing" EntitySet="PersonFollowing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonFollowing_1" Association="Self.FK_PersonFollowing_1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonFollowing" EntitySet="PersonFollowing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonToken_0" Association="Self.FK_PersonToken_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonToken" EntitySet="PersonToken" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonUsedTheme_0" Association="Self.FK_PersonUsedTheme_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonUsedTheme" EntitySet="PersonUsedTheme" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonUsedTheme_1" Association="Self.FK_PersonUsedTheme_1">
+            <End Role="Theme" EntitySet="Theme" />
+            <End Role="PersonUsedTheme" EntitySet="PersonUsedTheme" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_0" Association="Self.FK_Report_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_1" Association="Self.FK_Report_1">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SearchHistory_0" Association="Self.FK_SearchHistory_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="SearchHistory" EntitySet="SearchHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_0" Association="Self.FK_Story_0">
+            <End Role="StoryCategory" EntitySet="StoryCategory" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_1" Association="Self.FK_Story_1">
+            <End Role="Theme" EntitySet="Theme" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_2" Association="Self.FK_Story_2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_3" Association="Self.FK_Story_3">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_4" Association="Self.FK_Story_4">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_5" Association="Self.FK_Story_5">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_6" Association="Self.FK_Story_6">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_7" Association="Self.FK_Story_7">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_8" Association="Self.FK_Story_8">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_9" Association="Self.FK_Story_9">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timeline_0" Association="Self.FK_Timeline_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Timeline" EntitySet="Timeline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timeline_1" Association="Self.FK_Timeline_1">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Timeline" EntitySet="Timeline" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MomenticEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activity" EntityType="Model.Activity" />
+          <EntitySet Name="ActivityCategory" EntityType="Model.ActivityCategory" />
+          <EntitySet Name="Comment" EntityType="Model.Comment" />
+          <EntitySet Name="Device" EntityType="Model.Device" />
+          <EntitySet Name="DeviceOS" EntityType="Model.DeviceOS" />
+          <EntitySet Name="DeviceType" EntityType="Model.DeviceType" />
+          <EntitySet Name="Feedback" EntityType="Model.Feedback" />
+          <EntitySet Name="FeedbackCategory" EntityType="Model.FeedbackCategory" />
+          <EntitySet Name="Gender" EntityType="Model.Gender" />
+          <EntitySet Name="Language" EntityType="Model.Language" />
+          <EntitySet Name="Moment" EntityType="Model.Moment" />
+          <EntitySet Name="MomentLike" EntityType="Model.MomentLike" />
+          <EntitySet Name="Notification" EntityType="Model.Notification" />
+          <EntitySet Name="NotificationCase" EntityType="Model.NotificationCase" />
+          <EntitySet Name="NotificationType" EntityType="Model.NotificationType" />
+          <EntitySet Name="Person" EntityType="Model.Person" />
+          <EntitySet Name="PersonFollowing" EntityType="Model.PersonFollowing" />
+          <EntitySet Name="PersonRole" EntityType="Model.PersonRole" />
+          <EntitySet Name="Report" EntityType="Model.Report" />
+          <EntitySet Name="SearchHistory" EntityType="Model.SearchHistory" />
+          <EntitySet Name="Story" EntityType="Model.Story" />
+          <EntitySet Name="StoryCategory" EntityType="Model.StoryCategory" />
+          <EntitySet Name="Theme" EntityType="Model.Theme" />
+          <EntitySet Name="Timeline" EntityType="Model.Timeline" />
+          <AssociationSet Name="FK_Activity_0" Association="Model.FK_Activity_0">
+            <End Role="ActivityCategory" EntitySet="ActivityCategory" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_1" Association="Model.FK_Activity_1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_2" Association="Model.FK_Activity_2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_0" Association="Model.FK_Comment_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_1" Association="Model.FK_Comment_1">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_0" Association="Model.FK_Device_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_1" Association="Model.FK_Device_1">
+            <End Role="DeviceType" EntitySet="DeviceType" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_2" Association="Model.FK_Device_2">
+            <End Role="DeviceOS" EntitySet="DeviceOS" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_3" Association="Model.FK_Device_3">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_0" Association="Model.FK_Feedback_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_1" Association="Model.FK_Feedback_1">
+            <End Role="FeedbackCategory" EntitySet="FeedbackCategory" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_0" Association="Model.FK_Person_0">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Moment_0" Association="Model.FK_Moment_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Moment" EntitySet="Moment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MomentLike_0" Association="Model.FK_MomentLike_0">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="MomentLike" EntitySet="MomentLike" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_3" Association="Model.FK_Story_3">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_4" Association="Model.FK_Story_4">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_5" Association="Model.FK_Story_5">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_6" Association="Model.FK_Story_6">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_7" Association="Model.FK_Story_7">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_8" Association="Model.FK_Story_8">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_9" Association="Model.FK_Story_9">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MomentLike_1" Association="Model.FK_MomentLike_1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="MomentLike" EntitySet="MomentLike" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_0" Association="Model.FK_Notification_0">
+            <End Role="NotificationCase" EntitySet="NotificationCase" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_1" Association="Model.FK_Notification_1">
+            <End Role="NotificationType" EntitySet="NotificationType" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_2" Association="Model.FK_Notification_2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_1" Association="Model.FK_Person_1">
+            <End Role="PersonRole" EntitySet="PersonRole" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonFollowing_0" Association="Model.FK_PersonFollowing_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonFollowing" EntitySet="PersonFollowing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonFollowing_1" Association="Model.FK_PersonFollowing_1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonFollowing" EntitySet="PersonFollowing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_0" Association="Model.FK_Report_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SearchHistory_0" Association="Model.FK_SearchHistory_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="SearchHistory" EntitySet="SearchHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_2" Association="Model.FK_Story_2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timeline_0" Association="Model.FK_Timeline_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Timeline" EntitySet="Timeline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Report_1" Association="Model.FK_Report_1">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_0" Association="Model.FK_Story_0">
+            <End Role="StoryCategory" EntitySet="StoryCategory" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Story_1" Association="Model.FK_Story_1">
+            <End Role="Theme" EntitySet="Theme" />
+            <End Role="Story" EntitySet="Story" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timeline_1" Association="Model.FK_Timeline_1">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Timeline" EntitySet="Timeline" />
+          </AssociationSet>
+          <AssociationSet Name="PersonUsedTheme" Association="Model.PersonUsedTheme">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Theme" EntitySet="Theme" />
+          </AssociationSet>
+          <EntitySet Name="AppVersion" EntityType="Model.AppVersion" />
+          <AssociationSet Name="FK_Device_4" Association="Model.FK_Device_4">
+            <End Role="AppVersion" EntitySet="AppVersion" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <EntitySet Name="PersonToken" EntityType="Model.PersonToken" />
+          <AssociationSet Name="FK_PersonToken_0" Association="Model.FK_PersonToken_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonToken" EntitySet="PersonToken" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityID" />
+          </Key>
+          <Property Name="ActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="SecondaryPersonID" Type="Int32" Nullable="false" />
+          <Property Name="IsHidden" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ActivityCategory" Relationship="Model.FK_Activity_0" FromRole="Activity" ToRole="ActivityCategory" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Activity_1" FromRole="Activity" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="Model.FK_Activity_2" FromRole="Activity" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="ActivityCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activity" Relationship="Model.FK_Activity_0" FromRole="ActivityCategory" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="StoryID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Comment_0" FromRole="Comment" ToRole="Person" />
+          <NavigationProperty Name="Story" Relationship="Model.FK_Comment_1" FromRole="Comment" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="DeviceToken" />
+            <PropertyRef Name="DeviceTypeID" />
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="DeviceToken" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceTypeID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OsVersion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeviceOSID" Type="Int32" Nullable="false" />
+          <Property Name="DeviceLanguageID" Type="Int32" Nullable="false" />
+          <Property Name="AppVersionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Device_0" FromRole="Device" ToRole="Person" />
+          <NavigationProperty Name="DeviceType" Relationship="Model.FK_Device_1" FromRole="Device" ToRole="DeviceType" />
+          <NavigationProperty Name="DeviceOS" Relationship="Model.FK_Device_2" FromRole="Device" ToRole="DeviceOS" />
+          <NavigationProperty Name="Language" Relationship="Model.FK_Device_3" FromRole="Device" ToRole="Language" />
+          <NavigationProperty Name="AppVersion" Relationship="Model.FK_Device_4" FromRole="Device" ToRole="AppVersion" />
+        </EntityType>
+        <EntityType Name="DeviceOS">
+          <Key>
+            <PropertyRef Name="OSID" />
+          </Key>
+          <Property Name="OSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OSName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_2" FromRole="DeviceOS" ToRole="Device" />
+        </EntityType>
+        <EntityType Name="DeviceType">
+          <Key>
+            <PropertyRef Name="DeviceTypeID" />
+          </Key>
+          <Property Name="DeviceTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_1" FromRole="DeviceType" ToRole="Device" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackID" />
+          </Key>
+          <Property Name="FeedbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="SentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FeedbackCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="IsReplied" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Feedback_0" FromRole="Feedback" ToRole="Person" />
+          <NavigationProperty Name="FeedbackCategory" Relationship="Model.FK_Feedback_1" FromRole="Feedback" ToRole="FeedbackCategory" />
+        </EntityType>
+        <EntityType Name="FeedbackCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Feedback" Relationship="Model.FK_Feedback_1" FromRole="FeedbackCategory" ToRole="Feedback" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Person_0" FromRole="Gender" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageID" />
+          </Key>
+          <Property Name="LanguageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_3" FromRole="Language" ToRole="Device" />
+        </EntityType>
+        <EntityType Name="Moment">
+          <Key>
+            <PropertyRef Name="MomentID" />
+          </Key>
+          <Property Name="MomentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhotoUrlActivity" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoUrlExplore" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoUrlLarge" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoUrlOriginal" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsSafe" Type="Boolean" Nullable="false" />
+          <Property Name="IsHorizontal" Type="Boolean" Nullable="false" />
+          <Property Name="LocationString" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Moment_0" FromRole="Moment" ToRole="Person" />
+          <NavigationProperty Name="MomentLike" Relationship="Model.FK_MomentLike_0" FromRole="Moment" ToRole="MomentLike" />
+          <NavigationProperty Name="Story" Relationship="Model.FK_Story_3" FromRole="Moment" ToRole="Story" />
+          <NavigationProperty Name="Story1" Relationship="Model.FK_Story_4" FromRole="Moment" ToRole="Story" />
+          <NavigationProperty Name="Story2" Relationship="Model.FK_Story_5" FromRole="Moment" ToRole="Story" />
+          <NavigationProperty Name="Story3" Relationship="Model.FK_Story_6" FromRole="Moment" ToRole="Story" />
+          <NavigationProperty Name="Story4" Relationship="Model.FK_Story_7" FromRole="Moment" ToRole="Story" />
+          <NavigationProperty Name="Story5" Relationship="Model.FK_Story_8" FromRole="Moment" ToRole="Story" />
+          <NavigationProperty Name="Story6" Relationship="Model.FK_Story_9" FromRole="Moment" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="MomentLike">
+          <Key>
+            <PropertyRef Name="MomentID" />
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="MomentID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="LikeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Moment" Relationship="Model.FK_MomentLike_0" FromRole="MomentLike" ToRole="Moment" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_MomentLike_1" FromRole="MomentLike" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="NotificationID" />
+          </Key>
+          <Property Name="NotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationCaseID" Type="Int32" Nullable="false" />
+          <Property Name="NotificationTypeID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="RequestDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SentDate" Type="DateTime" Precision="3" />
+          <Property Name="IsSent" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NotificationCase" Relationship="Model.FK_Notification_0" FromRole="Notification" ToRole="NotificationCase" />
+          <NavigationProperty Name="NotificationType" Relationship="Model.FK_Notification_1" FromRole="Notification" ToRole="NotificationType" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Notification_2" FromRole="Notification" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="NotificationCase">
+          <Key>
+            <PropertyRef Name="NotificationCaseID" />
+          </Key>
+          <Property Name="NotificationCaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationCaseName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Notification" Relationship="Model.FK_Notification_0" FromRole="NotificationCase" ToRole="Notification" />
+        </EntityType>
+        <EntityType Name="NotificationType">
+          <Key>
+            <PropertyRef Name="NotificationTypeID" />
+          </Key>
+          <Property Name="NotificationTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NotificationTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Notification" Relationship="Model.FK_Notification_1" FromRole="NotificationType" ToRole="Notification" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoUrlThumbnail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoUrlLarge" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoUrlOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CountMoment" Type="Int32" Nullable="false" />
+          <Property Name="CountLike" Type="Int32" Nullable="false" />
+          <Property Name="CountStory" Type="Int32" Nullable="false" />
+          <Property Name="CountFollowing" Type="Int32" Nullable="false" />
+          <Property Name="CountFollower" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GenderID" Type="Int32" Nullable="false" />
+          <Property Name="PersonRoleID" Type="Int32" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Birthdate" Type="DateTime" Precision="3" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="About" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsPushAllowed" Type="Boolean" Nullable="false" />
+          <Property Name="IsEmailAllowed" Type="Boolean" Nullable="false" />
+          <Property Name="CountDevice" Type="Int32" Nullable="false" />
+          <Property Name="CountReport" Type="Int32" Nullable="false" />
+          <Property Name="CountFeedback" Type="Int32" Nullable="false" />
+          <Property Name="IsSuspended" Type="Boolean" Nullable="false" />
+          <Property Name="CountReportedStory" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activity" Relationship="Model.FK_Activity_1" FromRole="Person" ToRole="Activity" />
+          <NavigationProperty Name="Activity1" Relationship="Model.FK_Activity_2" FromRole="Person" ToRole="Activity" />
+          <NavigationProperty Name="Comment" Relationship="Model.FK_Comment_0" FromRole="Person" ToRole="Comment" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_0" FromRole="Person" ToRole="Device" />
+          <NavigationProperty Name="Feedback" Relationship="Model.FK_Feedback_0" FromRole="Person" ToRole="Feedback" />
+          <NavigationProperty Name="Gender" Relationship="Model.FK_Person_0" FromRole="Person" ToRole="Gender" />
+          <NavigationProperty Name="Moment" Relationship="Model.FK_Moment_0" FromRole="Person" ToRole="Moment" />
+          <NavigationProperty Name="MomentLike" Relationship="Model.FK_MomentLike_1" FromRole="Person" ToRole="MomentLike" />
+          <NavigationProperty Name="Notification" Relationship="Model.FK_Notification_2" FromRole="Person" ToRole="Notification" />
+          <NavigationProperty Name="PersonRole" Relationship="Model.FK_Person_1" FromRole="Person" ToRole="PersonRole" />
+          <NavigationProperty Name="PersonFollowing" Relationship="Model.FK_PersonFollowing_0" FromRole="Person" ToRole="PersonFollowing" />
+          <NavigationProperty Name="PersonFollowing1" Relationship="Model.FK_PersonFollowing_1" FromRole="Person" ToRole="PersonFollowing" />
+          <NavigationProperty Name="Report" Relationship="Model.FK_Report_0" FromRole="Person" ToRole="Report" />
+          <NavigationProperty Name="SearchHistory" Relationship="Model.FK_SearchHistory_0" FromRole="Person" ToRole="SearchHistory" />
+          <NavigationProperty Name="Story" Relationship="Model.FK_Story_2" FromRole="Person" ToRole="Story" />
+          <NavigationProperty Name="Timeline" Relationship="Model.FK_Timeline_0" FromRole="Person" ToRole="Timeline" />
+          <NavigationProperty Name="Theme" Relationship="Model.PersonUsedTheme" FromRole="Person" ToRole="Theme" />
+          <NavigationProperty Name="PersonToken" Relationship="Model.FK_PersonToken_0" FromRole="Person" ToRole="PersonToken" />
+        </EntityType>
+        <EntityType Name="PersonFollowing">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="SecondaryPersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="SecondaryPersonID" Type="Int32" Nullable="false" />
+          <Property Name="DateRequest" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateAccepted" Type="DateTime" Precision="3" />
+          <Property Name="IsAccepted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_PersonFollowing_0" FromRole="PersonFollowing" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="Model.FK_PersonFollowing_1" FromRole="PersonFollowing" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="PersonRole">
+          <Key>
+            <PropertyRef Name="PersonRoleID" />
+          </Key>
+          <Property Name="PersonRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Person_1" FromRole="PersonRole" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="StoryID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsClosed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Report_0" FromRole="Report" ToRole="Person" />
+          <NavigationProperty Name="Story" Relationship="Model.FK_Report_1" FromRole="Report" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="SearchHistory">
+          <Key>
+            <PropertyRef Name="SearchID" />
+          </Key>
+          <Property Name="SearchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="SearchDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountResult" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_SearchHistory_0" FromRole="SearchHistory" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="StoryID" />
+          </Key>
+          <Property Name="StoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoryCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ThemeID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Tag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsReported" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrivate" Type="Boolean" Nullable="false" />
+          <Property Name="MomentID1" Type="Int32" Nullable="false" />
+          <Property Name="MomentID2" Type="Int32" Nullable="false" />
+          <Property Name="MomentID3" Type="Int32" />
+          <Property Name="MomentID4" Type="Int32" />
+          <Property Name="MomentID5" Type="Int32" />
+          <Property Name="MomentID6" Type="Int32" />
+          <Property Name="MomentID7" Type="Int32" />
+          <NavigationProperty Name="Comment" Relationship="Model.FK_Comment_1" FromRole="Story" ToRole="Comment" />
+          <NavigationProperty Name="Moment" Relationship="Model.FK_Story_3" FromRole="Story" ToRole="Moment" />
+          <NavigationProperty Name="Moment1" Relationship="Model.FK_Story_4" FromRole="Story" ToRole="Moment" />
+          <NavigationProperty Name="Moment2" Relationship="Model.FK_Story_5" FromRole="Story" ToRole="Moment" />
+          <NavigationProperty Name="Moment3" Relationship="Model.FK_Story_6" FromRole="Story" ToRole="Moment" />
+          <NavigationProperty Name="Moment4" Relationship="Model.FK_Story_7" FromRole="Story" ToRole="Moment" />
+          <NavigationProperty Name="Moment5" Relationship="Model.FK_Story_8" FromRole="Story" ToRole="Moment" />
+          <NavigationProperty Name="Moment6" Relationship="Model.FK_Story_9" FromRole="Story" ToRole="Moment" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Story_2" FromRole="Story" ToRole="Person" />
+          <NavigationProperty Name="Report" Relationship="Model.FK_Report_1" FromRole="Story" ToRole="Report" />
+          <NavigationProperty Name="StoryCategory" Relationship="Model.FK_Story_0" FromRole="Story" ToRole="StoryCategory" />
+          <NavigationProperty Name="Theme" Relationship="Model.FK_Story_1" FromRole="Story" ToRole="Theme" />
+          <NavigationProperty Name="Timeline" Relationship="Model.FK_Timeline_1" FromRole="Story" ToRole="Timeline" />
+        </EntityType>
+        <EntityType Name="StoryCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryIconUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Story" Relationship="Model.FK_Story_0" FromRole="StoryCategory" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="Theme">
+          <Key>
+            <PropertyRef Name="ThemeID" />
+          </Key>
+          <Property Name="ThemeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Story" Relationship="Model.FK_Story_1" FromRole="Theme" ToRole="Story" />
+          <NavigationProperty Name="Person" Relationship="Model.PersonUsedTheme" FromRole="Theme" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Timeline">
+          <Key>
+            <PropertyRef Name="TimelineID" />
+          </Key>
+          <Property Name="TimelineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="StoryID" Type="Int32" Nullable="false" />
+          <Property Name="FeedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Timeline_0" FromRole="Timeline" ToRole="Person" />
+          <NavigationProperty Name="Story" Relationship="Model.FK_Timeline_1" FromRole="Timeline" ToRole="Story" />
+        </EntityType>
+        <Association Name="FK_Activity_0">
+          <End Type="Model.ActivityCategory" Role="ActivityCategory" Multiplicity="1" />
+          <End Type="Model.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ActivityCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_1">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_2">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="SecondaryPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_1">
+          <End Type="Model.Story" Role="Story" Multiplicity="1" />
+          <End Type="Model.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_1">
+          <End Type="Model.DeviceType" Role="DeviceType" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceType">
+              <PropertyRef Name="DeviceTypeID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_2">
+          <End Type="Model.DeviceOS" Role="DeviceOS" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceOS">
+              <PropertyRef Name="OSID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceOSID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_3">
+          <End Type="Model.Language" Role="Language" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceLanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_1">
+          <End Type="Model.FeedbackCategory" Role="FeedbackCategory" Multiplicity="1" />
+          <End Type="Model.Feedback" Role="Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeedbackCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="FeedbackCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_0">
+          <End Type="Model.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="Model.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Moment_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Moment" Role="Moment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Moment">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MomentLike_0">
+          <End Type="Model.Moment" Role="Moment" Multiplicity="1" />
+          <End Type="Model.MomentLike" Role="MomentLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="MomentLike">
+              <PropertyRef Name="MomentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_3">
+          <End Type="Model.Moment" Role="Moment" Multiplicity="1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_4">
+          <End Type="Model.Moment" Role="Moment" Multiplicity="1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_5">
+          <End Type="Model.Moment" Role="Moment" Multiplicity="0..1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_6">
+          <End Type="Model.Moment" Role="Moment" Multiplicity="0..1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_7">
+          <End Type="Model.Moment" Role="Moment" Multiplicity="0..1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID5" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_8">
+          <End Type="Model.Moment" Role="Moment" Multiplicity="0..1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID6" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_9">
+          <End Type="Model.Moment" Role="Moment" Multiplicity="0..1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="MomentID7" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MomentLike_1">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.MomentLike" Role="MomentLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="MomentLike">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_0">
+          <End Type="Model.NotificationCase" Role="NotificationCase" Multiplicity="1" />
+          <End Type="Model.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationCase">
+              <PropertyRef Name="NotificationCaseID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="NotificationCaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_1">
+          <End Type="Model.NotificationType" Role="NotificationType" Multiplicity="1" />
+          <End Type="Model.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationType">
+              <PropertyRef Name="NotificationTypeID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="NotificationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_2">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_1">
+          <End Type="Model.PersonRole" Role="PersonRole" Multiplicity="1" />
+          <End Type="Model.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonRole">
+              <PropertyRef Name="PersonRoleID" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PersonRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonFollowing_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.PersonFollowing" Role="PersonFollowing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonFollowing">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonFollowing_1">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.PersonFollowing" Role="PersonFollowing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonFollowing">
+              <PropertyRef Name="SecondaryPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SearchHistory_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.SearchHistory" Role="SearchHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="SearchHistory">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_2">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timeline_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Timeline" Role="Timeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Timeline">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_1">
+          <End Type="Model.Story" Role="Story" Multiplicity="1" />
+          <End Type="Model.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_0">
+          <End Type="Model.StoryCategory" Role="StoryCategory" Multiplicity="1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoryCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="StoryCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Story_1">
+          <End Type="Model.Theme" Role="Theme" Multiplicity="1" />
+          <End Type="Model.Story" Role="Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theme">
+              <PropertyRef Name="ThemeID" />
+            </Principal>
+            <Dependent Role="Story">
+              <PropertyRef Name="ThemeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timeline_1">
+          <End Type="Model.Story" Role="Story" Multiplicity="1" />
+          <End Type="Model.Timeline" Role="Timeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="Timeline">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonUsedTheme">
+          <End Type="Model.Person" Role="Person" Multiplicity="*" />
+          <End Type="Model.Theme" Role="Theme" Multiplicity="*" />
+        </Association>
+        <EntityType Name="AppVersion">
+          <Key>
+            <PropertyRef Name="VersionID" />
+          </Key>
+          <Property Name="VersionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VersionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_4" FromRole="AppVersion" ToRole="Device" />
+        </EntityType>
+        <Association Name="FK_Device_4">
+          <End Type="Model.AppVersion" Role="AppVersion" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppVersion">
+              <PropertyRef Name="VersionID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="AppVersionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PersonToken">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="Token" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastLogin" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_PersonToken_0" FromRole="PersonToken" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_PersonToken_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.PersonToken" Role="PersonToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonToken">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="MomenticEntities">
+          <EntitySetMapping Name="Activity">
+            <EntityTypeMapping TypeName="Model.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="IsHidden" ColumnName="IsHidden" />
+                <ScalarProperty Name="SecondaryPersonID" ColumnName="SecondaryPersonID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+                <ScalarProperty Name="ActivityCategoryID" ColumnName="ActivityCategoryID" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityCategory">
+            <EntityTypeMapping TypeName="Model.ActivityCategory">
+              <MappingFragment StoreEntitySet="ActivityCategory">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="Model.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="StoryID" ColumnName="StoryID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Device">
+            <EntityTypeMapping TypeName="Model.Device">
+              <MappingFragment StoreEntitySet="Device">
+                <ScalarProperty Name="AppVersionID" ColumnName="AppVersionID" />
+                <ScalarProperty Name="DeviceLanguageID" ColumnName="DeviceLanguageID" />
+                <ScalarProperty Name="DeviceOSID" ColumnName="DeviceOSID" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="OsVersion" ColumnName="OsVersion" />
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="DeviceTypeID" ColumnName="DeviceTypeID" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceOS">
+            <EntityTypeMapping TypeName="Model.DeviceOS">
+              <MappingFragment StoreEntitySet="DeviceOS">
+                <ScalarProperty Name="OSName" ColumnName="OSName" />
+                <ScalarProperty Name="OSID" ColumnName="OSID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceType">
+            <EntityTypeMapping TypeName="Model.DeviceType">
+              <MappingFragment StoreEntitySet="DeviceType">
+                <ScalarProperty Name="DeviceTypeName" ColumnName="DeviceTypeName" />
+                <ScalarProperty Name="DeviceTypeID" ColumnName="DeviceTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedback">
+            <EntityTypeMapping TypeName="Model.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="IsReplied" ColumnName="IsReplied" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="FeedbackCategoryID" ColumnName="FeedbackCategoryID" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedbackCategory">
+            <EntityTypeMapping TypeName="Model.FeedbackCategory">
+              <MappingFragment StoreEntitySet="FeedbackCategory">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="Model.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Language">
+            <EntityTypeMapping TypeName="Model.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moment">
+            <EntityTypeMapping TypeName="Model.Moment">
+              <MappingFragment StoreEntitySet="Moment">
+                <ScalarProperty Name="LocationString" ColumnName="LocationString" />
+                <ScalarProperty Name="IsHorizontal" ColumnName="IsHorizontal" />
+                <ScalarProperty Name="IsSafe" ColumnName="IsSafe" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="PhotoUrlOriginal" ColumnName="PhotoUrlOriginal" />
+                <ScalarProperty Name="PhotoUrlLarge" ColumnName="PhotoUrlLarge" />
+                <ScalarProperty Name="PhotoUrlExplore" ColumnName="PhotoUrlExplore" />
+                <ScalarProperty Name="PhotoUrlActivity" ColumnName="PhotoUrlActivity" />
+                <ScalarProperty Name="MomentID" ColumnName="MomentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MomentLike">
+            <EntityTypeMapping TypeName="Model.MomentLike">
+              <MappingFragment StoreEntitySet="MomentLike">
+                <ScalarProperty Name="LikeDate" ColumnName="LikeDate" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="MomentID" ColumnName="MomentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification">
+            <EntityTypeMapping TypeName="Model.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="NotificationTypeID" ColumnName="NotificationTypeID" />
+                <ScalarProperty Name="NotificationCaseID" ColumnName="NotificationCaseID" />
+                <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationCase">
+            <EntityTypeMapping TypeName="Model.NotificationCase">
+              <MappingFragment StoreEntitySet="NotificationCase">
+                <ScalarProperty Name="NotificationCaseName" ColumnName="NotificationCaseName" />
+                <ScalarProperty Name="NotificationCaseID" ColumnName="NotificationCaseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationType">
+            <EntityTypeMapping TypeName="Model.NotificationType">
+              <MappingFragment StoreEntitySet="NotificationType">
+                <ScalarProperty Name="NotificationTypeName" ColumnName="NotificationTypeName" />
+                <ScalarProperty Name="NotificationTypeID" ColumnName="NotificationTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="Model.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="CountReportedStory" ColumnName="CountReportedStory" />
+                <ScalarProperty Name="IsSuspended" ColumnName="IsSuspended" />
+                <ScalarProperty Name="CountFeedback" ColumnName="CountFeedback" />
+                <ScalarProperty Name="CountReport" ColumnName="CountReport" />
+                <ScalarProperty Name="CountDevice" ColumnName="CountDevice" />
+                <ScalarProperty Name="IsEmailAllowed" ColumnName="IsEmailAllowed" />
+                <ScalarProperty Name="IsPushAllowed" ColumnName="IsPushAllowed" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="PersonRoleID" ColumnName="PersonRoleID" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CountFollower" ColumnName="CountFollower" />
+                <ScalarProperty Name="CountFollowing" ColumnName="CountFollowing" />
+                <ScalarProperty Name="CountStory" ColumnName="CountStory" />
+                <ScalarProperty Name="CountLike" ColumnName="CountLike" />
+                <ScalarProperty Name="CountMoment" ColumnName="CountMoment" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PhotoUrlOriginal" ColumnName="PhotoUrlOriginal" />
+                <ScalarProperty Name="PhotoUrlLarge" ColumnName="PhotoUrlLarge" />
+                <ScalarProperty Name="PhotoUrlThumbnail" ColumnName="PhotoUrlThumbnail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonFollowing">
+            <EntityTypeMapping TypeName="Model.PersonFollowing">
+              <MappingFragment StoreEntitySet="PersonFollowing">
+                <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+                <ScalarProperty Name="DateAccepted" ColumnName="DateAccepted" />
+                <ScalarProperty Name="DateRequest" ColumnName="DateRequest" />
+                <ScalarProperty Name="SecondaryPersonID" ColumnName="SecondaryPersonID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonRole">
+            <EntityTypeMapping TypeName="Model.PersonRole">
+              <MappingFragment StoreEntitySet="PersonRole">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="PersonRoleID" ColumnName="PersonRoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Report">
+            <EntityTypeMapping TypeName="Model.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="StoryID" ColumnName="StoryID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchHistory">
+            <EntityTypeMapping TypeName="Model.SearchHistory">
+              <MappingFragment StoreEntitySet="SearchHistory">
+                <ScalarProperty Name="CountResult" ColumnName="CountResult" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="SearchDate" ColumnName="SearchDate" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="SearchID" ColumnName="SearchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Story">
+            <EntityTypeMapping TypeName="Model.Story">
+              <MappingFragment StoreEntitySet="Story">
+                <ScalarProperty Name="MomentID7" ColumnName="MomentID7" />
+                <ScalarProperty Name="MomentID6" ColumnName="MomentID6" />
+                <ScalarProperty Name="MomentID5" ColumnName="MomentID5" />
+                <ScalarProperty Name="MomentID4" ColumnName="MomentID4" />
+                <ScalarProperty Name="MomentID3" ColumnName="MomentID3" />
+                <ScalarProperty Name="MomentID2" ColumnName="MomentID2" />
+                <ScalarProperty Name="MomentID1" ColumnName="MomentID1" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsReported" ColumnName="IsReported" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="ThemeID" ColumnName="ThemeID" />
+                <ScalarProperty Name="StoryCategoryID" ColumnName="StoryCategoryID" />
+                <ScalarProperty Name="StoryID" ColumnName="StoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoryCategory">
+            <EntityTypeMapping TypeName="Model.StoryCategory">
+              <MappingFragment StoreEntitySet="StoryCategory">
+                <ScalarProperty Name="CategoryIconUrl" ColumnName="CategoryIconUrl" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Theme">
+            <EntityTypeMapping TypeName="Model.Theme">
+              <MappingFragment StoreEntitySet="Theme">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ThemeID" ColumnName="ThemeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timeline">
+            <EntityTypeMapping TypeName="Model.Timeline">
+              <MappingFragment StoreEntitySet="Timeline">
+                <ScalarProperty Name="FeedDate" ColumnName="FeedDate" />
+                <ScalarProperty Name="StoryID" ColumnName="StoryID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="TimelineID" ColumnName="TimelineID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PersonUsedTheme" TypeName="Model.PersonUsedTheme" StoreEntitySet="PersonUsedTheme">
+            <EndProperty Name="Theme">
+              <ScalarProperty Name="ThemeID" ColumnName="ThemeID" />
+            </EndProperty>
+            <EndProperty Name="Person">
+              <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="AppVersion">
+            <EntityTypeMapping TypeName="Model.AppVersion">
+              <MappingFragment StoreEntitySet="AppVersion">
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="VersionName" ColumnName="VersionName" />
+                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonToken">
+            <EntityTypeMapping TypeName="Model.PersonToken">
+              <MappingFragment StoreEntitySet="PersonToken">
+                <ScalarProperty Name="DateLastLogin" ColumnName="DateLastLogin" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

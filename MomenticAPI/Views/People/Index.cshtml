@@ -1,0 +1,195 @@
+﻿@model IEnumerable<MomenticAPI.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nickname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoUrlThumbnail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoUrlLarge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoUrlOriginal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountMoment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountLike)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountStory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountFollowing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountFollower)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastLoginDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPrivate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.About)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPushAllowed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsEmailAllowed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountDevice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountReport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountFeedback)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSuspended)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountReportedStory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender.GenderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonRole.RoleName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nickname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhotoUrlThumbnail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhotoUrlLarge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhotoUrlOriginal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountMoment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountLike)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountStory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountFollowing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountFollower)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisterDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastLoginDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Birthdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPrivate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.About)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPushAllowed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsEmailAllowed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountDevice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountReport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountFeedback)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsSuspended)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountReportedStory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender.GenderName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonRole.RoleName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PersonID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PersonID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PersonID })
+        </td>
+    </tr>
+}
+
+</table>

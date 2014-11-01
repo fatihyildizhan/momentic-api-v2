@@ -1,0 +1,248 @@
+﻿@model MomenticAPI.Models.Person
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nickname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nickname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoUrlThumbnail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoUrlThumbnail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoUrlLarge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoUrlLarge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoUrlOriginal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoUrlOriginal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountMoment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountMoment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountLike)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountLike)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountStory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountStory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountFollowing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountFollowing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountFollower)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountFollower)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastLoginDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastLoginDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPrivate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPrivate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPushAllowed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPushAllowed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEmailAllowed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsEmailAllowed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountDevice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountDevice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountReport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountReport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountFeedback)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountFeedback)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSuspended)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSuspended)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountReportedStory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountReportedStory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender.GenderName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender.GenderName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonRole.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonRole.RoleName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
