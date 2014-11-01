@@ -274,6 +274,7 @@
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\PersonForgotPasswordController.cs" />
     <Compile Include="Controllers\PersonLoginController.cs" />
+    <Compile Include="Controllers\SearchHistoryController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Functions\AuthorizationKeyFilterAttribute.cs" />
     <Compile Include="Functions\BasicHelper.cs" />
