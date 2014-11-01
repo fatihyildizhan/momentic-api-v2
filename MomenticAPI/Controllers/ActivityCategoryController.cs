@@ -11,55 +11,55 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MomenticAPI.Models;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 using System.Dynamic;
+using Newtonsoft.Json;
 
 namespace MomenticAPI.Controllers
 {
     [AuthorizationKeyFilterAttribute("Token")]
-    public class SearchHistoryController : ApiController
+    public class ActivityCategoryController : ApiController
     {
         private MomenticEntities db = new MomenticEntities();
 
-        // GET: api/SearchHistory
+        // GET: api/ActivityCategory
         [OutputCache(Duration = 3600, VaryByParam = "*")]
-        public object GetSearchHistory()
+        public object GetActivityCategory()
         {
             dynamic cResponse = new ExpandoObject();
 
             cResponse.Result = "0";
-            cResponse.Device = db.SearchHistory;
+            cResponse.Device = db.ActivityCategory;
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
 
-        // GET: api/SearchHistory/5
-        [ResponseType(typeof(SearchHistory))]
-        public async Task<IHttpActionResult> GetSearchHistory(int id)
+        // GET: api/ActivityCategory/5
+        [ResponseType(typeof(ActivityCategory))]
+        public async Task<IHttpActionResult> GetActivityCategory(int id)
         {
-            SearchHistory searchHistory = await db.SearchHistory.FindAsync(id);
-            if (searchHistory == null)
+            ActivityCategory activityCategory = await db.ActivityCategory.FindAsync(id);
+            if (activityCategory == null)
             {
                 return NotFound();
             }
 
-            return Ok(searchHistory);
+            return Ok(activityCategory);
         }
 
-        // PUT: api/SearchHistory/5
+        // PUT: api/ActivityCategory/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutSearchHistory(int id, SearchHistory searchHistory)
+        public async Task<IHttpActionResult> PutActivityCategory(int id, ActivityCategory activityCategory)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != searchHistory.SearchID)
+            if (id != activityCategory.CategoryID)
             {
                 return BadRequest();
             }
 
-            db.Entry(searchHistory).State = EntityState.Modified;
+            db.Entry(activityCategory).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +67,7 @@ namespace MomenticAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SearchHistoryExists(id))
+                if (!ActivityCategoryExists(id))
                 {
                     return NotFound();
                 }
@@ -80,9 +80,9 @@ namespace MomenticAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/SearchHistory
-        [ResponseType(typeof(SearchHistory))]
-        public async Task<object> PostSearchHistory(SearchHistory searchHistory)
+        // POST: api/ActivityCategory
+        [ResponseType(typeof(ActivityCategory))]
+        public async Task<object> PostActivityCategory(ActivityCategory activityCategory)
         {
             dynamic cResponse = new ExpandoObject();
             try
@@ -94,16 +94,11 @@ namespace MomenticAPI.Controllers
                     return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
                 }
 
-                searchHistory.SearchDate = DateTime.Now;
-
-                // will count 
-                searchHistory.CountResult = 0;
-
-                db.SearchHistory.Add(searchHistory);
+                db.ActivityCategory.Add(activityCategory);
                 await db.SaveChangesAsync();
 
                 cResponse.Result = "0";
-                cResponse.Description = "Search History added to database";
+                cResponse.Description = "Activity Category added to database";
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
             catch
@@ -114,20 +109,20 @@ namespace MomenticAPI.Controllers
             }
         }
 
-        // DELETE: api/SearchHistory/5
-        [ResponseType(typeof(SearchHistory))]
-        public async Task<IHttpActionResult> DeleteSearchHistory(int id)
+        // DELETE: api/ActivityCategory/5
+        [ResponseType(typeof(ActivityCategory))]
+        public async Task<IHttpActionResult> DeleteActivityCategory(int id)
         {
-            SearchHistory searchHistory = await db.SearchHistory.FindAsync(id);
-            if (searchHistory == null)
+            ActivityCategory activityCategory = await db.ActivityCategory.FindAsync(id);
+            if (activityCategory == null)
             {
                 return NotFound();
             }
 
-            db.SearchHistory.Remove(searchHistory);
+            db.ActivityCategory.Remove(activityCategory);
             await db.SaveChangesAsync();
 
-            return Ok(searchHistory);
+            return Ok(activityCategory);
         }
 
         protected override void Dispose(bool disposing)
@@ -139,9 +134,9 @@ namespace MomenticAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool SearchHistoryExists(int id)
+        private bool ActivityCategoryExists(int id)
         {
-            return db.SearchHistory.Count(e => e.SearchID == id) > 0;
+            return db.ActivityCategory.Count(e => e.CategoryID == id) > 0;
         }
     }
 }
