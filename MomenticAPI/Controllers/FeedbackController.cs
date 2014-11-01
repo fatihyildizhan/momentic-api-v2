@@ -23,7 +23,7 @@ namespace MomenticAPI.Controllers
         private MomenticEntities db = new MomenticEntities();
 
         // GET: api/Feedback
-         [OutputCache(Duration = 3600, VaryByParam = "*")]
+        [OutputCache(Duration = 3600, VaryByParam = "*")]
         public object GetFeedback()
         {
             dynamic cResponse = new ExpandoObject();
@@ -46,25 +46,41 @@ namespace MomenticAPI.Controllers
             return Ok(feedback);
         }
 
-        // [AcceptVerbs("PATCH")]
+       // [AcceptVerbs("PATCH")]
         public object PatchFeedback(int id, Delta<Feedback> feedback)
         {
             dynamic cResponse = new ExpandoObject();
 
-            Feedback dbFeedback = db.Feedback.SingleOrDefault(p => p.FeedbackID == id);
-            if (dbFeedback == null)
+            try
             {
-                cResponse.Result = "-1";
-                cResponse.Description = "ID: " + id + ", Not Found";
+                if (!ModelState.IsValid)
+                {
+                    cResponse.Result = "-1";
+                    cResponse.Description = ModelState;
+                    return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+                }
+
+                Feedback dbFeedback = db.Feedback.SingleOrDefault(p => p.FeedbackID == id);
+                if (dbFeedback == null)
+                {
+                    cResponse.Result = "-1";
+                    cResponse.Description = "ID: " + id + ", Not Found";
+                    return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+                }
+
+                feedback.Patch(dbFeedback);
+                db.SaveChanges();
+
+                cResponse.Result = "0";
+                cResponse.Description = "Object Updated";
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
-
-            feedback.Patch(dbFeedback);
-            db.SaveChanges();
-
-            cResponse.Result = "0";
-            cResponse.Description = "Object Updated";
-            return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+            catch (Exception ex)
+            {
+                cResponse.Result = "-1";
+                cResponse.Description = "Your request could not executed";
+                return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+            }
         }
 
         public async Task<object> PostFeedback(Feedback feedback)

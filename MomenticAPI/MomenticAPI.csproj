@@ -274,11 +274,13 @@
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MomentController.cs" />
+    <Compile Include="Controllers\MomentLikeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\PersonFollowingController.cs" />
     <Compile Include="Controllers\PersonForgotPasswordController.cs" />
     <Compile Include="Controllers\PersonLoginController.cs" />
     <Compile Include="Controllers\SearchHistoryController.cs" />
+    <Compile Include="Controllers\StoryController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Functions\AuthorizationKeyFilterAttribute.cs" />
     <Compile Include="Functions\BasicHelper.cs" />
