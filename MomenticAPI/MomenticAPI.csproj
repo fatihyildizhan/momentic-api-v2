@@ -393,6 +393,17 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\MomentImages\momentic-story1.jpg" />
+    <Content Include="Content\MomentImages\momentic-story2.jpg" />
+    <Content Include="Content\MomentImages\momentic-story3.jpg" />
+    <Content Include="Content\PersonPhotos\p-ertunc.png" />
+    <Content Include="Content\PersonPhotos\p-fatih.png" />
+    <Content Include="Content\PersonPhotos\p-momencraft.png" />
+    <Content Include="Content\PersonPhotos\p-murat.png" />
+    <Content Include="Content\StoryCategoryImages\category-1-movies.png" />
+    <Content Include="Content\ThemeImages\theme-1-white.png" />
+    <Content Include="Content\ThemeImages\theme-2-black.png" />
+    <Content Include="Content\ThemeImages\theme-3-pattern.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -480,10 +491,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\MomentImages\" />
-    <Folder Include="Content\PersonPhotos\" />
-    <Folder Include="Content\StoryCategoryImages\" />
-    <Folder Include="Content\ThemeImages\" />
     <Folder Include="Views\Welcome\" />
   </ItemGroup>
   <ItemGroup>
