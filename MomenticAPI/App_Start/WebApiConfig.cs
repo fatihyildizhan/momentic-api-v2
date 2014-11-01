@@ -7,7 +7,7 @@ using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
- using MomenticAPI.Models;
+using MomenticAPI.Models;
 
 namespace MomenticAPI
 {
@@ -17,22 +17,22 @@ namespace MomenticAPI
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-     //       config.SuppressDefaultHostAuthentication();
-     //       config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            //       config.SuppressDefaultHostAuthentication();
+            //       config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{id}/{secondary}",
+                defaults: new { id = RouteParameter.Optional, secondary = RouteParameter.Optional }
             );
 
             //config.MapHttpAttributeRoutes();
 
             // Web API routes
-       //     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-       //     builder.EntitySet<Gender>("Genders");
-       //     builder.EntitySet<Person>("Person");
-       //     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
+            //     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            //     builder.EntitySet<Gender>("Genders");
+            //     builder.EntitySet<Person>("Person");
+            //     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
         }
     }

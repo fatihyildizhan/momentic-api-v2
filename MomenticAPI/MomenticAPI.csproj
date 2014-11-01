@@ -265,6 +265,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActivityCategoryController.cs" />
+    <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\CheckEmailController.cs" />
     <Compile Include="Controllers\CheckUsernameController.cs" />
     <Compile Include="Controllers\DeviceController.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\PersonFollowingController.cs" />
     <Compile Include="Controllers\PersonForgotPasswordController.cs" />
     <Compile Include="Controllers\PersonLoginController.cs" />
     <Compile Include="Controllers\SearchHistoryController.cs" />
@@ -478,6 +480,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\MomentImages\" />
+    <Folder Include="Content\PersonPhotos\" />
+    <Folder Include="Content\StoryCategoryImages\" />
+    <Folder Include="Content\ThemeImages\" />
     <Folder Include="Views\Welcome\" />
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@ using MomenticAPI.Models;
 using System.Dynamic;
 using Newtonsoft.Json;
 using System.Web.Http.OData;
+using System.Web.Mvc;
 
 namespace MomenticAPI.Controllers
 {
@@ -22,7 +23,7 @@ namespace MomenticAPI.Controllers
         private MomenticEntities db = new MomenticEntities();
 
         // GET: api/Feedback
-        
+         [OutputCache(Duration = 3600, VaryByParam = "*")]
         public object GetFeedback()
         {
             dynamic cResponse = new ExpandoObject();
