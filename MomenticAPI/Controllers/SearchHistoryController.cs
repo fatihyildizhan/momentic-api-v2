@@ -28,7 +28,7 @@ namespace MomenticAPI.Controllers
             dynamic cResponse = new ExpandoObject();
 
             cResponse.Result = "0";
-            cResponse.Device = db.SearchHistory;
+            cResponse.SearchHistory = db.SearchHistory;
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
 

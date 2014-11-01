@@ -36,51 +36,21 @@ namespace MomenticAPI.Controllers
         // GET: api/Person/5
         [ResponseType(typeof(Person))]
         [AuthorizationKeyFilterAttribute("Token")]
-        public async Task<IHttpActionResult> GetPerson(int id)
+        public async Task<object> GetPerson(int id)
         {
             Person person = await db.Person.FindAsync(id);
+
+            dynamic cResponse = new ExpandoObject();
             if (person == null)
             {
-                return NotFound();
+                cResponse.Result = "-1";
+                cResponse.Description = "Not Found";
+                return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
 
-            return Ok(person);
-        }
-
-        // PUT: api/Person/5
-        [ResponseType(typeof(void))]
-        [AuthorizationKeyFilterAttribute("Token")]
-        public async Task<IHttpActionResult> PutPerson(int id, Person person)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != person.PersonID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(person).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PersonExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            cResponse.Result = "0";
+            cResponse.Person = person;
+            return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
 
         // POST: api/Person

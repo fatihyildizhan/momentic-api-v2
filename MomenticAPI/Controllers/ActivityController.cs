@@ -43,13 +43,13 @@ namespace MomenticAPI.Controllers
             if (FoundActiviy.Count > 0)
             {
                 cResponse.Result = "0";
-                cResponse.Device = FoundActiviy;
+                cResponse.Activity = FoundActiviy;
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
             else
             {
                 cResponse.Result = "-1";
-                cResponse.Device = "There is no activity";
+                cResponse.Description = "There is no activity";
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
         }

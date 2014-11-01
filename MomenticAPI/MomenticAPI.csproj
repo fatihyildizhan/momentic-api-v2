@@ -273,6 +273,7 @@
     <Compile Include="Controllers\FeedbackCategoryController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MomentController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\PersonFollowingController.cs" />
     <Compile Include="Controllers\PersonForgotPasswordController.cs" />
@@ -342,6 +343,7 @@
     <Compile Include="Models\MomentLike.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MomentViewModels.cs" />
     <Compile Include="Models\Notification.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
