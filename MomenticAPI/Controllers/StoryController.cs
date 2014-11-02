@@ -16,7 +16,7 @@ using System.Web.OData;
 
 namespace MomenticAPI.Controllers
 {
-    [AuthorizationKeyFilterAttribute("Token")]
+   // [AuthorizationKeyFilterAttribute("Token")]
     public class StoryController : ApiController
     {
         private MomenticEntities db = new MomenticEntities();
@@ -45,9 +45,42 @@ namespace MomenticAPI.Controllers
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
 
+            List<int> IDList = new List<int>();
+            IDList.Add(foundStory.MomentID1);
+            IDList.Add(foundStory.MomentID2);
+            if (foundStory.MomentID3 != null)
+            {
+                IDList.Add(Convert.ToInt32(foundStory.MomentID3));
+            }
+            if (foundStory.MomentID4 != null)
+            {
+                IDList.Add(Convert.ToInt32(foundStory.MomentID4));
+            }
+            if (foundStory.MomentID5 != null)
+            {
+                IDList.Add(Convert.ToInt32(foundStory.MomentID5));
+            }
+            if (foundStory.MomentID6 != null)
+            {
+                IDList.Add(Convert.ToInt32(foundStory.MomentID6));
+            }
+            if (foundStory.MomentID7 != null)
+            {
+                IDList.Add(Convert.ToInt32(foundStory.MomentID7));
+            }
+
+            List<Moment> moments = await db.Moment.Where(t => IDList.Contains(t.MomentID)).ToListAsync();
+
             cResponse.Result = "0";
             cResponse.Story = foundStory;
-            return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+            cResponse.MomentList = moments;
+            //         return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+
+            return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse, Formatting.Indented,
+   new JsonSerializerSettings
+   {
+       PreserveReferencesHandling = PreserveReferencesHandling.Objects
+   }));
         }
 
         [AcceptVerbs("PATCH")]

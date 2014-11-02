@@ -34,6 +34,39 @@ namespace MomenticAPI
             //     builder.EntitySet<Person>("Person");
             //     config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
+
+            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+
+            builder.EntitySet<Activity>("Activity");
+            builder.EntitySet<ActivityCategory>("ActivityCategory");
+            builder.EntitySet<AppVersion>("AppVersion");
+            builder.EntitySet<Comment>("Comment");
+            builder.EntitySet<Moment>("Moment");
+            builder.EntitySet<Person>("Person");
+            builder.EntitySet<Report>("Report");
+            builder.EntitySet<StoryCategory>("StoryCategory");
+            builder.EntitySet<Theme>("Theme");
+            builder.EntitySet<Timeline>("Timeline");
+            builder.EntitySet<Comment>("Comment");
+            builder.EntitySet<Device>("Device");
+            builder.EntitySet<DeviceType>("DeviceType");
+            builder.EntitySet<DeviceOS>("DeviceOS");
+            builder.EntitySet<Feedback>("Feedback");
+            builder.EntitySet<FeedbackCategory>("FeedbackCategory");
+            builder.EntitySet<Gender>("Gender");
+            builder.EntitySet<Language>("Language");
+            builder.EntitySet<MomentLike>("MomentLike");
+            builder.EntitySet<Notification>("Notification");
+            builder.EntitySet<PersonRole>("PersonRole");
+            builder.EntitySet<PersonFollowing>("PersonFollowing");
+            builder.EntitySet<SearchHistory>("SearchHistory");
+            builder.EntitySet<Story>("Stories");
+            builder.EntitySet<Timeline>("Timeline");
+            builder.EntitySet<PersonToken>("PersonToken");
+            builder.EntitySet<NotificationType>("NotificationType");
+            builder.EntitySet<NotificationCase>("NotificationCase");
+
+            config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
         }
     }
 }
