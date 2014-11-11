@@ -17,21 +17,31 @@ namespace MomenticAPI.Controllers
         [ResponseType(typeof(PersonUsername))]
         public async Task<object> PostPersonUsername(PersonUsername checkUsername)
         {
-
-            int count = await db.Person.CountAsync(x => x.Username == checkUsername.Username);
-
             dynamic cResponse = new ExpandoObject();
-            if (count > 0)
+
+            if (!String.IsNullOrEmpty(checkUsername.Username))
             {
-                cResponse.Result = "-1";
-                cResponse.Description = "Username is not available";
-                cResponse.Username = checkUsername.Username;
-                return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+                int count = await db.Person.CountAsync(x => x.Username == checkUsername.Username);
+
+                if (count > 0)
+                {
+                    cResponse.Result = "-1";
+                    cResponse.Description = "Username is not available";
+                    cResponse.Username = checkUsername.Username;
+                    return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+                }
+                else
+                {
+                    cResponse.Result = "0";
+                    cResponse.Description = "Username is available";
+                    cResponse.Username = checkUsername.Username;
+                    return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+                }
             }
             else
             {
-                cResponse.Result = "0";
-                cResponse.Description = "Username is available";
+                cResponse.Result = "-1";
+                cResponse.Description = "Username format is wrong";
                 cResponse.Username = checkUsername.Username;
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
