@@ -105,6 +105,8 @@ namespace MomenticAPI.Controllers
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
 
+        /*
+
         // DELETE: api/Feedback/5
         [ResponseType(typeof(Feedback))]
         public async Task<object> DeleteFeedback(int id)
@@ -126,7 +128,8 @@ namespace MomenticAPI.Controllers
             cResponse.Description = "Object Deleted";
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
-
+         */
+ 
         protected override void Dispose(bool disposing)
         {
             if (disposing)

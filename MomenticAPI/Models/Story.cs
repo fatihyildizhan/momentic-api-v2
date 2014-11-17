@@ -18,6 +18,7 @@ namespace MomenticAPI.Models
         {
             this.Comment = new HashSet<Comment>();
             this.Report = new HashSet<Report>();
+            this.ReTell = new HashSet<ReTell>();
             this.Timeline = new HashSet<Timeline>();
         }
     
@@ -38,6 +39,7 @@ namespace MomenticAPI.Models
         public Nullable<int> MomentID7 { get; set; }
     
         public virtual ICollection<Comment> Comment { get; set; }
+        public virtual CountStory CountStory { get; set; }
         public virtual Moment Moment { get; set; }
         public virtual Moment Moment1 { get; set; }
         public virtual Moment Moment2 { get; set; }
@@ -47,6 +49,7 @@ namespace MomenticAPI.Models
         public virtual Moment Moment6 { get; set; }
         public virtual Person Person { get; set; }
         public virtual ICollection<Report> Report { get; set; }
+        public virtual ICollection<ReTell> ReTell { get; set; }
         public virtual StoryCategory StoryCategory { get; set; }
         public virtual Theme Theme { get; set; }
         public virtual ICollection<Timeline> Timeline { get; set; }

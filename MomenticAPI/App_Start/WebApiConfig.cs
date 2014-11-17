@@ -26,6 +26,7 @@ namespace MomenticAPI
                 defaults: new { id = RouteParameter.Optional, secondary = RouteParameter.Optional }
             );
 
+          
             //config.MapHttpAttributeRoutes();
 
             // Web API routes
@@ -66,6 +67,10 @@ namespace MomenticAPI
             builder.EntitySet<NotificationType>("NotificationType");
             builder.EntitySet<NotificationCase>("NotificationCase");
 
+            builder.EntitySet<CountMoment>("CountMoment");
+            builder.EntitySet<CountPerson>("CountPerson");
+            builder.EntitySet<CountStory>("CountStory");
+            builder.EntitySet<ReTell>("ReTell");
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
         }
     }

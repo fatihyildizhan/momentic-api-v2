@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -28,6 +23,7 @@ namespace MomenticAPI.Controllers
         {
             dynamic cResponse = new ExpandoObject();
             cResponse.Result = "0";
+            cResponse.Description = "All Person";
             cResponse.Person = db.Person;
 
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
@@ -82,15 +78,6 @@ namespace MomenticAPI.Controllers
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
 
-            person.CountDevice = 0;
-            person.CountFeedback = 0;
-            person.CountFollower = 0;
-            person.CountFollowing = 0;
-            person.CountLike = 0;
-            person.CountMoment = 0;
-            person.CountReport = 0;
-            person.CountReportedStory = 0;
-            person.CountStory = 0;
             person.IsEmailAllowed = true;
             person.IsPrivate = false;
             person.IsPushAllowed = true;
@@ -141,6 +128,7 @@ namespace MomenticAPI.Controllers
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
 
+        /*
         // DELETE: api/Person/5
         [ResponseType(typeof(Person))]
         [AuthorizationKeyFilterAttribute("Token")]
@@ -157,6 +145,7 @@ namespace MomenticAPI.Controllers
 
             return Ok(person);
         }
+        */
 
         protected override void Dispose(bool disposing)
         {

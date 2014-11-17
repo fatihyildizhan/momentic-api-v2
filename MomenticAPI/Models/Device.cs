@@ -25,10 +25,10 @@ namespace MomenticAPI.Models
         public int DeviceLanguageID { get; set; }
         public int AppVersionID { get; set; }
     
+        public virtual AppVersion AppVersion { get; set; }
         public virtual Person Person { get; set; }
         public virtual DeviceType DeviceType { get; set; }
         public virtual DeviceOS DeviceOS { get; set; }
         public virtual Language Language { get; set; }
-        public virtual AppVersion AppVersion { get; set; }
     }
 }

@@ -144,6 +144,7 @@ namespace MomenticAPI.Controllers
             }
         }
 
+        /*
         // DELETE: api/Device/5
         [ResponseType(typeof(Device))]
         public async Task<IHttpActionResult> DeleteDevice(string id)
@@ -159,6 +160,7 @@ namespace MomenticAPI.Controllers
 
             return Ok(device);
         }
+        */ 
 
         protected override void Dispose(bool disposing)
         {

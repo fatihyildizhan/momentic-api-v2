@@ -16,7 +16,7 @@ using System.Web.OData;
 
 namespace MomenticAPI.Controllers
 {
-   // [AuthorizationKeyFilterAttribute("Token")]
+    // [AuthorizationKeyFilterAttribute("Token")]
     public class StoryController : ApiController
     {
         private MomenticEntities db = new MomenticEntities();
@@ -27,6 +27,7 @@ namespace MomenticAPI.Controllers
             dynamic cResponse = new ExpandoObject();
 
             cResponse.Result = "0";
+            cResponse.Description = "All Stories";
             cResponse.Story = db.Story;
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
@@ -74,13 +75,13 @@ namespace MomenticAPI.Controllers
             cResponse.Result = "0";
             cResponse.Story = foundStory;
             cResponse.MomentList = moments;
-            //         return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+            // return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
 
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse, Formatting.Indented,
-   new JsonSerializerSettings
-   {
-       PreserveReferencesHandling = PreserveReferencesHandling.Objects
-   }));
+               new JsonSerializerSettings
+               {
+                   PreserveReferencesHandling = PreserveReferencesHandling.Objects
+               }));
         }
 
         [AcceptVerbs("PATCH")]

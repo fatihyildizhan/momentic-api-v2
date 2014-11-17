@@ -26,12 +26,13 @@ namespace MomenticAPI.Models
             this.Notification = new HashSet<Notification>();
             this.PersonFollowing = new HashSet<PersonFollowing>();
             this.PersonFollowing1 = new HashSet<PersonFollowing>();
+            this.PersonToken = new HashSet<PersonToken>();
             this.Report = new HashSet<Report>();
+            this.ReTell = new HashSet<ReTell>();
             this.SearchHistory = new HashSet<SearchHistory>();
             this.Story = new HashSet<Story>();
             this.Timeline = new HashSet<Timeline>();
             this.Theme = new HashSet<Theme>();
-            this.PersonToken = new HashSet<PersonToken>();
         }
     
         public int PersonID { get; set; }
@@ -43,11 +44,6 @@ namespace MomenticAPI.Models
         public string PhotoUrlOriginal { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int CountMoment { get; set; }
-        public int CountLike { get; set; }
-        public int CountStory { get; set; }
-        public int CountFollowing { get; set; }
-        public int CountFollower { get; set; }
         public Nullable<int> Code { get; set; }
         public System.DateTime RegisterDate { get; set; }
         public int GenderID { get; set; }
@@ -58,15 +54,12 @@ namespace MomenticAPI.Models
         public string About { get; set; }
         public bool IsPushAllowed { get; set; }
         public bool IsEmailAllowed { get; set; }
-        public int CountDevice { get; set; }
-        public int CountReport { get; set; }
-        public int CountFeedback { get; set; }
         public bool IsSuspended { get; set; }
-        public int CountReportedStory { get; set; }
     
         public virtual ICollection<Activity> Activity { get; set; }
         public virtual ICollection<Activity> Activity1 { get; set; }
         public virtual ICollection<Comment> Comment { get; set; }
+        public virtual CountPerson CountPerson { get; set; }
         public virtual ICollection<Device> Device { get; set; }
         public virtual ICollection<Feedback> Feedback { get; set; }
         public virtual Gender Gender { get; set; }
@@ -76,11 +69,12 @@ namespace MomenticAPI.Models
         public virtual PersonRole PersonRole { get; set; }
         public virtual ICollection<PersonFollowing> PersonFollowing { get; set; }
         public virtual ICollection<PersonFollowing> PersonFollowing1 { get; set; }
+        public virtual ICollection<PersonToken> PersonToken { get; set; }
         public virtual ICollection<Report> Report { get; set; }
+        public virtual ICollection<ReTell> ReTell { get; set; }
         public virtual ICollection<SearchHistory> SearchHistory { get; set; }
         public virtual ICollection<Story> Story { get; set; }
         public virtual ICollection<Timeline> Timeline { get; set; }
         public virtual ICollection<Theme> Theme { get; set; }
-        public virtual ICollection<PersonToken> PersonToken { get; set; }
     }
 }

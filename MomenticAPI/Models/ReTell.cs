@@ -12,14 +12,11 @@ namespace MomenticAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Timeline
+    public partial class ReTell
     {
-        public int TimelineID { get; set; }
         public int PersonID { get; set; }
         public int StoryID { get; set; }
-        public System.DateTime FeedDate { get; set; }
-        public bool IsReTell { get; set; }
-        public int CoverPhotoIndex { get; set; }
+        public System.DateTime DateReTell { get; set; }
     
         public virtual Person Person { get; set; }
         public virtual Story Story { get; set; }

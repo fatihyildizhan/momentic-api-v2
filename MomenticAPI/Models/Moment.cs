@@ -39,6 +39,7 @@ namespace MomenticAPI.Models
         public bool IsHorizontal { get; set; }
         public string LocationString { get; set; }
     
+        public virtual CountMoment CountMoment { get; set; }
         public virtual Person Person { get; set; }
         public virtual ICollection<MomentLike> MomentLike { get; set; }
         public virtual ICollection<Story> Story { get; set; }

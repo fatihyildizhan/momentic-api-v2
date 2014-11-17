@@ -41,6 +41,53 @@
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CommentDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="CountMoment">
+          <Key>
+            <PropertyRef Name="MomentID" />
+          </Key>
+          <Property Name="MomentID" Type="int" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="LikeCount" Type="int" Nullable="false" />
+          <Property Name="ReTellCover" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CountPerson">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="int" Nullable="false" />
+          <Property Name="Device" Type="int" Nullable="false" />
+          <Property Name="Feedback" Type="int" Nullable="false" />
+          <Property Name="Follower" Type="int" Nullable="false" />
+          <Property Name="Following" Type="int" Nullable="false" />
+          <Property Name="LastActivityDate" Type="int" Nullable="false" />
+          <Property Name="LikeCount" Type="int" Nullable="false" />
+          <Property Name="Login" Type="int" Nullable="false" />
+          <Property Name="Moment" Type="int" Nullable="false" />
+          <Property Name="ProfileUpdate" Type="int" Nullable="false" />
+          <Property Name="Report" Type="int" Nullable="false" />
+          <Property Name="ReportedStoryHas" Type="int" Nullable="false" />
+          <Property Name="ReTell" Type="int" Nullable="false" />
+          <Property Name="Search" Type="int" Nullable="false" />
+          <Property Name="Story" Type="int" Nullable="false" />
+          <Property Name="StoryCategoryUsed" Type="int" Nullable="false" />
+          <Property Name="ThemeUsed" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CountStory">
+          <Key>
+            <PropertyRef Name="StoryID" />
+          </Key>
+          <Property Name="StoryID" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="int" Nullable="false" />
+          <Property Name="Moment" Type="int" Nullable="false" />
+          <Property Name="ReTell" Type="int" Nullable="false" />
+          <Property Name="Report" Type="int" Nullable="false" />
+          <Property Name="Tag" Type="int" Nullable="false" />
+          <Property Name="Location" Type="int" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="MomentHorizontal" Type="int" Nullable="false" />
+          <Property Name="MomentSquare" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Device">
           <Key>
             <PropertyRef Name="DeviceToken" />
@@ -170,11 +217,6 @@
           <Property Name="PhotoUrlOriginal" Type="nvarchar(max)" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="CountMoment" Type="int" Nullable="false" />
-          <Property Name="CountLike" Type="int" Nullable="false" />
-          <Property Name="CountStory" Type="int" Nullable="false" />
-          <Property Name="CountFollowing" Type="int" Nullable="false" />
-          <Property Name="CountFollower" Type="int" Nullable="false" />
           <Property Name="Code" Type="int" />
           <Property Name="RegisterDate" Type="datetime" Nullable="false" />
           <Property Name="GenderID" Type="int" Nullable="false" />
@@ -185,11 +227,7 @@
           <Property Name="About" Type="nvarchar" MaxLength="250" />
           <Property Name="IsPushAllowed" Type="bit" Nullable="false" />
           <Property Name="IsEmailAllowed" Type="bit" Nullable="false" />
-          <Property Name="CountDevice" Type="int" Nullable="false" />
-          <Property Name="CountReport" Type="int" Nullable="false" />
-          <Property Name="CountFeedback" Type="int" Nullable="false" />
           <Property Name="IsSuspended" Type="bit" Nullable="false" />
-          <Property Name="CountReportedStory" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonFollowing">
           <Key>
@@ -237,6 +275,15 @@
           <Property Name="StoryID" Type="int" Nullable="false" />
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsClosed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReTell">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="StoryID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="StoryID" Type="int" Nullable="false" />
+          <Property Name="DateReTell" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SearchHistory">
           <Key>
@@ -292,6 +339,8 @@
           <Property Name="PersonID" Type="int" Nullable="false" />
           <Property Name="StoryID" Type="int" Nullable="false" />
           <Property Name="FeedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsReTell" Type="bit" Nullable="false" />
+          <Property Name="CoverPhotoIndex" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Activity_0">
           <End Role="ActivityCategory" Type="Self.ActivityCategory" Multiplicity="1" />
@@ -349,6 +398,42 @@
               <PropertyRef Name="StoryID" />
             </Principal>
             <Dependent Role="Comment">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountMoment_0">
+          <End Role="Moment" Type="Self.Moment" Multiplicity="1" />
+          <End Role="CountMoment" Type="Self.CountMoment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="CountMoment">
+              <PropertyRef Name="MomentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountPerson_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="CountPerson" Type="Self.CountPerson" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="CountPerson">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountStory_0">
+          <End Role="Story" Type="Self.Story" Multiplicity="1" />
+          <End Role="CountStory" Type="Self.CountStory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="CountStory">
               <PropertyRef Name="StoryID" />
             </Dependent>
           </ReferentialConstraint>
@@ -617,6 +702,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReTell_0">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="ReTell" Type="Self.ReTell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="ReTell">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReTell_1">
+          <End Role="Story" Type="Self.Story" Multiplicity="1" />
+          <End Role="ReTell" Type="Self.ReTell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="ReTell">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SearchHistory_0">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
           <End Role="SearchHistory" Type="Self.SearchHistory" Multiplicity="*" />
@@ -778,6 +887,9 @@
           <EntitySet Name="ActivityCategory" EntityType="Self.ActivityCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AppVersion" EntityType="Self.AppVersion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountMoment" EntityType="Self.CountMoment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountPerson" EntityType="Self.CountPerson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountStory" EntityType="Self.CountStory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeviceOS" EntityType="Self.DeviceOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeviceType" EntityType="Self.DeviceType" Schema="dbo" store:Type="Tables" />
@@ -796,6 +908,7 @@
           <EntitySet Name="PersonToken" EntityType="Self.PersonToken" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonUsedTheme" EntityType="Self.PersonUsedTheme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReTell" EntityType="Self.ReTell" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SearchHistory" EntityType="Self.SearchHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Story" EntityType="Self.Story" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoryCategory" EntityType="Self.StoryCategory" Schema="dbo" store:Type="Tables" />
@@ -820,6 +933,18 @@
           <AssociationSet Name="FK_Comment_1" Association="Self.FK_Comment_1">
             <End Role="Story" EntitySet="Story" />
             <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountMoment_0" Association="Self.FK_CountMoment_0">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="CountMoment" EntitySet="CountMoment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountPerson_0" Association="Self.FK_CountPerson_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="CountPerson" EntitySet="CountPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountStory_0" Association="Self.FK_CountStory_0">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="CountStory" EntitySet="CountStory" />
           </AssociationSet>
           <AssociationSet Name="FK_Device_0" Association="Self.FK_Device_0">
             <End Role="Person" EntitySet="Person" />
@@ -909,6 +1034,14 @@
             <End Role="Story" EntitySet="Story" />
             <End Role="Report" EntitySet="Report" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReTell_0" Association="Self.FK_ReTell_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ReTell" EntitySet="ReTell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReTell_1" Association="Self.FK_ReTell_1">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="ReTell" EntitySet="ReTell" />
+          </AssociationSet>
           <AssociationSet Name="FK_SearchHistory_0" Association="Self.FK_SearchHistory_0">
             <End Role="Person" EntitySet="Person" />
             <End Role="SearchHistory" EntitySet="SearchHistory" />
@@ -969,7 +1102,11 @@
         <EntityContainer Name="MomenticEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activity" EntityType="Model.Activity" />
           <EntitySet Name="ActivityCategory" EntityType="Model.ActivityCategory" />
+          <EntitySet Name="AppVersion" EntityType="Model.AppVersion" />
           <EntitySet Name="Comment" EntityType="Model.Comment" />
+          <EntitySet Name="CountMoment" EntityType="Model.CountMoment" />
+          <EntitySet Name="CountPerson" EntityType="Model.CountPerson" />
+          <EntitySet Name="CountStory" EntityType="Model.CountStory" />
           <EntitySet Name="Device" EntityType="Model.Device" />
           <EntitySet Name="DeviceOS" EntityType="Model.DeviceOS" />
           <EntitySet Name="DeviceType" EntityType="Model.DeviceType" />
@@ -985,7 +1122,9 @@
           <EntitySet Name="Person" EntityType="Model.Person" />
           <EntitySet Name="PersonFollowing" EntityType="Model.PersonFollowing" />
           <EntitySet Name="PersonRole" EntityType="Model.PersonRole" />
+          <EntitySet Name="PersonToken" EntityType="Model.PersonToken" />
           <EntitySet Name="Report" EntityType="Model.Report" />
+          <EntitySet Name="ReTell" EntityType="Model.ReTell" />
           <EntitySet Name="SearchHistory" EntityType="Model.SearchHistory" />
           <EntitySet Name="Story" EntityType="Model.Story" />
           <EntitySet Name="StoryCategory" EntityType="Model.StoryCategory" />
@@ -1003,6 +1142,10 @@
             <End Role="Person" EntitySet="Person" />
             <End Role="Activity" EntitySet="Activity" />
           </AssociationSet>
+          <AssociationSet Name="FK_Device_4" Association="Model.FK_Device_4">
+            <End Role="AppVersion" EntitySet="AppVersion" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
           <AssociationSet Name="FK_Comment_0" Association="Model.FK_Comment_0">
             <End Role="Person" EntitySet="Person" />
             <End Role="Comment" EntitySet="Comment" />
@@ -1010,6 +1153,18 @@
           <AssociationSet Name="FK_Comment_1" Association="Model.FK_Comment_1">
             <End Role="Story" EntitySet="Story" />
             <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountMoment_0" Association="Model.FK_CountMoment_0">
+            <End Role="Moment" EntitySet="Moment" />
+            <End Role="CountMoment" EntitySet="CountMoment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountPerson_0" Association="Model.FK_CountPerson_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="CountPerson" EntitySet="CountPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountStory_0" Association="Model.FK_CountStory_0">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="CountStory" EntitySet="CountStory" />
           </AssociationSet>
           <AssociationSet Name="FK_Device_0" Association="Model.FK_Device_0">
             <End Role="Person" EntitySet="Person" />
@@ -1103,9 +1258,17 @@
             <End Role="Person" EntitySet="Person" />
             <End Role="PersonFollowing" EntitySet="PersonFollowing" />
           </AssociationSet>
+          <AssociationSet Name="FK_PersonToken_0" Association="Model.FK_PersonToken_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="PersonToken" EntitySet="PersonToken" />
+          </AssociationSet>
           <AssociationSet Name="FK_Report_0" Association="Model.FK_Report_0">
             <End Role="Person" EntitySet="Person" />
             <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReTell_0" Association="Model.FK_ReTell_0">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ReTell" EntitySet="ReTell" />
           </AssociationSet>
           <AssociationSet Name="FK_SearchHistory_0" Association="Model.FK_SearchHistory_0">
             <End Role="Person" EntitySet="Person" />
@@ -1123,6 +1286,10 @@
             <End Role="Story" EntitySet="Story" />
             <End Role="Report" EntitySet="Report" />
           </AssociationSet>
+          <AssociationSet Name="FK_ReTell_1" Association="Model.FK_ReTell_1">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="ReTell" EntitySet="ReTell" />
+          </AssociationSet>
           <AssociationSet Name="FK_Story_0" Association="Model.FK_Story_0">
             <End Role="StoryCategory" EntitySet="StoryCategory" />
             <End Role="Story" EntitySet="Story" />
@@ -1138,16 +1305,6 @@
           <AssociationSet Name="PersonUsedTheme" Association="Model.PersonUsedTheme">
             <End Role="Person" EntitySet="Person" />
             <End Role="Theme" EntitySet="Theme" />
-          </AssociationSet>
-          <EntitySet Name="AppVersion" EntityType="Model.AppVersion" />
-          <AssociationSet Name="FK_Device_4" Association="Model.FK_Device_4">
-            <End Role="AppVersion" EntitySet="AppVersion" />
-            <End Role="Device" EntitySet="Device" />
-          </AssociationSet>
-          <EntitySet Name="PersonToken" EntityType="Model.PersonToken" />
-          <AssociationSet Name="FK_PersonToken_0" Association="Model.FK_PersonToken_0">
-            <End Role="Person" EntitySet="Person" />
-            <End Role="PersonToken" EntitySet="PersonToken" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Activity">
@@ -1172,6 +1329,15 @@
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Activity" Relationship="Model.FK_Activity_0" FromRole="ActivityCategory" ToRole="Activity" />
         </EntityType>
+        <EntityType Name="AppVersion">
+          <Key>
+            <PropertyRef Name="VersionID" />
+          </Key>
+          <Property Name="VersionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VersionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_4" FromRole="AppVersion" ToRole="Device" />
+        </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="CommentID" />
@@ -1183,6 +1349,56 @@
           <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Person" Relationship="Model.FK_Comment_0" FromRole="Comment" ToRole="Person" />
           <NavigationProperty Name="Story" Relationship="Model.FK_Comment_1" FromRole="Comment" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="CountMoment">
+          <Key>
+            <PropertyRef Name="MomentID" />
+          </Key>
+          <Property Name="MomentID" Type="Int32" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LikeCount" Type="Int32" Nullable="false" />
+          <Property Name="ReTellCover" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Moment" Relationship="Model.FK_CountMoment_0" FromRole="CountMoment" ToRole="Moment" />
+        </EntityType>
+        <EntityType Name="CountPerson">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="Int32" Nullable="false" />
+          <Property Name="Device" Type="Int32" Nullable="false" />
+          <Property Name="Feedback" Type="Int32" Nullable="false" />
+          <Property Name="Follower" Type="Int32" Nullable="false" />
+          <Property Name="Following" Type="Int32" Nullable="false" />
+          <Property Name="LastActivityDate" Type="Int32" Nullable="false" />
+          <Property Name="LikeCount" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="Int32" Nullable="false" />
+          <Property Name="Moment" Type="Int32" Nullable="false" />
+          <Property Name="ProfileUpdate" Type="Int32" Nullable="false" />
+          <Property Name="Report" Type="Int32" Nullable="false" />
+          <Property Name="ReportedStoryHas" Type="Int32" Nullable="false" />
+          <Property Name="ReTell" Type="Int32" Nullable="false" />
+          <Property Name="Search" Type="Int32" Nullable="false" />
+          <Property Name="Story" Type="Int32" Nullable="false" />
+          <Property Name="StoryCategoryUsed" Type="Int32" Nullable="false" />
+          <Property Name="ThemeUsed" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_CountPerson_0" FromRole="CountPerson" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="CountStory">
+          <Key>
+            <PropertyRef Name="StoryID" />
+          </Key>
+          <Property Name="StoryID" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="Int32" Nullable="false" />
+          <Property Name="Moment" Type="Int32" Nullable="false" />
+          <Property Name="ReTell" Type="Int32" Nullable="false" />
+          <Property Name="Report" Type="Int32" Nullable="false" />
+          <Property Name="Tag" Type="Int32" Nullable="false" />
+          <Property Name="Location" Type="Int32" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MomentHorizontal" Type="Int32" Nullable="false" />
+          <Property Name="MomentSquare" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Story" Relationship="Model.FK_CountStory_0" FromRole="CountStory" ToRole="Story" />
         </EntityType>
         <EntityType Name="Device">
           <Key>
@@ -1200,11 +1416,11 @@
           <Property Name="DeviceOSID" Type="Int32" Nullable="false" />
           <Property Name="DeviceLanguageID" Type="Int32" Nullable="false" />
           <Property Name="AppVersionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AppVersion" Relationship="Model.FK_Device_4" FromRole="Device" ToRole="AppVersion" />
           <NavigationProperty Name="Person" Relationship="Model.FK_Device_0" FromRole="Device" ToRole="Person" />
           <NavigationProperty Name="DeviceType" Relationship="Model.FK_Device_1" FromRole="Device" ToRole="DeviceType" />
           <NavigationProperty Name="DeviceOS" Relationship="Model.FK_Device_2" FromRole="Device" ToRole="DeviceOS" />
           <NavigationProperty Name="Language" Relationship="Model.FK_Device_3" FromRole="Device" ToRole="Language" />
-          <NavigationProperty Name="AppVersion" Relationship="Model.FK_Device_4" FromRole="Device" ToRole="AppVersion" />
         </EntityType>
         <EntityType Name="DeviceOS">
           <Key>
@@ -1276,6 +1492,7 @@
           <Property Name="IsSafe" Type="Boolean" Nullable="false" />
           <Property Name="IsHorizontal" Type="Boolean" Nullable="false" />
           <Property Name="LocationString" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CountMoment" Relationship="Model.FK_CountMoment_0" FromRole="Moment" ToRole="CountMoment" />
           <NavigationProperty Name="Person" Relationship="Model.FK_Moment_0" FromRole="Moment" ToRole="Person" />
           <NavigationProperty Name="MomentLike" Relationship="Model.FK_MomentLike_0" FromRole="Moment" ToRole="MomentLike" />
           <NavigationProperty Name="Story" Relationship="Model.FK_Story_3" FromRole="Moment" ToRole="Story" />
@@ -1341,11 +1558,6 @@
           <Property Name="PhotoUrlOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CountMoment" Type="Int32" Nullable="false" />
-          <Property Name="CountLike" Type="Int32" Nullable="false" />
-          <Property Name="CountStory" Type="Int32" Nullable="false" />
-          <Property Name="CountFollowing" Type="Int32" Nullable="false" />
-          <Property Name="CountFollower" Type="Int32" Nullable="false" />
           <Property Name="Code" Type="Int32" />
           <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="GenderID" Type="Int32" Nullable="false" />
@@ -1356,14 +1568,11 @@
           <Property Name="About" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="IsPushAllowed" Type="Boolean" Nullable="false" />
           <Property Name="IsEmailAllowed" Type="Boolean" Nullable="false" />
-          <Property Name="CountDevice" Type="Int32" Nullable="false" />
-          <Property Name="CountReport" Type="Int32" Nullable="false" />
-          <Property Name="CountFeedback" Type="Int32" Nullable="false" />
           <Property Name="IsSuspended" Type="Boolean" Nullable="false" />
-          <Property Name="CountReportedStory" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Activity" Relationship="Model.FK_Activity_1" FromRole="Person" ToRole="Activity" />
           <NavigationProperty Name="Activity1" Relationship="Model.FK_Activity_2" FromRole="Person" ToRole="Activity" />
           <NavigationProperty Name="Comment" Relationship="Model.FK_Comment_0" FromRole="Person" ToRole="Comment" />
+          <NavigationProperty Name="CountPerson" Relationship="Model.FK_CountPerson_0" FromRole="Person" ToRole="CountPerson" />
           <NavigationProperty Name="Device" Relationship="Model.FK_Device_0" FromRole="Person" ToRole="Device" />
           <NavigationProperty Name="Feedback" Relationship="Model.FK_Feedback_0" FromRole="Person" ToRole="Feedback" />
           <NavigationProperty Name="Gender" Relationship="Model.FK_Person_0" FromRole="Person" ToRole="Gender" />
@@ -1373,12 +1582,13 @@
           <NavigationProperty Name="PersonRole" Relationship="Model.FK_Person_1" FromRole="Person" ToRole="PersonRole" />
           <NavigationProperty Name="PersonFollowing" Relationship="Model.FK_PersonFollowing_0" FromRole="Person" ToRole="PersonFollowing" />
           <NavigationProperty Name="PersonFollowing1" Relationship="Model.FK_PersonFollowing_1" FromRole="Person" ToRole="PersonFollowing" />
+          <NavigationProperty Name="PersonToken" Relationship="Model.FK_PersonToken_0" FromRole="Person" ToRole="PersonToken" />
           <NavigationProperty Name="Report" Relationship="Model.FK_Report_0" FromRole="Person" ToRole="Report" />
+          <NavigationProperty Name="ReTell" Relationship="Model.FK_ReTell_0" FromRole="Person" ToRole="ReTell" />
           <NavigationProperty Name="SearchHistory" Relationship="Model.FK_SearchHistory_0" FromRole="Person" ToRole="SearchHistory" />
           <NavigationProperty Name="Story" Relationship="Model.FK_Story_2" FromRole="Person" ToRole="Story" />
           <NavigationProperty Name="Timeline" Relationship="Model.FK_Timeline_0" FromRole="Person" ToRole="Timeline" />
           <NavigationProperty Name="Theme" Relationship="Model.PersonUsedTheme" FromRole="Person" ToRole="Theme" />
-          <NavigationProperty Name="PersonToken" Relationship="Model.FK_PersonToken_0" FromRole="Person" ToRole="PersonToken" />
         </EntityType>
         <EntityType Name="PersonFollowing">
           <Key>
@@ -1401,6 +1611,17 @@
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="Model.FK_Person_1" FromRole="PersonRole" ToRole="Person" />
         </EntityType>
+        <EntityType Name="PersonToken">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="Token" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastLogin" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_PersonToken_0" FromRole="PersonToken" ToRole="Person" />
+        </EntityType>
         <EntityType Name="Report">
           <Key>
             <PropertyRef Name="ReportID" />
@@ -1413,6 +1634,17 @@
           <Property Name="IsClosed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Person" Relationship="Model.FK_Report_0" FromRole="Report" ToRole="Person" />
           <NavigationProperty Name="Story" Relationship="Model.FK_Report_1" FromRole="Report" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="ReTell">
+          <Key>
+            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="StoryID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="StoryID" Type="Int32" Nullable="false" />
+          <Property Name="DateReTell" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_ReTell_0" FromRole="ReTell" ToRole="Person" />
+          <NavigationProperty Name="Story" Relationship="Model.FK_ReTell_1" FromRole="ReTell" ToRole="Story" />
         </EntityType>
         <EntityType Name="SearchHistory">
           <Key>
@@ -1445,6 +1677,7 @@
           <Property Name="MomentID6" Type="Int32" />
           <Property Name="MomentID7" Type="Int32" />
           <NavigationProperty Name="Comment" Relationship="Model.FK_Comment_1" FromRole="Story" ToRole="Comment" />
+          <NavigationProperty Name="CountStory" Relationship="Model.FK_CountStory_0" FromRole="Story" ToRole="CountStory" />
           <NavigationProperty Name="Moment" Relationship="Model.FK_Story_3" FromRole="Story" ToRole="Moment" />
           <NavigationProperty Name="Moment1" Relationship="Model.FK_Story_4" FromRole="Story" ToRole="Moment" />
           <NavigationProperty Name="Moment2" Relationship="Model.FK_Story_5" FromRole="Story" ToRole="Moment" />
@@ -1454,6 +1687,7 @@
           <NavigationProperty Name="Moment6" Relationship="Model.FK_Story_9" FromRole="Story" ToRole="Moment" />
           <NavigationProperty Name="Person" Relationship="Model.FK_Story_2" FromRole="Story" ToRole="Person" />
           <NavigationProperty Name="Report" Relationship="Model.FK_Report_1" FromRole="Story" ToRole="Report" />
+          <NavigationProperty Name="ReTell" Relationship="Model.FK_ReTell_1" FromRole="Story" ToRole="ReTell" />
           <NavigationProperty Name="StoryCategory" Relationship="Model.FK_Story_0" FromRole="Story" ToRole="StoryCategory" />
           <NavigationProperty Name="Theme" Relationship="Model.FK_Story_1" FromRole="Story" ToRole="Theme" />
           <NavigationProperty Name="Timeline" Relationship="Model.FK_Timeline_1" FromRole="Story" ToRole="Timeline" />
@@ -1485,6 +1719,8 @@
           <Property Name="PersonID" Type="Int32" Nullable="false" />
           <Property Name="StoryID" Type="Int32" Nullable="false" />
           <Property Name="FeedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsReTell" Type="Boolean" Nullable="false" />
+          <Property Name="CoverPhotoIndex" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Person" Relationship="Model.FK_Timeline_0" FromRole="Timeline" ToRole="Person" />
           <NavigationProperty Name="Story" Relationship="Model.FK_Timeline_1" FromRole="Timeline" ToRole="Story" />
         </EntityType>
@@ -1524,6 +1760,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Device_4">
+          <End Type="Model.AppVersion" Role="AppVersion" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppVersion">
+              <PropertyRef Name="VersionID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="AppVersionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comment_0">
           <End Type="Model.Person" Role="Person" Multiplicity="1" />
           <End Type="Model.Comment" Role="Comment" Multiplicity="*" />
@@ -1544,6 +1792,42 @@
               <PropertyRef Name="StoryID" />
             </Principal>
             <Dependent Role="Comment">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountMoment_0">
+          <End Type="Model.Moment" Role="Moment" Multiplicity="1" />
+          <End Type="Model.CountMoment" Role="CountMoment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Moment">
+              <PropertyRef Name="MomentID" />
+            </Principal>
+            <Dependent Role="CountMoment">
+              <PropertyRef Name="MomentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountPerson_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.CountPerson" Role="CountPerson" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="CountPerson">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountStory_0">
+          <End Type="Model.Story" Role="Story" Multiplicity="1" />
+          <End Type="Model.CountStory" Role="CountStory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="CountStory">
               <PropertyRef Name="StoryID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1824,6 +2108,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PersonToken_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.PersonToken" Role="PersonToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="PersonToken">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Report_0">
           <End Type="Model.Person" Role="Person" Multiplicity="1" />
           <End Type="Model.Report" Role="Report" Multiplicity="*" />
@@ -1832,6 +2128,18 @@
               <PropertyRef Name="PersonID" />
             </Principal>
             <Dependent Role="Report">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReTell_0">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.ReTell" Role="ReTell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="ReTell">
               <PropertyRef Name="PersonID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1884,6 +2192,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ReTell_1">
+          <End Type="Model.Story" Role="Story" Multiplicity="1" />
+          <End Type="Model.ReTell" Role="ReTell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryID" />
+            </Principal>
+            <Dependent Role="ReTell">
+              <PropertyRef Name="StoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Story_0">
           <End Type="Model.StoryCategory" Role="StoryCategory" Multiplicity="1" />
           <End Type="Model.Story" Role="Story" Multiplicity="*" />
@@ -1924,50 +2244,6 @@
           <End Type="Model.Person" Role="Person" Multiplicity="*" />
           <End Type="Model.Theme" Role="Theme" Multiplicity="*" />
         </Association>
-        <EntityType Name="AppVersion">
-          <Key>
-            <PropertyRef Name="VersionID" />
-          </Key>
-          <Property Name="VersionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VersionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Device" Relationship="Model.FK_Device_4" FromRole="AppVersion" ToRole="Device" />
-        </EntityType>
-        <Association Name="FK_Device_4">
-          <End Type="Model.AppVersion" Role="AppVersion" Multiplicity="1" />
-          <End Type="Model.Device" Role="Device" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppVersion">
-              <PropertyRef Name="VersionID" />
-            </Principal>
-            <Dependent Role="Device">
-              <PropertyRef Name="AppVersionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="PersonToken">
-          <Key>
-            <PropertyRef Name="PersonID" />
-            <PropertyRef Name="Token" />
-          </Key>
-          <Property Name="PersonID" Type="Int32" Nullable="false" />
-          <Property Name="Token" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateLastLogin" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Person" Relationship="Model.FK_PersonToken_0" FromRole="PersonToken" ToRole="Person" />
-        </EntityType>
-        <Association Name="FK_PersonToken_0">
-          <End Type="Model.Person" Role="Person" Multiplicity="1" />
-          <End Type="Model.PersonToken" Role="PersonToken" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonID" />
-            </Principal>
-            <Dependent Role="PersonToken">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1994,6 +2270,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AppVersion">
+            <EntityTypeMapping TypeName="Model.AppVersion">
+              <MappingFragment StoreEntitySet="AppVersion">
+                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+                <ScalarProperty Name="VersionName" ColumnName="VersionName" />
+                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Comment">
             <EntityTypeMapping TypeName="Model.Comment">
               <MappingFragment StoreEntitySet="Comment">
@@ -2002,6 +2287,56 @@
                 <ScalarProperty Name="StoryID" ColumnName="StoryID" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
                 <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountMoment">
+            <EntityTypeMapping TypeName="Model.CountMoment">
+              <MappingFragment StoreEntitySet="CountMoment">
+                <ScalarProperty Name="ReTellCover" ColumnName="ReTellCover" />
+                <ScalarProperty Name="LikeCount" ColumnName="LikeCount" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="MomentID" ColumnName="MomentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountPerson">
+            <EntityTypeMapping TypeName="Model.CountPerson">
+              <MappingFragment StoreEntitySet="CountPerson">
+                <ScalarProperty Name="ThemeUsed" ColumnName="ThemeUsed" />
+                <ScalarProperty Name="StoryCategoryUsed" ColumnName="StoryCategoryUsed" />
+                <ScalarProperty Name="Story" ColumnName="Story" />
+                <ScalarProperty Name="Search" ColumnName="Search" />
+                <ScalarProperty Name="ReTell" ColumnName="ReTell" />
+                <ScalarProperty Name="ReportedStoryHas" ColumnName="ReportedStoryHas" />
+                <ScalarProperty Name="Report" ColumnName="Report" />
+                <ScalarProperty Name="ProfileUpdate" ColumnName="ProfileUpdate" />
+                <ScalarProperty Name="Moment" ColumnName="Moment" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="LikeCount" ColumnName="LikeCount" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="Following" ColumnName="Following" />
+                <ScalarProperty Name="Follower" ColumnName="Follower" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="Device" ColumnName="Device" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountStory">
+            <EntityTypeMapping TypeName="Model.CountStory">
+              <MappingFragment StoreEntitySet="CountStory">
+                <ScalarProperty Name="MomentSquare" ColumnName="MomentSquare" />
+                <ScalarProperty Name="MomentHorizontal" ColumnName="MomentHorizontal" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="Report" ColumnName="Report" />
+                <ScalarProperty Name="ReTell" ColumnName="ReTell" />
+                <ScalarProperty Name="Moment" ColumnName="Moment" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="StoryID" ColumnName="StoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2133,11 +2468,7 @@
           <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="Model.Person">
               <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="CountReportedStory" ColumnName="CountReportedStory" />
                 <ScalarProperty Name="IsSuspended" ColumnName="IsSuspended" />
-                <ScalarProperty Name="CountFeedback" ColumnName="CountFeedback" />
-                <ScalarProperty Name="CountReport" ColumnName="CountReport" />
-                <ScalarProperty Name="CountDevice" ColumnName="CountDevice" />
                 <ScalarProperty Name="IsEmailAllowed" ColumnName="IsEmailAllowed" />
                 <ScalarProperty Name="IsPushAllowed" ColumnName="IsPushAllowed" />
                 <ScalarProperty Name="About" ColumnName="About" />
@@ -2148,11 +2479,6 @@
                 <ScalarProperty Name="GenderID" ColumnName="GenderID" />
                 <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="CountFollower" ColumnName="CountFollower" />
-                <ScalarProperty Name="CountFollowing" ColumnName="CountFollowing" />
-                <ScalarProperty Name="CountStory" ColumnName="CountStory" />
-                <ScalarProperty Name="CountLike" ColumnName="CountLike" />
-                <ScalarProperty Name="CountMoment" ColumnName="CountMoment" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="PhotoUrlOriginal" ColumnName="PhotoUrlOriginal" />
@@ -2184,6 +2510,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PersonToken">
+            <EntityTypeMapping TypeName="Model.PersonToken">
+              <MappingFragment StoreEntitySet="PersonToken">
+                <ScalarProperty Name="DateLastLogin" ColumnName="DateLastLogin" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Report">
             <EntityTypeMapping TypeName="Model.Report">
               <MappingFragment StoreEntitySet="Report">
@@ -2193,6 +2529,15 @@
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
                 <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
                 <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReTell">
+            <EntityTypeMapping TypeName="Model.ReTell">
+              <MappingFragment StoreEntitySet="ReTell">
+                <ScalarProperty Name="DateReTell" ColumnName="DateReTell" />
+                <ScalarProperty Name="StoryID" ColumnName="StoryID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2249,6 +2594,8 @@
           <EntitySetMapping Name="Timeline">
             <EntityTypeMapping TypeName="Model.Timeline">
               <MappingFragment StoreEntitySet="Timeline">
+                <ScalarProperty Name="CoverPhotoIndex" ColumnName="CoverPhotoIndex" />
+                <ScalarProperty Name="IsReTell" ColumnName="IsReTell" />
                 <ScalarProperty Name="FeedDate" ColumnName="FeedDate" />
                 <ScalarProperty Name="StoryID" ColumnName="StoryID" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
@@ -2264,25 +2611,6 @@
               <ScalarProperty Name="PersonID" ColumnName="PersonID" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="AppVersion">
-            <EntityTypeMapping TypeName="Model.AppVersion">
-              <MappingFragment StoreEntitySet="AppVersion">
-                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
-                <ScalarProperty Name="VersionName" ColumnName="VersionName" />
-                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PersonToken">
-            <EntityTypeMapping TypeName="Model.PersonToken">
-              <MappingFragment StoreEntitySet="PersonToken">
-                <ScalarProperty Name="DateLastLogin" ColumnName="DateLastLogin" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="Token" ColumnName="Token" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

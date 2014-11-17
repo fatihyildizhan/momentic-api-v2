@@ -12,16 +12,19 @@ namespace MomenticAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Timeline
+    public partial class CountStory
     {
-        public int TimelineID { get; set; }
-        public int PersonID { get; set; }
         public int StoryID { get; set; }
-        public System.DateTime FeedDate { get; set; }
-        public bool IsReTell { get; set; }
-        public int CoverPhotoIndex { get; set; }
+        public int Comment { get; set; }
+        public int Moment { get; set; }
+        public int ReTell { get; set; }
+        public int Report { get; set; }
+        public int Tag { get; set; }
+        public int Location { get; set; }
+        public System.DateTime LastActivityDate { get; set; }
+        public int MomentHorizontal { get; set; }
+        public int MomentSquare { get; set; }
     
-        public virtual Person Person { get; set; }
         public virtual Story Story { get; set; }
     }
 }
