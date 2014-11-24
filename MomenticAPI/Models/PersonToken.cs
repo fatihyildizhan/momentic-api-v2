@@ -18,6 +18,7 @@ namespace MomenticAPI.Models
         public string Token { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateLastLogin { get; set; }
+        public Nullable<int> DateExpire { get; set; }
     
         public virtual Person Person { get; set; }
     }

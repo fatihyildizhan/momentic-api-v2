@@ -256,6 +256,7 @@
           <Property Name="Token" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
+          <Property Name="DateExpire" Type="int" />
         </EntityType>
         <EntityType Name="PersonUsedTheme">
           <Key>
@@ -341,6 +342,14 @@
           <Property Name="FeedDate" Type="datetime" Nullable="false" />
           <Property Name="IsReTell" Type="bit" Nullable="false" />
           <Property Name="CoverPhotoIndex" Type="int" Nullable="false" />
+          <Property Name="ThemeID" Type="int" Nullable="false" />
+          <Property Name="Tag" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PersonThumbnail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PersonUsername" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhotoUrlLarge" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsHorizontal" Type="bit" Nullable="false" />
+          <Property Name="LocationString" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK_Activity_0">
           <End Role="ActivityCategory" Type="Self.ActivityCategory" Multiplicity="1" />
@@ -882,6 +891,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Timeline_2">
+          <End Role="Theme" Type="Self.Theme" Multiplicity="1" />
+          <End Role="Timeline" Type="Self.Timeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theme">
+              <PropertyRef Name="ThemeID" />
+            </Principal>
+            <Dependent Role="Timeline">
+              <PropertyRef Name="ThemeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityCategory" EntityType="Self.ActivityCategory" Schema="dbo" store:Type="Tables" />
@@ -1094,6 +1115,10 @@
             <End Role="Story" EntitySet="Story" />
             <End Role="Timeline" EntitySet="Timeline" />
           </AssociationSet>
+          <AssociationSet Name="FK_Timeline_2" Association="Self.FK_Timeline_2">
+            <End Role="Theme" EntitySet="Theme" />
+            <End Role="Timeline" EntitySet="Timeline" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1300,6 +1325,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Timeline_1" Association="Model.FK_Timeline_1">
             <End Role="Story" EntitySet="Story" />
+            <End Role="Timeline" EntitySet="Timeline" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timeline_2" Association="Model.FK_Timeline_2">
+            <End Role="Theme" EntitySet="Theme" />
             <End Role="Timeline" EntitySet="Timeline" />
           </AssociationSet>
           <AssociationSet Name="PersonUsedTheme" Association="Model.PersonUsedTheme">
@@ -1620,6 +1649,7 @@
           <Property Name="Token" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateLastLogin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateExpire" Type="Int32" />
           <NavigationProperty Name="Person" Relationship="Model.FK_PersonToken_0" FromRole="PersonToken" ToRole="Person" />
         </EntityType>
         <EntityType Name="Report">
@@ -1709,6 +1739,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Story" Relationship="Model.FK_Story_1" FromRole="Theme" ToRole="Story" />
+          <NavigationProperty Name="Timeline" Relationship="Model.FK_Timeline_2" FromRole="Theme" ToRole="Timeline" />
           <NavigationProperty Name="Person" Relationship="Model.PersonUsedTheme" FromRole="Theme" ToRole="Person" />
         </EntityType>
         <EntityType Name="Timeline">
@@ -1721,8 +1752,17 @@
           <Property Name="FeedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsReTell" Type="Boolean" Nullable="false" />
           <Property Name="CoverPhotoIndex" Type="Int32" Nullable="false" />
+          <Property Name="ThemeID" Type="Int32" Nullable="false" />
+          <Property Name="Tag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonThumbnail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonUsername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoUrlLarge" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsHorizontal" Type="Boolean" Nullable="false" />
+          <Property Name="LocationString" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="Model.FK_Timeline_0" FromRole="Timeline" ToRole="Person" />
           <NavigationProperty Name="Story" Relationship="Model.FK_Timeline_1" FromRole="Timeline" ToRole="Story" />
+          <NavigationProperty Name="Theme" Relationship="Model.FK_Timeline_2" FromRole="Timeline" ToRole="Theme" />
         </EntityType>
         <Association Name="FK_Activity_0">
           <End Type="Model.ActivityCategory" Role="ActivityCategory" Multiplicity="1" />
@@ -2240,6 +2280,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Timeline_2">
+          <End Type="Model.Theme" Role="Theme" Multiplicity="1" />
+          <End Type="Model.Timeline" Role="Timeline" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theme">
+              <PropertyRef Name="ThemeID" />
+            </Principal>
+            <Dependent Role="Timeline">
+              <PropertyRef Name="ThemeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="PersonUsedTheme">
           <End Type="Model.Person" Role="Person" Multiplicity="*" />
           <End Type="Model.Theme" Role="Theme" Multiplicity="*" />
@@ -2513,6 +2565,7 @@
           <EntitySetMapping Name="PersonToken">
             <EntityTypeMapping TypeName="Model.PersonToken">
               <MappingFragment StoreEntitySet="PersonToken">
+                <ScalarProperty Name="DateExpire" ColumnName="DateExpire" />
                 <ScalarProperty Name="DateLastLogin" ColumnName="DateLastLogin" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
@@ -2594,6 +2647,14 @@
           <EntitySetMapping Name="Timeline">
             <EntityTypeMapping TypeName="Model.Timeline">
               <MappingFragment StoreEntitySet="Timeline">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="LocationString" ColumnName="LocationString" />
+                <ScalarProperty Name="IsHorizontal" ColumnName="IsHorizontal" />
+                <ScalarProperty Name="PhotoUrlLarge" ColumnName="PhotoUrlLarge" />
+                <ScalarProperty Name="PersonUsername" ColumnName="PersonUsername" />
+                <ScalarProperty Name="PersonThumbnail" ColumnName="PersonThumbnail" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="ThemeID" ColumnName="ThemeID" />
                 <ScalarProperty Name="CoverPhotoIndex" ColumnName="CoverPhotoIndex" />
                 <ScalarProperty Name="IsReTell" ColumnName="IsReTell" />
                 <ScalarProperty Name="FeedDate" ColumnName="FeedDate" />

@@ -17,6 +17,7 @@ namespace MomenticAPI.Models
         public Theme()
         {
             this.Story = new HashSet<Story>();
+            this.Timeline = new HashSet<Timeline>();
             this.Person = new HashSet<Person>();
         }
     
@@ -25,6 +26,7 @@ namespace MomenticAPI.Models
         public string ImageUrl { get; set; }
     
         public virtual ICollection<Story> Story { get; set; }
+        public virtual ICollection<Timeline> Timeline { get; set; }
         public virtual ICollection<Person> Person { get; set; }
     }
 }

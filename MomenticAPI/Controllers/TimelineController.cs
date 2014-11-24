@@ -28,9 +28,6 @@ namespace MomenticAPI.Controllers
 
             try
             {
-                // API'nin dondurecegi liste
-                List<TimelineViewModel> TimelineViewModelList = new List<TimelineViewModel>();
-
                 // takip listesi icin gerekli
                 List<PersonFollowing> dbPFollowingList = await db.PersonFollowing.Where(x => x.PersonID == id && x.IsAccepted == true).ToListAsync();
 
@@ -49,114 +46,9 @@ namespace MomenticAPI.Controllers
                 // Tum ID filtreli ve eklenme zamanina gore ters siralandirilmis Timeline listesi
                 List<Timeline> dbTimelineList = await db.Timeline.Where(x => SPersonIDList.Contains(x.PersonID)).OrderByDescending(x => x.FeedDate).ToListAsync();
 
-                // dbTimelineList'te ID'si gecen StoryID Listesi
-                List<int> StoryIDList = new List<int>();
-
-                foreach (Timeline item in dbTimelineList)
-                {
-                    StoryIDList.Add(item.PersonID);
-                }
-
-                // ilgili Timeline'da ID'si olan Tum Story'ler
-                // List<Story> dbStoryList = await db.Story.Where(x => StoryIDList.Contains(x.StoryID)).ToListAsync();
-
-                // Her Timeline icin -> TimelineViewModel Olusturur
-                foreach (Timeline itemTimeline in dbTimelineList)
-                {
-                    // Siradaki Timeline icin Timeline'i olusturan kisiyi getirir
-                    Person dbPerson = await db.Person.Where(x => x.PersonID == itemTimeline.PersonID).SingleOrDefaultAsync();
-
-                    TimelineViewModel tModel = new TimelineViewModel();
-                    tModel.TimelineID = itemTimeline.TimelineID;
-                    tModel.StoryID = itemTimeline.StoryID;
-                    tModel.PersonID = itemTimeline.PersonID;
-                    tModel.PersonThumbnail = dbPerson.PhotoUrlThumbnail;
-                    tModel.PersonUsername = dbPerson.Username;
-                    tModel.FeedDate = itemTimeline.FeedDate;
-                    tModel.IsReTell = itemTimeline.IsReTell;
-                    tModel.CoverPhotoIndex = itemTimeline.CoverPhotoIndex;
-
-                    // Her Timeline icin -> ilgili story getirili
-                    Story dbStory = await db.Story.Where(x => x.StoryID == itemTimeline.StoryID).SingleOrDefaultAsync();
-
-                    StoryViewModel sModel = new StoryViewModel();
-                    sModel.StoryID = itemTimeline.StoryID;
-                    sModel.ThemeID = dbStory.ThemeID;
-                    sModel.Tag = dbStory.Tag;
-
-                    List<CommentViewModel> commentViewModelList = new List<CommentViewModel>();
-                    List<Comment> CommentList = await db.Comment.Where(x => x.StoryID == dbStory.StoryID).ToListAsync();
-
-                    foreach (Comment itemComment in CommentList)
-                    {
-                        Person commentPerson = await db.Person.Where(x => x.PersonID == itemComment.PersonID).SingleOrDefaultAsync();
-
-                        CommentViewModel cModel = new CommentViewModel();
-                        cModel.CommentID = itemComment.CommentID;
-                        cModel.PersonID = itemComment.PersonID;
-                        cModel.PersonUsername = commentPerson.Username;
-                        cModel.PersonThumbnail = commentPerson.PhotoUrlThumbnail;
-                        cModel.StoryID = itemTimeline.StoryID;
-                        cModel.Text = itemComment.Text;
-                        cModel.CommentDate = itemComment.CommentDate;
-
-                        commentViewModelList.Add(cModel);
-                    }
-
-                    // olusturulan commentViewModeller sModel'e eklendi
-                    sModel.CommentList = commentViewModelList;
-
-                    List<MomentViewModel> momentViewModelList = new List<MomentViewModel>();
-
-                    List<int> MomentIDList = new List<int>();
-                    MomentIDList.Add(dbStory.MomentID1);
-                    MomentIDList.Add(dbStory.MomentID2);
-                    if (dbStory.MomentID3 != null)
-                    {
-                        MomentIDList.Add(Convert.ToInt32(dbStory.MomentID3));
-                    }
-                    if (dbStory.MomentID4 != null)
-                    {
-                        MomentIDList.Add(Convert.ToInt32(dbStory.MomentID4));
-                    }
-                    if (dbStory.MomentID5 != null)
-                    {
-                        MomentIDList.Add(Convert.ToInt32(dbStory.MomentID5));
-                    }
-                    if (dbStory.MomentID6 != null)
-                    {
-                        MomentIDList.Add(Convert.ToInt32(dbStory.MomentID6));
-                    }
-                    if (dbStory.MomentID7 != null)
-                    {
-                        MomentIDList.Add(Convert.ToInt32(dbStory.MomentID7));
-                    }
-
-                    foreach (int item in MomentIDList)
-                    {
-                        Moment dbMoment = await db.Moment.Where(x => x.MomentID == item).SingleOrDefaultAsync();
-                        MomentViewModel mModel = new MomentViewModel();
-                        mModel.MomentID = item;
-                        mModel.PhotoUrlLarge = mModel.PhotoUrlLarge;
-                        mModel.PersonID = dbMoment.PersonID;
-                        mModel.Title = dbMoment.Title;
-                        mModel.IsHorizontal = dbMoment.IsHorizontal;
-                        mModel.LocationString = dbMoment.LocationString;
-
-                        momentViewModelList.Add(mModel);
-                    }
-
-                    // story'e ait moment'lar storymodel e eklenir.
-                    sModel.MomentList = momentViewModelList;
-
-                    // ekleme islemleri
-                    tModel.StoryModel = sModel;
-                    TimelineViewModelList.Add(tModel);
-                }
-
                 cResponse.Result = "0";
                 cResponse.Description = "All Timeline";
-                cResponse.Data = TimelineViewModelList;
+                cResponse.Timeline = dbTimelineList;
 
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
@@ -164,7 +56,6 @@ namespace MomenticAPI.Controllers
             {
                 cResponse.Result = "-1";
                 cResponse.Description = "Your request could not executed";
-
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
         }
