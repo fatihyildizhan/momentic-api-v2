@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Description;
 using MomenticAPI.Models;
 using System.Dynamic;
 using Newtonsoft.Json;
+using System.Web.Mvc;
 
 namespace MomenticAPI.Controllers
 {
@@ -21,6 +17,7 @@ namespace MomenticAPI.Controllers
     {
         private MomenticEntities db = new MomenticEntities();
 
+        [OutputCache(Duration = 3600, VaryByParam = "*")]
         public async Task<object> PostMomentLike(MomentLike like)
         {
             List<MomentLike> likes = await db.MomentLike.Where(p => p.MomentID == like.MomentID).ToListAsync();
@@ -44,7 +41,7 @@ namespace MomenticAPI.Controllers
                 model.PersonUsername = item.Username;
 
                 int result = await db.PersonFollowing.CountAsync(x => x.PersonID == like.PersonID && x.SecondaryPersonID == item.PersonID && x.IsAccepted == true);
-                if (result > 0 )
+                if (result > 0)
                 {
                     model.isFollowing = true;
                 }
@@ -55,6 +52,7 @@ namespace MomenticAPI.Controllers
             dynamic cResponse = new ExpandoObject();
 
             cResponse.Result = "0";
+            cResponse.DateNow = DateTime.Now;
             cResponse.Data = likeModels;
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
