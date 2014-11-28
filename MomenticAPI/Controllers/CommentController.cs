@@ -53,7 +53,6 @@ namespace MomenticAPI.Controllers
 
                 commentViewModels.Add(cModel);
             }
-
             cResponse.Result = "0";
             cResponse.DateNow = DateTime.Now;
             cResponse.Data = commentViewModels;

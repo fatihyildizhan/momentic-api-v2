@@ -29,6 +29,7 @@ namespace MomenticAPI.Controllers
             dynamic cResponse = new ExpandoObject();
 
             cResponse.Result = "0";
+            cResponse.DateNow = DateTime.Now;
             cResponse.Device = db.Activity;
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
