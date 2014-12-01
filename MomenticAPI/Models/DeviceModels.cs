@@ -8,11 +8,12 @@ namespace MomenticAPI.Models
     public class DeviceNameModel
     {
         public string DeviceToken { get; set; }
-        public string DeviceName { get; set; }
-        public string OsVersion { get; set; }
         public int PersonID { get; set; }
-        public int DeviceOSID { get; set; }
+        public int DeviceOsID { get; set; }
         public int DeviceLanguageID { get; set; }
-        public int AppVersionID { get; set; }
+        public DateTime AppVersionDatePublish { get; set; }
+        public string AppVersionName { get; set; } // Create AppVersionID
+        public string DeviceTypeName { get; set; } // Create DeviceTypeID
+        public string OsVersionName { get; set; } // Create OsVersionID
     }
 }

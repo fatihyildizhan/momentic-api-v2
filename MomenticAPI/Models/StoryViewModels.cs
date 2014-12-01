@@ -10,7 +10,7 @@ namespace MomenticAPI.Models
         public int StoryID { get; set; }
         public int ThemeID { get; set; }
         public string Tag { get; set; }
-
+        public int CountComment { get; set; }
         public List<MomentViewModel> MomentList { get; set; }
      //   public List<CommentViewModel> CommentList { get; set; }
      //   List<MomentLikeViewModel> MomentLikeList { get; set; }

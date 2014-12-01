@@ -14,21 +14,23 @@ namespace MomenticAPI.Models
     
     public partial class Device
     {
+        public int AppVersionID { get; set; }
+        public System.DateTime DateLastLogin { get; set; }
+        public System.DateTime DateLogin { get; set; }
+        public int DeviceLanguageID { get; set; }
+        public int DeviceOsID { get; set; }
         public string DeviceToken { get; set; }
         public int DeviceTypeID { get; set; }
-        public int PersonID { get; set; }
         public bool IsActive { get; set; }
-        public System.DateTime LoginDate { get; set; }
-        public string OsVersion { get; set; }
-        public System.DateTime LastLoginDate { get; set; }
-        public int DeviceOSID { get; set; }
-        public int DeviceLanguageID { get; set; }
-        public int AppVersionID { get; set; }
+        public int OsVersionID { get; set; }
+        public int PersonID { get; set; }
+        public int DeviceID { get; set; }
     
         public virtual AppVersion AppVersion { get; set; }
-        public virtual Person Person { get; set; }
-        public virtual DeviceType DeviceType { get; set; }
-        public virtual DeviceOS DeviceOS { get; set; }
         public virtual Language Language { get; set; }
+        public virtual DeviceOs DeviceOs { get; set; }
+        public virtual DeviceType DeviceType { get; set; }
+        public virtual OsVersion OsVersion { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

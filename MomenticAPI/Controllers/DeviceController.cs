@@ -32,54 +32,6 @@ namespace MomenticAPI.Controllers
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
         }
 
-        // GET: api/Device/5
-        [ResponseType(typeof(Device))]
-        public async Task<IHttpActionResult> GetDevice(string id)
-        {
-            Device device = await db.Device.FindAsync(id);
-            if (device == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(device);
-        }
-
-        // PUT: api/Device/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutDevice(string id, Device device)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != device.DeviceToken)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(device).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DeviceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
         // POST: api/Device
         [ResponseType(typeof(DeviceNameModel))]
         public async Task<object> PostDevice(DeviceNameModel device)
@@ -94,42 +46,99 @@ namespace MomenticAPI.Controllers
                     return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
                 }
 
-                DeviceType dt = db.DeviceType.Where(x => x.DeviceTypeName == device.DeviceName).SingleOrDefault();
-                if (dt == null)
+                // get DeviceType and create new if not exist
+                DeviceType dbDeviceType = await db.DeviceType.Where(x => x.Name == device.DeviceTypeName).SingleOrDefaultAsync();
+                if (dbDeviceType == null)
                 {
-                    dt = new DeviceType();
-                    dt.DeviceTypeName = device.DeviceName;
+                    dbDeviceType = new DeviceType();
+                    dbDeviceType.Name = device.DeviceTypeName;
 
-                    db.DeviceType.Add(dt);
-                    db.SaveChanges();
+                    db.DeviceType.Add(dbDeviceType);
+                    await db.SaveChangesAsync();
                 }
 
-                Device isFoundDevice = await db.Device.Where(x => x.DeviceToken == device.DeviceToken && x.DeviceTypeID == dt.DeviceTypeID && x.PersonID == device.PersonID).SingleOrDefaultAsync();
+                // get OsVersion and create new if not exist
+                OsVersion dbOsVersion = await db.OsVersion.Where(x => x.Name == device.OsVersionName).SingleOrDefaultAsync();
+                if (dbOsVersion == null)
+                {
+                    dbOsVersion = new OsVersion();
+                    dbOsVersion.Name = device.OsVersionName;
+
+                    db.OsVersion.Add(dbOsVersion);
+                    await db.SaveChangesAsync();
+                }
+
+                // get OsVersion and create new if not exist
+                AppVersion dbAppVersion = await db.AppVersion.Where(x => x.Name == device.AppVersionName).SingleOrDefaultAsync();
+                if (dbAppVersion == null)
+                {
+                    dbAppVersion = new AppVersion();
+                    dbAppVersion.Name = device.AppVersionName;
+                    dbAppVersion.DatePublish = device.AppVersionDatePublish;
+
+                    db.AppVersion.Add(dbAppVersion);
+                    await db.SaveChangesAsync();
+                }
+
+                Device isFoundDevice = await db.Device.Where(x => x.DeviceToken == device.DeviceToken && x.PersonID == device.PersonID && x.IsActive == true && x.DeviceTypeID == dbDeviceType.DeviceTypeID).SingleOrDefaultAsync();
                 if (isFoundDevice != null)
                 {
-                    isFoundDevice.LastLoginDate = DateTime.Now;
-                    await db.SaveChangesAsync();
+                    bool isChanged = false;
+                    if (isFoundDevice.DeviceTypeID != dbDeviceType.DeviceTypeID)
+                    {
+                        isChanged = true;
+                    }
+
+                    if (isFoundDevice.OsVersionID != dbOsVersion.VersionID)
+                    {
+                        isChanged = true;
+                    }
+
+                    if (isFoundDevice.AppVersionID != dbAppVersion.VersionID)
+                    {
+                        isChanged = true;
+                    }
+
+                    if (isFoundDevice.DeviceOsID != device.DeviceOsID)
+                    {
+                        isChanged = true;
+                    }
+
+                    if (isFoundDevice.DeviceLanguageID != device.DeviceLanguageID)
+                    {
+                        isChanged = true;
+                    }
+
+                    if (isFoundDevice.DeviceLanguageID != device.DeviceLanguageID)
+                    {
+                        isChanged = true;
+                    }
+
+                    if (isFoundDevice.DeviceOsID != device.DeviceOsID)
+                    {
+                        isChanged = true;
+                    }
+
+                    if (isChanged)
+                    {
+                        isFoundDevice.IsActive = false;
+                        await db.SaveChangesAsync();
+
+                        await InsertNewDevice(device, dbDeviceType, dbOsVersion, dbAppVersion);
+                    }
+                    else
+                    {
+                        isFoundDevice.DateLastLogin = DateTime.Now;
+                        await db.SaveChangesAsync();
+                    }
 
                     cResponse.Result = "0";
-                    cResponse.Description = "Last login date updated";
+                    cResponse.Description = "Device Updated";
                     return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
                 }
                 else
                 {
-                    Device dvc = new Device();
-                    dvc.DeviceToken = device.DeviceToken;
-                    dvc.DeviceTypeID = dt.DeviceTypeID;
-                    dvc.IsActive = true;
-                    dvc.LoginDate = DateTime.Now;
-                    dvc.LastLoginDate = DateTime.Now;
-                    dvc.OsVersion = device.OsVersion;
-                    dvc.PersonID = device.PersonID;
-                    dvc.DeviceOSID = device.DeviceOSID;
-                    dvc.DeviceLanguageID = device.DeviceLanguageID;
-                    dvc.AppVersionID = device.AppVersionID;
-                    db.Device.Add(dvc);
-
-                    await db.SaveChangesAsync();
+                    await InsertNewDevice(device, dbDeviceType, dbOsVersion, dbAppVersion);
 
                     cResponse.Result = "0";
                     cResponse.Description = "Device added to database";
@@ -142,6 +151,26 @@ namespace MomenticAPI.Controllers
                 cResponse.Description = "Exception, your request could not be executed";
                 return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
+        }
+
+        private async Task InsertNewDevice(DeviceNameModel device, DeviceType dbDeviceType, OsVersion dbOsVersion, AppVersion dbAppVersion)
+        {
+            Device dvc = new Device();
+
+            // Insert to table first then get ID if not exists
+            dvc.DeviceTypeID = dbDeviceType.DeviceTypeID;
+            dvc.OsVersionID = dbOsVersion.VersionID;
+            dvc.AppVersionID = dbAppVersion.VersionID;
+            dvc.DeviceToken = device.DeviceToken;
+            dvc.IsActive = true;
+            dvc.DateLogin = DateTime.Now;
+            dvc.DateLastLogin = DateTime.Now;
+            dvc.PersonID = device.PersonID;
+            dvc.DeviceOsID = device.DeviceOsID;
+            dvc.DeviceLanguageID = device.DeviceLanguageID;
+            db.Device.Add(dvc);
+
+            await db.SaveChangesAsync();
         }
 
         /*
@@ -160,7 +189,7 @@ namespace MomenticAPI.Controllers
 
             return Ok(device);
         }
-        */ 
+        */
 
         protected override void Dispose(bool disposing)
         {

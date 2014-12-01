@@ -13,5 +13,6 @@ namespace MomenticAPI.Models
         public string Title { get; set; }
         public bool IsHorizontal { get; set; }
         public string LocationString { get; set; }
+        public int CountLike { get; set; }
     }
 }

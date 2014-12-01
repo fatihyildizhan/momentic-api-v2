@@ -57,25 +57,25 @@ namespace MomenticAPI.Controllers
             db.MomentLike.Add(momentLike);
             await db.SaveChangesAsync();
 
+            CountMoment dbCountMoment = await db.CountMoment.Where(x => x.MomentID == momentLike.MomentID).SingleOrDefaultAsync();
+            if (dbCountMoment != null)
+            {
+                dbCountMoment.LastActivityDate = DateTime.Now;
+                dbCountMoment.LikeCount = dbCountMoment.LikeCount + 1;
+                await db.SaveChangesAsync();
+            }
+            else
+            {
+                CountMoment newCountMoment = new CountMoment();
+                newCountMoment.LastActivityDate = DateTime.Now;
+                newCountMoment.MomentID = momentLike.MomentID;
+                newCountMoment.LikeCount = 1;
+                await db.SaveChangesAsync();
+            }
+
             cResponse.Result = "0";
             cResponse.Description = "Like added to database";
             return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
-        }
-
-        // DELETE: api/MomentLike/5
-        [ResponseType(typeof(MomentLike))]
-        public async Task<IHttpActionResult> DeleteMomentLike(int id)
-        {
-            MomentLike momentLike = await db.MomentLike.FindAsync(id);
-            if (momentLike == null)
-            {
-                return NotFound();
-            }
-
-            db.MomentLike.Remove(momentLike);
-            await db.SaveChangesAsync();
-
-            return Ok(momentLike);
         }
 
         protected override void Dispose(bool disposing)

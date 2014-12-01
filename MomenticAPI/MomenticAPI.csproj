@@ -276,6 +276,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MomentController.cs" />
     <Compile Include="Controllers\MomentLikeController.cs" />
+    <Compile Include="Controllers\MomentLikeDELETEController.cs" />
     <Compile Include="Controllers\MomentLikeGETController.cs" />
     <Compile Include="Controllers\MomentsController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
@@ -321,7 +322,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DeviceModels.cs" />
-    <Compile Include="Models\DeviceOS.cs">
+    <Compile Include="Models\DeviceOs.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DeviceType.cs">
@@ -370,6 +371,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NotificationType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OsVersion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Person.cs">

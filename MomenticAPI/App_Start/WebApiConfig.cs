@@ -51,7 +51,8 @@ namespace MomenticAPI
             builder.EntitySet<Comment>("Comment");
             builder.EntitySet<Device>("Device");
             builder.EntitySet<DeviceType>("DeviceType");
-            builder.EntitySet<DeviceOS>("DeviceOS");
+            builder.EntitySet<DeviceOs>("DeviceOs");
+            builder.EntitySet<OsVersion>("OsVersion");
             builder.EntitySet<Feedback>("Feedback");
             builder.EntitySet<FeedbackCategory>("FeedbackCategory");
             builder.EntitySet<Gender>("Gender");

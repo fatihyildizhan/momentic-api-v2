@@ -19,7 +19,6 @@ namespace MomenticAPI.Models
             this.Activity = new HashSet<Activity>();
             this.Activity1 = new HashSet<Activity>();
             this.Comment = new HashSet<Comment>();
-            this.Device = new HashSet<Device>();
             this.Feedback = new HashSet<Feedback>();
             this.Moment = new HashSet<Moment>();
             this.MomentLike = new HashSet<MomentLike>();
@@ -33,6 +32,7 @@ namespace MomenticAPI.Models
             this.Story = new HashSet<Story>();
             this.Timeline = new HashSet<Timeline>();
             this.Theme = new HashSet<Theme>();
+            this.Device = new HashSet<Device>();
         }
     
         public int PersonID { get; set; }
@@ -60,7 +60,6 @@ namespace MomenticAPI.Models
         public virtual ICollection<Activity> Activity1 { get; set; }
         public virtual ICollection<Comment> Comment { get; set; }
         public virtual CountPerson CountPerson { get; set; }
-        public virtual ICollection<Device> Device { get; set; }
         public virtual ICollection<Feedback> Feedback { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual ICollection<Moment> Moment { get; set; }
@@ -76,5 +75,6 @@ namespace MomenticAPI.Models
         public virtual ICollection<Story> Story { get; set; }
         public virtual ICollection<Timeline> Timeline { get; set; }
         public virtual ICollection<Theme> Theme { get; set; }
+        public virtual ICollection<Device> Device { get; set; }
     }
 }

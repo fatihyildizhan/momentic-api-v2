@@ -20,8 +20,8 @@ namespace MomenticAPI.Models
         }
     
         public int VersionID { get; set; }
-        public string VersionName { get; set; }
-        public System.DateTime PublishDate { get; set; }
+        public string Name { get; set; }
+        public System.DateTime DatePublish { get; set; }
     
         public virtual ICollection<Device> Device { get; set; }
     }

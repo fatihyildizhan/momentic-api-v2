@@ -33,8 +33,7 @@ namespace MomenticAPI.Models
         public virtual DbSet<CountMoment> CountMoment { get; set; }
         public virtual DbSet<CountPerson> CountPerson { get; set; }
         public virtual DbSet<CountStory> CountStory { get; set; }
-        public virtual DbSet<Device> Device { get; set; }
-        public virtual DbSet<DeviceOS> DeviceOS { get; set; }
+        public virtual DbSet<DeviceOs> DeviceOs { get; set; }
         public virtual DbSet<DeviceType> DeviceType { get; set; }
         public virtual DbSet<Feedback> Feedback { get; set; }
         public virtual DbSet<FeedbackCategory> FeedbackCategory { get; set; }
@@ -45,6 +44,7 @@ namespace MomenticAPI.Models
         public virtual DbSet<Notification> Notification { get; set; }
         public virtual DbSet<NotificationCase> NotificationCase { get; set; }
         public virtual DbSet<NotificationType> NotificationType { get; set; }
+        public virtual DbSet<OsVersion> OsVersion { get; set; }
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<PersonFollowing> PersonFollowing { get; set; }
         public virtual DbSet<PersonRole> PersonRole { get; set; }
@@ -56,5 +56,6 @@ namespace MomenticAPI.Models
         public virtual DbSet<StoryCategory> StoryCategory { get; set; }
         public virtual DbSet<Theme> Theme { get; set; }
         public virtual DbSet<Timeline> Timeline { get; set; }
+        public virtual DbSet<Device> Device { get; set; }
     }
 }

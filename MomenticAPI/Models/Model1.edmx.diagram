@@ -4,50 +4,45 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ef26bc6a586544a68d7eecd14d191f2e" Name="Diagram1" DisplayType="true" ZoomLevel="45">
-        <EntityTypeShape EntityType="Model.Activity" Width="1.5" PointX="10.25" PointY="25" />
-        <EntityTypeShape EntityType="Model.ActivityCategory" Width="1.5" PointX="8" PointY="23.5" />
-        <EntityTypeShape EntityType="Model.AppVersion" Width="1.5" PointX="6" PointY="17.625" />
-        <EntityTypeShape EntityType="Model.Comment" Width="1.5" PointX="12.75" PointY="34.75" />
-        <EntityTypeShape EntityType="Model.CountMoment" Width="1.5" PointX="7.5" PointY="26.375" />
-        <EntityTypeShape EntityType="Model.CountPerson" Width="1.5" PointX="5.25" PointY="34.25" />
-        <EntityTypeShape EntityType="Model.CountStory" Width="1.5" PointX="9.75" PointY="50.875" />
-        <EntityTypeShape EntityType="Model.Device" Width="1.5" PointX="8.25" PointY="29.375" />
-        <EntityTypeShape EntityType="Model.DeviceOS" Width="1.5" PointX="6" PointY="20.25" />
-        <EntityTypeShape EntityType="Model.DeviceType" Width="1.5" PointX="6" PointY="30.875" />
-        <EntityTypeShape EntityType="Model.Feedback" Width="1.5" PointX="13.25" PointY="30" />
-        <EntityTypeShape EntityType="Model.FeedbackCategory" Width="1.5" PointX="11" PointY="22.5" />
-        <EntityTypeShape EntityType="Model.Gender" Width="1.5" PointX="0.75" PointY="27.5" />
-        <EntityTypeShape EntityType="Model.Language" Width="1.5" PointX="6" PointY="50.125" />
-        <EntityTypeShape EntityType="Model.Moment" Width="1.5" PointX="5.25" PointY="24.75" />
-        <EntityTypeShape EntityType="Model.MomentLike" Width="1.5" PointX="10.5" PointY="29.25" />
-        <EntityTypeShape EntityType="Model.Notification" Width="1.5" PointX="10.25" PointY="34.875" />
-        <EntityTypeShape EntityType="Model.NotificationCase" Width="1.5" PointX="8" PointY="34.375" />
-        <EntityTypeShape EntityType="Model.NotificationType" Width="1.5" PointX="8" PointY="47.75" />
-        <EntityTypeShape EntityType="Model.Person" Width="1.5" PointX="3" PointY="27" />
-        <EntityTypeShape EntityType="Model.PersonFollowing" Width="1.5" PointX="5.25" PointY="52.875" />
-        <EntityTypeShape EntityType="Model.PersonRole" Width="1.5" PointX="0.75" PointY="30.5" />
-        <EntityTypeShape EntityType="Model.PersonToken" Width="1.5" PointX="5.25" PointY="58.875" />
-        <EntityTypeShape EntityType="Model.Report" Width="1.5" PointX="9.75" PointY="38.625" />
-        <EntityTypeShape EntityType="Model.ReTell" Width="1.5" PointX="10.75" PointY="31.875" />
-        <EntityTypeShape EntityType="Model.SearchHistory" Width="1.5" PointX="5.25" PointY="46.375" />
-        <EntityTypeShape EntityType="Model.Story" Width="1.5" PointX="7.5" PointY="38" />
-        <EntityTypeShape EntityType="Model.StoryCategory" Width="1.5" PointX="5.25" PointY="40.5" />
-        <EntityTypeShape EntityType="Model.Theme" Width="1.5" PointX="5.25" PointY="56" />
-        <EntityTypeShape EntityType="Model.Timeline" Width="1.5" PointX="9.75" PointY="42.375" />
+      <Diagram DiagramId="ef26bc6a586544a68d7eecd14d191f2e" Name="Diagram1" DisplayType="true" ZoomLevel="169">
+        <EntityTypeShape EntityType="Model.Activity" Width="1.5" PointX="5.25" PointY="33.25" />
+        <EntityTypeShape EntityType="Model.ActivityCategory" Width="1.5" PointX="3" PointY="38.75" />
+        <EntityTypeShape EntityType="Model.AppVersion" Width="1.5" PointX="6" PointY="12" />
+        <EntityTypeShape EntityType="Model.Comment" Width="1.5" PointX="8.25" PointY="25.375" />
+        <EntityTypeShape EntityType="Model.CountMoment" Width="1.5" PointX="7.5" PointY="67" />
+        <EntityTypeShape EntityType="Model.CountPerson" Width="1.5" PointX="5.25" PointY="23.125" />
+        <EntityTypeShape EntityType="Model.CountStory" Width="1.5" PointX="9.75" PointY="51.5" />
+        <EntityTypeShape EntityType="Model.DeviceOs" Width="1.5" PointX="6" PointY="9.625" />
+        <EntityTypeShape EntityType="Model.DeviceType" Width="1.5" PointX="6" PointY="17.375" />
+        <EntityTypeShape EntityType="Model.Feedback" Width="1.5" PointX="8.25" PointY="34.25" />
+        <EntityTypeShape EntityType="Model.FeedbackCategory" Width="1.5" PointX="6" PointY="61.75" />
+        <EntityTypeShape EntityType="Model.Gender" Width="1.5" PointX="0.75" PointY="29.75" />
+        <EntityTypeShape EntityType="Model.Language" Width="1.5" PointX="6" PointY="14.625" />
+        <EntityTypeShape EntityType="Model.Moment" Width="1.5" PointX="5.25" PointY="55.125" />
+        <EntityTypeShape EntityType="Model.MomentLike" Width="1.5" PointX="10.5" PointY="42.375" />
+        <EntityTypeShape EntityType="Model.Notification" Width="1.5" PointX="5.25" PointY="29.125" />
+        <EntityTypeShape EntityType="Model.NotificationCase" Width="1.5" PointX="3" PointY="23.625" />
+        <EntityTypeShape EntityType="Model.NotificationType" Width="1.5" PointX="3" PointY="36" />
+        <EntityTypeShape EntityType="Model.OsVersion" Width="1.5" PointX="6" PointY="20" />
+        <EntityTypeShape EntityType="Model.Person" Width="1.5" PointX="3" PointY="26.25" />
+        <EntityTypeShape EntityType="Model.PersonFollowing" Width="1.5" PointX="5.25" PointY="52" />
+        <EntityTypeShape EntityType="Model.PersonRole" Width="1.5" PointX="0.75" PointY="26.75" />
+        <EntityTypeShape EntityType="Model.PersonToken" Width="1.5" PointX="5.25" PointY="46.375" />
+        <EntityTypeShape EntityType="Model.Report" Width="1.5" PointX="10.75" PointY="35.125" />
+        <EntityTypeShape EntityType="Model.ReTell" Width="1.5" PointX="9.75" PointY="38.5" />
+        <EntityTypeShape EntityType="Model.SearchHistory" Width="1.5" PointX="5.25" PointY="36.875" />
+        <EntityTypeShape EntityType="Model.Story" Width="1.5" PointX="7.5" PointY="39.875" />
+        <EntityTypeShape EntityType="Model.StoryCategory" Width="1.5" PointX="5.25" PointY="42.375" />
+        <EntityTypeShape EntityType="Model.Theme" Width="1.5" PointX="5.25" PointY="49.25" />
+        <EntityTypeShape EntityType="Model.Timeline" Width="1.5" PointX="10.75" PointY="31" />
         <AssociationConnector Association="Model.FK_Activity_0" />
         <AssociationConnector Association="Model.FK_Activity_1" />
         <AssociationConnector Association="Model.FK_Activity_2" />
-        <AssociationConnector Association="Model.FK_Device_4" />
         <AssociationConnector Association="Model.FK_Comment_0" />
         <AssociationConnector Association="Model.FK_Comment_1" />
         <AssociationConnector Association="Model.FK_CountMoment_0" />
         <AssociationConnector Association="Model.FK_CountPerson_0" />
         <AssociationConnector Association="Model.FK_CountStory_0" />
-        <AssociationConnector Association="Model.FK_Device_0" />
-        <AssociationConnector Association="Model.FK_Device_1" />
-        <AssociationConnector Association="Model.FK_Device_2" />
-        <AssociationConnector Association="Model.FK_Device_3" />
         <AssociationConnector Association="Model.FK_Feedback_0" />
         <AssociationConnector Association="Model.FK_Feedback_1" />
         <AssociationConnector Association="Model.FK_Person_0" />
@@ -78,9 +73,15 @@
         <AssociationConnector Association="Model.FK_Story_0" />
         <AssociationConnector Association="Model.FK_Story_1" />
         <AssociationConnector Association="Model.FK_Timeline_1" />
-        <AssociationConnector Association="Model.FK_Timeline_2" />
         <AssociationConnector Association="Model.PersonUsedTheme" />
-      </Diagram>
+        <EntityTypeShape EntityType="Model.Device" Width="1.5" PointX="8.25" PointY="20.125" />
+        <AssociationConnector Association="Model.FK_Device_0" />
+        <AssociationConnector Association="Model.FK_Device_1" />
+        <AssociationConnector Association="Model.FK_Device_2" />
+        <AssociationConnector Association="Model.FK_Device_3" />
+        <AssociationConnector Association="Model.FK_Device_4" />
+        <AssociationConnector Association="Model.FK_Device_5" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

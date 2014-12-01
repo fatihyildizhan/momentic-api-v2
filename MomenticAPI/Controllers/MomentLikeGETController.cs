@@ -45,7 +45,6 @@ namespace MomenticAPI.Controllers
                 {
                     model.isFollowing = true;
                 }
-
                 likeModels.Add(model);
             }
 

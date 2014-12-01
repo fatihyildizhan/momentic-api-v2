@@ -71,6 +71,16 @@ namespace MomenticAPI.Controllers
                     sModel.ThemeID = dbStory.ThemeID;
                     sModel.Tag = dbStory.Tag;
 
+                    CountStory dbCountStory = await db.CountStory.Where(x => x.StoryID == itemTimeline.StoryID).SingleOrDefaultAsync();
+                    if (dbCountStory != null)
+                    {
+                        sModel.CountComment = dbCountStory.Comment;
+                    }
+                    else
+                    {
+                        sModel.CountComment = 0;
+                    }
+
                     List<MomentViewModel> momentViewModelList = new List<MomentViewModel>();
 
                     List<int> MomentIDList = new List<int>();
@@ -108,6 +118,15 @@ namespace MomenticAPI.Controllers
                         mModel.IsHorizontal = dbMoment.IsHorizontal;
                         mModel.LocationString = dbMoment.LocationString;
 
+                        CountMoment dbCountMoment = await db.CountMoment.Where(x => x.MomentID == item).SingleOrDefaultAsync();
+                        if (dbCountMoment != null)
+                        {
+                            mModel.CountLike = dbCountMoment.LikeCount;
+                        }
+                        else
+                        {
+                            mModel.CountLike = 0;
+                        }
                         momentViewModelList.Add(mModel);
                     }
 

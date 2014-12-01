@@ -96,17 +96,49 @@ namespace MomenticAPI.Controllers
 
         // POST: api/Comment
         [ResponseType(typeof(Comment))]
-        public async Task<IHttpActionResult> PostComment(Comment comment)
+        public async Task<object> PostComment(Comment comment)
         {
-            if (!ModelState.IsValid)
+            dynamic cResponse = new ExpandoObject();
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    cResponse.Result = "-1";
+                    cResponse.Description = ModelState;
+                    return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+                }
+
+                comment.CommentDate = DateTime.Now;
+                db.Comment.Add(comment);
+                await db.SaveChangesAsync();
+
+                CountStory dbStory = await db.CountStory.FindAsync(comment.StoryID);
+                if (dbStory != null)
+                {
+                    dbStory.LastActivityDate = DateTime.Now;
+                    dbStory.Comment = dbStory.Comment + 1;
+                    await db.SaveChangesAsync();
+                }
+                else
+                {
+                    CountStory newCountStory = new CountStory();
+                    newCountStory.LastActivityDate = DateTime.Now;
+                    newCountStory.StoryID = comment.StoryID;
+                    newCountStory.Comment = 1;
+                    db.CountStory.Add(newCountStory);
+                    await db.SaveChangesAsync();
+                }
+
+                cResponse.Result = "0";
+                cResponse.Description = "Comment added to database";
+                return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
             }
-
-            db.Comment.Add(comment);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = comment.CommentID }, comment);
+            catch
+            {
+                cResponse.Result = "-1";
+                cResponse.Description = "Exception, your request could not be executed";
+                return JsonConvert.DeserializeObject(JsonConvert.SerializeObject(cResponse));
+            }
         }
 
         // DELETE: api/Comment/5

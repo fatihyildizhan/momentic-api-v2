@@ -20,7 +20,7 @@ namespace MomenticAPI.Models
         }
     
         public int DeviceTypeID { get; set; }
-        public string DeviceTypeName { get; set; }
+        public string Name { get; set; }
     
         public virtual ICollection<Device> Device { get; set; }
     }

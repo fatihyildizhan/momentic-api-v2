@@ -12,14 +12,14 @@ namespace MomenticAPI.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DeviceOs
+    public partial class OsVersion
     {
-        public DeviceOs()
+        public OsVersion()
         {
             this.Device = new HashSet<Device>();
         }
     
-        public int OsID { get; set; }
+        public int VersionID { get; set; }
         public string Name { get; set; }
     
         public virtual ICollection<Device> Device { get; set; }

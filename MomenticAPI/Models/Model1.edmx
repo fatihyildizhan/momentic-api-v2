@@ -28,8 +28,8 @@
             <PropertyRef Name="VersionID" />
           </Key>
           <Property Name="VersionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VersionName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="PublishDate" Type="datetime" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DatePublish" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -90,34 +90,33 @@
         </EntityType>
         <EntityType Name="Device">
           <Key>
-            <PropertyRef Name="DeviceToken" />
-            <PropertyRef Name="DeviceTypeID" />
-            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="DeviceID" />
           </Key>
-          <Property Name="DeviceToken" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="DeviceTypeID" Type="int" Nullable="false" />
-          <Property Name="PersonID" Type="int" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="LoginDate" Type="datetime" Nullable="false" />
-          <Property Name="OsVersion" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
-          <Property Name="DeviceOSID" Type="int" Nullable="false" />
-          <Property Name="DeviceLanguageID" Type="int" Nullable="false" />
           <Property Name="AppVersionID" Type="int" Nullable="false" />
+          <Property Name="DateLastLogin" Type="datetime" Nullable="false" />
+          <Property Name="DateLogin" Type="datetime" Nullable="false" />
+          <Property Name="DeviceLanguageID" Type="int" Nullable="false" />
+          <Property Name="DeviceOsID" Type="int" Nullable="false" />
+          <Property Name="DeviceToken" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DeviceTypeID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="OsVersionID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="DeviceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <EntityType Name="DeviceOS">
+        <EntityType Name="DeviceOs">
           <Key>
-            <PropertyRef Name="OSID" />
+            <PropertyRef Name="OsID" />
           </Key>
-          <Property Name="OSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OSName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="OsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="DeviceType">
           <Key>
             <PropertyRef Name="DeviceTypeID" />
           </Key>
           <Property Name="DeviceTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DeviceTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
@@ -203,6 +202,13 @@
           </Key>
           <Property Name="NotificationTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NotificationTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OsVersion">
+          <Key>
+            <PropertyRef Name="VersionID" />
+          </Key>
+          <Property Name="VersionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -342,14 +348,8 @@
           <Property Name="FeedDate" Type="datetime" Nullable="false" />
           <Property Name="IsReTell" Type="bit" Nullable="false" />
           <Property Name="CoverPhotoIndex" Type="int" Nullable="false" />
-          <Property Name="ThemeID" Type="int" Nullable="false" />
-          <Property Name="Tag" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PersonThumbnail" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PersonUsername" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhotoUrlLarge" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IsHorizontal" Type="bit" Nullable="false" />
-          <Property Name="LocationString" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK_Activity_0">
           <End Role="ActivityCategory" Type="Self.ActivityCategory" Multiplicity="1" />
@@ -448,42 +448,18 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Device_0">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="AppVersion" Type="Self.AppVersion" Multiplicity="1" />
           <End Role="Device" Type="Self.Device" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonID" />
+            <Principal Role="AppVersion">
+              <PropertyRef Name="VersionID" />
             </Principal>
             <Dependent Role="Device">
-              <PropertyRef Name="PersonID" />
+              <PropertyRef Name="AppVersionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Device_1">
-          <End Role="DeviceType" Type="Self.DeviceType" Multiplicity="1" />
-          <End Role="Device" Type="Self.Device" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DeviceType">
-              <PropertyRef Name="DeviceTypeID" />
-            </Principal>
-            <Dependent Role="Device">
-              <PropertyRef Name="DeviceTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Device_2">
-          <End Role="DeviceOS" Type="Self.DeviceOS" Multiplicity="1" />
-          <End Role="Device" Type="Self.Device" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DeviceOS">
-              <PropertyRef Name="OSID" />
-            </Principal>
-            <Dependent Role="Device">
-              <PropertyRef Name="DeviceOSID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Device_3">
           <End Role="Language" Type="Self.Language" Multiplicity="1" />
           <End Role="Device" Type="Self.Device" Multiplicity="*" />
           <ReferentialConstraint>
@@ -495,15 +471,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Device_4">
-          <End Role="AppVersion" Type="Self.AppVersion" Multiplicity="1" />
+        <Association Name="FK_Device_2">
+          <End Role="DeviceOs" Type="Self.DeviceOs" Multiplicity="1" />
           <End Role="Device" Type="Self.Device" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AppVersion">
+            <Principal Role="DeviceOs">
+              <PropertyRef Name="OsID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceOsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_3">
+          <End Role="DeviceType" Type="Self.DeviceType" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceType">
+              <PropertyRef Name="DeviceTypeID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_4">
+          <End Role="OsVersion" Type="Self.OsVersion" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OsVersion">
               <PropertyRef Name="VersionID" />
             </Principal>
             <Dependent Role="Device">
-              <PropertyRef Name="AppVersionID" />
+              <PropertyRef Name="OsVersionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_5">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="PersonID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -891,18 +903,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Timeline_2">
-          <End Role="Theme" Type="Self.Theme" Multiplicity="1" />
-          <End Role="Timeline" Type="Self.Timeline" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Theme">
-              <PropertyRef Name="ThemeID" />
-            </Principal>
-            <Dependent Role="Timeline">
-              <PropertyRef Name="ThemeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActivityCategory" EntityType="Self.ActivityCategory" Schema="dbo" store:Type="Tables" />
@@ -912,7 +912,7 @@
           <EntitySet Name="CountPerson" EntityType="Self.CountPerson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CountStory" EntityType="Self.CountStory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DeviceOS" EntityType="Self.DeviceOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceOs" EntityType="Self.DeviceOs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeviceType" EntityType="Self.DeviceType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeedbackCategory" EntityType="Self.FeedbackCategory" Schema="dbo" store:Type="Tables" />
@@ -923,6 +923,7 @@
           <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NotificationCase" EntityType="Self.NotificationCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NotificationType" EntityType="Self.NotificationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OsVersion" EntityType="Self.OsVersion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonFollowing" EntityType="Self.PersonFollowing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonRole" EntityType="Self.PersonRole" Schema="dbo" store:Type="Tables" />
@@ -968,23 +969,27 @@
             <End Role="CountStory" EntitySet="CountStory" />
           </AssociationSet>
           <AssociationSet Name="FK_Device_0" Association="Self.FK_Device_0">
-            <End Role="Person" EntitySet="Person" />
+            <End Role="AppVersion" EntitySet="AppVersion" />
             <End Role="Device" EntitySet="Device" />
           </AssociationSet>
           <AssociationSet Name="FK_Device_1" Association="Self.FK_Device_1">
-            <End Role="DeviceType" EntitySet="DeviceType" />
-            <End Role="Device" EntitySet="Device" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Device_2" Association="Self.FK_Device_2">
-            <End Role="DeviceOS" EntitySet="DeviceOS" />
-            <End Role="Device" EntitySet="Device" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Device_3" Association="Self.FK_Device_3">
             <End Role="Language" EntitySet="Language" />
             <End Role="Device" EntitySet="Device" />
           </AssociationSet>
+          <AssociationSet Name="FK_Device_2" Association="Self.FK_Device_2">
+            <End Role="DeviceOs" EntitySet="DeviceOs" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_3" Association="Self.FK_Device_3">
+            <End Role="DeviceType" EntitySet="DeviceType" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
           <AssociationSet Name="FK_Device_4" Association="Self.FK_Device_4">
-            <End Role="AppVersion" EntitySet="AppVersion" />
+            <End Role="OsVersion" EntitySet="OsVersion" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_5" Association="Self.FK_Device_5">
+            <End Role="Person" EntitySet="Person" />
             <End Role="Device" EntitySet="Device" />
           </AssociationSet>
           <AssociationSet Name="FK_Feedback_0" Association="Self.FK_Feedback_0">
@@ -1115,10 +1120,6 @@
             <End Role="Story" EntitySet="Story" />
             <End Role="Timeline" EntitySet="Timeline" />
           </AssociationSet>
-          <AssociationSet Name="FK_Timeline_2" Association="Self.FK_Timeline_2">
-            <End Role="Theme" EntitySet="Theme" />
-            <End Role="Timeline" EntitySet="Timeline" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1132,8 +1133,7 @@
           <EntitySet Name="CountMoment" EntityType="Model.CountMoment" />
           <EntitySet Name="CountPerson" EntityType="Model.CountPerson" />
           <EntitySet Name="CountStory" EntityType="Model.CountStory" />
-          <EntitySet Name="Device" EntityType="Model.Device" />
-          <EntitySet Name="DeviceOS" EntityType="Model.DeviceOS" />
+          <EntitySet Name="DeviceOs" EntityType="Model.DeviceOs" />
           <EntitySet Name="DeviceType" EntityType="Model.DeviceType" />
           <EntitySet Name="Feedback" EntityType="Model.Feedback" />
           <EntitySet Name="FeedbackCategory" EntityType="Model.FeedbackCategory" />
@@ -1144,6 +1144,7 @@
           <EntitySet Name="Notification" EntityType="Model.Notification" />
           <EntitySet Name="NotificationCase" EntityType="Model.NotificationCase" />
           <EntitySet Name="NotificationType" EntityType="Model.NotificationType" />
+          <EntitySet Name="OsVersion" EntityType="Model.OsVersion" />
           <EntitySet Name="Person" EntityType="Model.Person" />
           <EntitySet Name="PersonFollowing" EntityType="Model.PersonFollowing" />
           <EntitySet Name="PersonRole" EntityType="Model.PersonRole" />
@@ -1167,10 +1168,6 @@
             <End Role="Person" EntitySet="Person" />
             <End Role="Activity" EntitySet="Activity" />
           </AssociationSet>
-          <AssociationSet Name="FK_Device_4" Association="Model.FK_Device_4">
-            <End Role="AppVersion" EntitySet="AppVersion" />
-            <End Role="Device" EntitySet="Device" />
-          </AssociationSet>
           <AssociationSet Name="FK_Comment_0" Association="Model.FK_Comment_0">
             <End Role="Person" EntitySet="Person" />
             <End Role="Comment" EntitySet="Comment" />
@@ -1190,22 +1187,6 @@
           <AssociationSet Name="FK_CountStory_0" Association="Model.FK_CountStory_0">
             <End Role="Story" EntitySet="Story" />
             <End Role="CountStory" EntitySet="CountStory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Device_0" Association="Model.FK_Device_0">
-            <End Role="Person" EntitySet="Person" />
-            <End Role="Device" EntitySet="Device" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Device_1" Association="Model.FK_Device_1">
-            <End Role="DeviceType" EntitySet="DeviceType" />
-            <End Role="Device" EntitySet="Device" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Device_2" Association="Model.FK_Device_2">
-            <End Role="DeviceOS" EntitySet="DeviceOS" />
-            <End Role="Device" EntitySet="Device" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Device_3" Association="Model.FK_Device_3">
-            <End Role="Language" EntitySet="Language" />
-            <End Role="Device" EntitySet="Device" />
           </AssociationSet>
           <AssociationSet Name="FK_Feedback_0" Association="Model.FK_Feedback_0">
             <End Role="Person" EntitySet="Person" />
@@ -1327,15 +1308,36 @@
             <End Role="Story" EntitySet="Story" />
             <End Role="Timeline" EntitySet="Timeline" />
           </AssociationSet>
-          <AssociationSet Name="FK_Timeline_2" Association="Model.FK_Timeline_2">
-            <End Role="Theme" EntitySet="Theme" />
-            <End Role="Timeline" EntitySet="Timeline" />
-          </AssociationSet>
           <AssociationSet Name="PersonUsedTheme" Association="Model.PersonUsedTheme">
             <End Role="Person" EntitySet="Person" />
             <End Role="Theme" EntitySet="Theme" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Device" EntityType="Model.Device" />
+          <AssociationSet Name="FK_Device_0" Association="Model.FK_Device_0">
+            <End Role="AppVersion" EntitySet="AppVersion" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_1" Association="Model.FK_Device_1">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_2" Association="Model.FK_Device_2">
+            <End Role="DeviceOs" EntitySet="DeviceOs" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_3" Association="Model.FK_Device_3">
+            <End Role="DeviceType" EntitySet="DeviceType" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_4" Association="Model.FK_Device_4">
+            <End Role="OsVersion" EntitySet="OsVersion" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_5" Association="Model.FK_Device_5">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="ActivityID" />
@@ -1363,9 +1365,9 @@
             <PropertyRef Name="VersionID" />
           </Key>
           <Property Name="VersionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VersionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PublishDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Device" Relationship="Model.FK_Device_4" FromRole="AppVersion" ToRole="Device" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DatePublish" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_0" FromRole="AppVersion" ToRole="Device" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -1429,43 +1431,21 @@
           <Property Name="MomentSquare" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Story" Relationship="Model.FK_CountStory_0" FromRole="CountStory" ToRole="Story" />
         </EntityType>
-        <EntityType Name="Device">
+        <EntityType Name="DeviceOs">
           <Key>
-            <PropertyRef Name="DeviceToken" />
-            <PropertyRef Name="DeviceTypeID" />
-            <PropertyRef Name="PersonID" />
+            <PropertyRef Name="OsID" />
           </Key>
-          <Property Name="DeviceToken" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DeviceTypeID" Type="Int32" Nullable="false" />
-          <Property Name="PersonID" Type="Int32" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="OsVersion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DeviceOSID" Type="Int32" Nullable="false" />
-          <Property Name="DeviceLanguageID" Type="Int32" Nullable="false" />
-          <Property Name="AppVersionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AppVersion" Relationship="Model.FK_Device_4" FromRole="Device" ToRole="AppVersion" />
-          <NavigationProperty Name="Person" Relationship="Model.FK_Device_0" FromRole="Device" ToRole="Person" />
-          <NavigationProperty Name="DeviceType" Relationship="Model.FK_Device_1" FromRole="Device" ToRole="DeviceType" />
-          <NavigationProperty Name="DeviceOS" Relationship="Model.FK_Device_2" FromRole="Device" ToRole="DeviceOS" />
-          <NavigationProperty Name="Language" Relationship="Model.FK_Device_3" FromRole="Device" ToRole="Language" />
-        </EntityType>
-        <EntityType Name="DeviceOS">
-          <Key>
-            <PropertyRef Name="OSID" />
-          </Key>
-          <Property Name="OSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OSName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Device" Relationship="Model.FK_Device_2" FromRole="DeviceOS" ToRole="Device" />
+          <Property Name="OsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_2" FromRole="DeviceOs" ToRole="Device" />
         </EntityType>
         <EntityType Name="DeviceType">
           <Key>
             <PropertyRef Name="DeviceTypeID" />
           </Key>
           <Property Name="DeviceTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DeviceTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Device" Relationship="Model.FK_Device_1" FromRole="DeviceType" ToRole="Device" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_3" FromRole="DeviceType" ToRole="Device" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
@@ -1503,7 +1483,7 @@
           </Key>
           <Property Name="LanguageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Device" Relationship="Model.FK_Device_3" FromRole="Language" ToRole="Device" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_1" FromRole="Language" ToRole="Device" />
         </EntityType>
         <EntityType Name="Moment">
           <Key>
@@ -1574,6 +1554,14 @@
           <Property Name="NotificationTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Notification" Relationship="Model.FK_Notification_1" FromRole="NotificationType" ToRole="Notification" />
         </EntityType>
+        <EntityType Name="OsVersion">
+          <Key>
+            <PropertyRef Name="VersionID" />
+          </Key>
+          <Property Name="VersionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_4" FromRole="OsVersion" ToRole="Device" />
+        </EntityType>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="PersonID" />
@@ -1602,7 +1590,6 @@
           <NavigationProperty Name="Activity1" Relationship="Model.FK_Activity_2" FromRole="Person" ToRole="Activity" />
           <NavigationProperty Name="Comment" Relationship="Model.FK_Comment_0" FromRole="Person" ToRole="Comment" />
           <NavigationProperty Name="CountPerson" Relationship="Model.FK_CountPerson_0" FromRole="Person" ToRole="CountPerson" />
-          <NavigationProperty Name="Device" Relationship="Model.FK_Device_0" FromRole="Person" ToRole="Device" />
           <NavigationProperty Name="Feedback" Relationship="Model.FK_Feedback_0" FromRole="Person" ToRole="Feedback" />
           <NavigationProperty Name="Gender" Relationship="Model.FK_Person_0" FromRole="Person" ToRole="Gender" />
           <NavigationProperty Name="Moment" Relationship="Model.FK_Moment_0" FromRole="Person" ToRole="Moment" />
@@ -1618,6 +1605,7 @@
           <NavigationProperty Name="Story" Relationship="Model.FK_Story_2" FromRole="Person" ToRole="Story" />
           <NavigationProperty Name="Timeline" Relationship="Model.FK_Timeline_0" FromRole="Person" ToRole="Timeline" />
           <NavigationProperty Name="Theme" Relationship="Model.PersonUsedTheme" FromRole="Person" ToRole="Theme" />
+          <NavigationProperty Name="Device" Relationship="Model.FK_Device_5" FromRole="Person" ToRole="Device" />
         </EntityType>
         <EntityType Name="PersonFollowing">
           <Key>
@@ -1739,7 +1727,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Story" Relationship="Model.FK_Story_1" FromRole="Theme" ToRole="Story" />
-          <NavigationProperty Name="Timeline" Relationship="Model.FK_Timeline_2" FromRole="Theme" ToRole="Timeline" />
           <NavigationProperty Name="Person" Relationship="Model.PersonUsedTheme" FromRole="Theme" ToRole="Person" />
         </EntityType>
         <EntityType Name="Timeline">
@@ -1752,17 +1739,10 @@
           <Property Name="FeedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsReTell" Type="Boolean" Nullable="false" />
           <Property Name="CoverPhotoIndex" Type="Int32" Nullable="false" />
-          <Property Name="ThemeID" Type="Int32" Nullable="false" />
-          <Property Name="Tag" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PersonThumbnail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PersonUsername" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhotoUrlLarge" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsHorizontal" Type="Boolean" Nullable="false" />
-          <Property Name="LocationString" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="Model.FK_Timeline_0" FromRole="Timeline" ToRole="Person" />
           <NavigationProperty Name="Story" Relationship="Model.FK_Timeline_1" FromRole="Timeline" ToRole="Story" />
-          <NavigationProperty Name="Theme" Relationship="Model.FK_Timeline_2" FromRole="Timeline" ToRole="Theme" />
         </EntityType>
         <Association Name="FK_Activity_0">
           <End Type="Model.ActivityCategory" Role="ActivityCategory" Multiplicity="1" />
@@ -1797,18 +1777,6 @@
             </Principal>
             <Dependent Role="Activity">
               <PropertyRef Name="SecondaryPersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Device_4">
-          <End Type="Model.AppVersion" Role="AppVersion" Multiplicity="1" />
-          <End Type="Model.Device" Role="Device" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AppVersion">
-              <PropertyRef Name="VersionID" />
-            </Principal>
-            <Dependent Role="Device">
-              <PropertyRef Name="AppVersionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1869,54 +1837,6 @@
             </Principal>
             <Dependent Role="CountStory">
               <PropertyRef Name="StoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Device_0">
-          <End Type="Model.Person" Role="Person" Multiplicity="1" />
-          <End Type="Model.Device" Role="Device" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonID" />
-            </Principal>
-            <Dependent Role="Device">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Device_1">
-          <End Type="Model.DeviceType" Role="DeviceType" Multiplicity="1" />
-          <End Type="Model.Device" Role="Device" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DeviceType">
-              <PropertyRef Name="DeviceTypeID" />
-            </Principal>
-            <Dependent Role="Device">
-              <PropertyRef Name="DeviceTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Device_2">
-          <End Type="Model.DeviceOS" Role="DeviceOS" Multiplicity="1" />
-          <End Type="Model.Device" Role="Device" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DeviceOS">
-              <PropertyRef Name="OSID" />
-            </Principal>
-            <Dependent Role="Device">
-              <PropertyRef Name="DeviceOSID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Device_3">
-          <End Type="Model.Language" Role="Language" Multiplicity="1" />
-          <End Type="Model.Device" Role="Device" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Language">
-              <PropertyRef Name="LanguageID" />
-            </Principal>
-            <Dependent Role="Device">
-              <PropertyRef Name="DeviceLanguageID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2280,21 +2200,103 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Timeline_2">
-          <End Type="Model.Theme" Role="Theme" Multiplicity="1" />
-          <End Type="Model.Timeline" Role="Timeline" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Theme">
-              <PropertyRef Name="ThemeID" />
-            </Principal>
-            <Dependent Role="Timeline">
-              <PropertyRef Name="ThemeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="PersonUsedTheme">
           <End Type="Model.Person" Role="Person" Multiplicity="*" />
           <End Type="Model.Theme" Role="Theme" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="DeviceID" />
+          </Key>
+          <Property Name="AppVersionID" Type="Int32" Nullable="false" />
+          <Property Name="DateLastLogin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLogin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeviceLanguageID" Type="Int32" Nullable="false" />
+          <Property Name="DeviceOsID" Type="Int32" Nullable="false" />
+          <Property Name="DeviceToken" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="OsVersionID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="DeviceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="AppVersion" Relationship="Model.FK_Device_0" FromRole="Device" ToRole="AppVersion" />
+          <NavigationProperty Name="Language" Relationship="Model.FK_Device_1" FromRole="Device" ToRole="Language" />
+          <NavigationProperty Name="DeviceOs" Relationship="Model.FK_Device_2" FromRole="Device" ToRole="DeviceOs" />
+          <NavigationProperty Name="DeviceType" Relationship="Model.FK_Device_3" FromRole="Device" ToRole="DeviceType" />
+          <NavigationProperty Name="OsVersion" Relationship="Model.FK_Device_4" FromRole="Device" ToRole="OsVersion" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Device_5" FromRole="Device" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_Device_0">
+          <End Type="Model.AppVersion" Role="AppVersion" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AppVersion">
+              <PropertyRef Name="VersionID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="AppVersionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_1">
+          <End Type="Model.Language" Role="Language" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="LanguageID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceLanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_2">
+          <End Type="Model.DeviceOs" Role="DeviceOs" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceOs">
+              <PropertyRef Name="OsID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceOsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_3">
+          <End Type="Model.DeviceType" Role="DeviceType" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceType">
+              <PropertyRef Name="DeviceTypeID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="DeviceTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_4">
+          <End Type="Model.OsVersion" Role="OsVersion" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OsVersion">
+              <PropertyRef Name="VersionID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="OsVersionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_5">
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Device" Role="Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -2325,8 +2327,8 @@
           <EntitySetMapping Name="AppVersion">
             <EntityTypeMapping TypeName="Model.AppVersion">
               <MappingFragment StoreEntitySet="AppVersion">
-                <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
-                <ScalarProperty Name="VersionName" ColumnName="VersionName" />
+                <ScalarProperty Name="DatePublish" ColumnName="DatePublish" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="VersionID" ColumnName="VersionID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2392,34 +2394,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Device">
-            <EntityTypeMapping TypeName="Model.Device">
-              <MappingFragment StoreEntitySet="Device">
-                <ScalarProperty Name="AppVersionID" ColumnName="AppVersionID" />
-                <ScalarProperty Name="DeviceLanguageID" ColumnName="DeviceLanguageID" />
-                <ScalarProperty Name="DeviceOSID" ColumnName="DeviceOSID" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="OsVersion" ColumnName="OsVersion" />
-                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="DeviceTypeID" ColumnName="DeviceTypeID" />
-                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DeviceOS">
-            <EntityTypeMapping TypeName="Model.DeviceOS">
-              <MappingFragment StoreEntitySet="DeviceOS">
-                <ScalarProperty Name="OSName" ColumnName="OSName" />
-                <ScalarProperty Name="OSID" ColumnName="OSID" />
+          <EntitySetMapping Name="DeviceOs">
+            <EntityTypeMapping TypeName="Model.DeviceOs">
+              <MappingFragment StoreEntitySet="DeviceOs">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OsID" ColumnName="OsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DeviceType">
             <EntityTypeMapping TypeName="Model.DeviceType">
               <MappingFragment StoreEntitySet="DeviceType">
-                <ScalarProperty Name="DeviceTypeName" ColumnName="DeviceTypeName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="DeviceTypeID" ColumnName="DeviceTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2514,6 +2500,14 @@
               <MappingFragment StoreEntitySet="NotificationType">
                 <ScalarProperty Name="NotificationTypeName" ColumnName="NotificationTypeName" />
                 <ScalarProperty Name="NotificationTypeID" ColumnName="NotificationTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OsVersion">
+            <EntityTypeMapping TypeName="Model.OsVersion">
+              <MappingFragment StoreEntitySet="OsVersion">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="VersionID" ColumnName="VersionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2647,14 +2641,8 @@
           <EntitySetMapping Name="Timeline">
             <EntityTypeMapping TypeName="Model.Timeline">
               <MappingFragment StoreEntitySet="Timeline">
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="LocationString" ColumnName="LocationString" />
-                <ScalarProperty Name="IsHorizontal" ColumnName="IsHorizontal" />
-                <ScalarProperty Name="PhotoUrlLarge" ColumnName="PhotoUrlLarge" />
                 <ScalarProperty Name="PersonUsername" ColumnName="PersonUsername" />
                 <ScalarProperty Name="PersonThumbnail" ColumnName="PersonThumbnail" />
-                <ScalarProperty Name="Tag" ColumnName="Tag" />
-                <ScalarProperty Name="ThemeID" ColumnName="ThemeID" />
                 <ScalarProperty Name="CoverPhotoIndex" ColumnName="CoverPhotoIndex" />
                 <ScalarProperty Name="IsReTell" ColumnName="IsReTell" />
                 <ScalarProperty Name="FeedDate" ColumnName="FeedDate" />
@@ -2672,6 +2660,23 @@
               <ScalarProperty Name="PersonID" ColumnName="PersonID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Device">
+            <EntityTypeMapping TypeName="Model.Device">
+              <MappingFragment StoreEntitySet="Device">
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="OsVersionID" ColumnName="OsVersionID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DeviceTypeID" ColumnName="DeviceTypeID" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+                <ScalarProperty Name="DeviceOsID" ColumnName="DeviceOsID" />
+                <ScalarProperty Name="DeviceLanguageID" ColumnName="DeviceLanguageID" />
+                <ScalarProperty Name="DateLogin" ColumnName="DateLogin" />
+                <ScalarProperty Name="DateLastLogin" ColumnName="DateLastLogin" />
+                <ScalarProperty Name="AppVersionID" ColumnName="AppVersionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
