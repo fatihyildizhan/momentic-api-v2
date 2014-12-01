@@ -80,14 +80,19 @@ namespace MomenticAPI.Controllers
                     await db.SaveChangesAsync();
                 }
 
+                Language dbLanguage = await db.Language.Where(x => x.Name == device.DeviceLanguageName).SingleOrDefaultAsync();
+                if (dbLanguage == null)
+                {
+                    dbLanguage = new Language();
+                    dbLanguage.Name = device.DeviceLanguageName;
+
+                    db.Language.Add(dbLanguage);
+                }
+
                 Device isFoundDevice = await db.Device.Where(x => x.DeviceToken == device.DeviceToken && x.PersonID == device.PersonID && x.IsActive == true && x.DeviceTypeID == dbDeviceType.DeviceTypeID).SingleOrDefaultAsync();
                 if (isFoundDevice != null)
                 {
                     bool isChanged = false;
-                    if (isFoundDevice.DeviceTypeID != dbDeviceType.DeviceTypeID)
-                    {
-                        isChanged = true;
-                    }
 
                     if (isFoundDevice.OsVersionID != dbOsVersion.VersionID)
                     {
@@ -104,17 +109,7 @@ namespace MomenticAPI.Controllers
                         isChanged = true;
                     }
 
-                    if (isFoundDevice.DeviceLanguageID != device.DeviceLanguageID)
-                    {
-                        isChanged = true;
-                    }
-
-                    if (isFoundDevice.DeviceLanguageID != device.DeviceLanguageID)
-                    {
-                        isChanged = true;
-                    }
-
-                    if (isFoundDevice.DeviceOsID != device.DeviceOsID)
+                    if (isFoundDevice.DeviceLanguageID != dbLanguage.LanguageID)
                     {
                         isChanged = true;
                     }
@@ -124,7 +119,7 @@ namespace MomenticAPI.Controllers
                         isFoundDevice.IsActive = false;
                         await db.SaveChangesAsync();
 
-                        await InsertNewDevice(device, dbDeviceType, dbOsVersion, dbAppVersion);
+                        await InsertNewDevice(device, dbDeviceType, dbOsVersion, dbAppVersion, dbLanguage);
                     }
                     else
                     {
@@ -138,7 +133,7 @@ namespace MomenticAPI.Controllers
                 }
                 else
                 {
-                    await InsertNewDevice(device, dbDeviceType, dbOsVersion, dbAppVersion);
+                    await InsertNewDevice(device, dbDeviceType, dbOsVersion, dbAppVersion, dbLanguage);
 
                     cResponse.Result = "0";
                     cResponse.Description = "Device added to database";
@@ -153,7 +148,7 @@ namespace MomenticAPI.Controllers
             }
         }
 
-        private async Task InsertNewDevice(DeviceNameModel device, DeviceType dbDeviceType, OsVersion dbOsVersion, AppVersion dbAppVersion)
+        private async Task InsertNewDevice(DeviceNameModel device, DeviceType dbDeviceType, OsVersion dbOsVersion, AppVersion dbAppVersion, Language dbLanguage)
         {
             Device dvc = new Device();
 
@@ -167,7 +162,7 @@ namespace MomenticAPI.Controllers
             dvc.DateLastLogin = DateTime.Now;
             dvc.PersonID = device.PersonID;
             dvc.DeviceOsID = device.DeviceOsID;
-            dvc.DeviceLanguageID = device.DeviceLanguageID;
+            dvc.DeviceLanguageID = dbLanguage.LanguageID;
             db.Device.Add(dvc);
 
             await db.SaveChangesAsync();
