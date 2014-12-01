@@ -173,24 +173,6 @@ namespace MomenticAPI.Controllers
             await db.SaveChangesAsync();
         }
 
-        /*
-        // DELETE: api/Device/5
-        [ResponseType(typeof(Device))]
-        public async Task<IHttpActionResult> DeleteDevice(string id)
-        {
-            Device device = await db.Device.FindAsync(id);
-            if (device == null)
-            {
-                return NotFound();
-            }
-
-            db.Device.Remove(device);
-            await db.SaveChangesAsync();
-
-            return Ok(device);
-        }
-        */
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
