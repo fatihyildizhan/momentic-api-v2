@@ -23,7 +23,7 @@ namespace MomenticAPI.Controllers
         private MomenticEntities db = new MomenticEntities();
 
         // GET: api/Feedback
-        [OutputCache(Duration = 3600, VaryByParam = "*")]
+      //[OutputCache(Duration = 3600, VaryByParam = "*")]
         public object GetFeedback()
         {
             dynamic cResponse = new ExpandoObject();

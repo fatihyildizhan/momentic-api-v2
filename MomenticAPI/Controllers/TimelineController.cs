@@ -19,7 +19,7 @@ namespace MomenticAPI.Controllers
 
         // GET: api/Timeline/5
         [ResponseType(typeof(Timeline))]
-        [OutputCache(Duration = 3600, VaryByParam = "*")]
+     //   [OutputCache(Duration = 3600, VaryByParam = "*")]
         public async Task<object> GetTimeline(int id)
         {
             dynamic cResponse = new ExpandoObject();

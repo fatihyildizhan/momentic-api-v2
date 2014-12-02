@@ -22,7 +22,7 @@ namespace MomenticAPI.Controllers
         private MomenticEntities db = new MomenticEntities();
 
         // GET: api/Device
-        [OutputCache(Duration = 3600, VaryByParam = "*")]
+      //  [OutputCache(Duration = 3600, VaryByParam = "*")]
         public object GetDevice()
         {
             dynamic cResponse = new ExpandoObject();
@@ -97,7 +97,7 @@ namespace MomenticAPI.Controllers
                     db.Language.Add(dbLanguage);
                 }
 
-                Device isFoundDevice = await db.Device.Where(x => x.DeviceToken == device.DeviceToken && x.PersonID == device.PersonID && x.IsActive == true && x.DeviceTypeID == dbDeviceType.DeviceTypeID).SingleOrDefaultAsync();
+                Device isFoundDevice = await db.Device.Where(x => x.DeviceToken == device.DeviceToken && x.IsActive == true && x.DeviceTypeID == dbDeviceType.DeviceTypeID).SingleOrDefaultAsync();
                 if (isFoundDevice != null)
                 {
                     bool isChanged = false;
@@ -118,6 +118,11 @@ namespace MomenticAPI.Controllers
                     }
 
                     if (isFoundDevice.DeviceLanguageID != dbLanguage.LanguageID)
+                    {
+                        isChanged = true;
+                    }
+
+                    if (isFoundDevice.PersonID != device.PersonID)
                     {
                         isChanged = true;
                     }

@@ -22,7 +22,7 @@ namespace MomenticAPI.Controllers
         private MomenticEntities db = new MomenticEntities();
 
         // GET: api/ActivityCategory
-        [OutputCache(Duration = 3600, VaryByParam = "*")]
+       // [OutputCache(Duration = 3600, VaryByParam = "*")]
         public object GetActivityCategory()
         {
             dynamic cResponse = new ExpandoObject();
