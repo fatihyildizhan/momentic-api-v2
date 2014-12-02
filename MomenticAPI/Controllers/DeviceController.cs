@@ -74,7 +74,15 @@ namespace MomenticAPI.Controllers
                 {
                     dbAppVersion = new AppVersion();
                     dbAppVersion.Name = device.AppVersionName;
-                    dbAppVersion.DatePublish = device.AppVersionDatePublish;
+
+                    string[] dateTime = device.AppVersionDatePublish.Split('-');
+
+                    int year = Convert.ToInt16(dateTime[0]);
+                    int month = Convert.ToInt16(dateTime[1]);
+                    int day = Convert.ToInt16(dateTime[2]);
+
+                    DateTime dt = new DateTime(year, month, day);
+                    dbAppVersion.DatePublish = dt;
 
                     db.AppVersion.Add(dbAppVersion);
                     await db.SaveChangesAsync();
