@@ -16,7 +16,7 @@ using System.Web.OData;
 
 namespace MomenticAPI.Controllers
 {
-    // [AuthorizationKeyFilterAttribute("Token")]
+    [AuthorizationKeyFilterAttribute("Token")]
     public class StoryController : ApiController
     {
         private MomenticEntities db = new MomenticEntities();
