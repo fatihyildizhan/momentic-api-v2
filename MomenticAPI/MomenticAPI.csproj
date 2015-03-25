@@ -480,6 +480,16 @@
     <Content Include="css\images\favicon%402x.png" />
     <Content Include="css\images\favicon.ico" />
     <Content Include="css\images\favicon.png" />
+    <Content Include="css\images\s0%402x.jpg" />
+    <Content Include="css\images\s0.jpg" />
+    <Content Include="css\images\s1%402x.jpg" />
+    <Content Include="css\images\s1.jpg" />
+    <Content Include="css\images\s2%402x.jpg" />
+    <Content Include="css\images\s2.jpg" />
+    <Content Include="css\images\s3%402x.jpg" />
+    <Content Include="css\images\s3.jpg" />
+    <Content Include="css\images\s4%402x.jpg" />
+    <Content Include="css\images\s4.jpg" />
     <Content Include="css\images\slider-left.png" />
     <Content Include="css\images\slider-right.png" />
     <Content Include="css\mtop - Copy.css" />
@@ -583,6 +593,7 @@
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\Index.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
+    <Content Include="Views\Shared\_LayoutMomencraft.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
