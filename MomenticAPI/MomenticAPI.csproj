@@ -473,8 +473,19 @@
     <Content Include="Content\ThemeImages\theme-1-white.png" />
     <Content Include="Content\ThemeImages\theme-2-black.png" />
     <Content Include="Content\ThemeImages\theme-3-pattern.png" />
+    <Content Include="css\bjqs.css" />
+    <Content Include="css\component.css" />
+    <Content Include="css\default.css" />
+    <Content Include="css\demo.css" />
+    <Content Include="css\images\favicon%402x.png" />
+    <Content Include="css\images\favicon.ico" />
+    <Content Include="css\images\favicon.png" />
+    <Content Include="css\images\slider-left.png" />
+    <Content Include="css\images\slider-right.png" />
+    <Content Include="css\mtop - Copy.css" />
+    <Content Include="css\mtop.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\fontawesome.svg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -500,6 +511,14 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="css\images\m-top%402x.jpg" />
+    <Content Include="css\images\m-top.jpg" />
+    <Content Include="js\bjqs-1.3.js" />
+    <Content Include="js\bjqs-1.3.min.js" />
+    <Content Include="js\jquery.cbpFWSlider.js" />
+    <Content Include="js\jquery.cbpFWSlider.min.js" />
+    <Content Include="js\libs\jquery.secret-source.min.js" />
+    <Content Include="js\modernizr.custom.js" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -513,14 +532,20 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="fonts\.DS_Store" />
+    <Content Include="fonts\fontawesome.eot" />
+    <Content Include="fonts\fontawesome.ttf" />
+    <Content Include="fonts\fontawesome.woff" />
+    <Content Include="fonts\readme.md" />
+    <None Include="Properties\PublishProfiles\socialphotonetwork - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\socialphotonetwork - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\socialphotonetwork - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\socialphotonetwork - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\socialphotonetwork.pubxml" />
+    <Content Include="js\retina.js" />
+    <Content Include="js\retina.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />

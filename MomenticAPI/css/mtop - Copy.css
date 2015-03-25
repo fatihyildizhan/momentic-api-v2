@@ -1,0 +1,99 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+}
+
+.icons-wrapper {
+    width: 1920px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: block;
+    position:relative
+}
+
+.icon {
+    background: url('images/m-top.jpg') no-repeat 0 0;
+    text-indent: -9999px;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -ms-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+}
+
+    .icon:hover {
+        opacity: .4;
+        filter: alpha(opacity=40);
+    }
+
+.logo {
+    background-position: 0px 0px !important;
+    width: 310px;
+    height: 162px;
+    float: left;
+}
+
+.group {
+    background-position: -1429px 0px !important;
+    width: 134px;
+    height: 162px;
+    float: right;
+    
+}
+
+.location {
+    background-position: -1584px 0px !important;
+    width: 113px;
+    height: 162px;
+    float: right;
+}
+
+.microphone {
+    background-position: -1715px 0px !important;
+    width: 205px;
+    height: 162px;
+    float: right;
+}
+
+.vline1 {
+    background-position: -1563px 0px !important;
+    width: 21px;
+    height: 162px;
+    float: right;
+}
+
+.vline2 {
+    background-position: -1697px 0px !important;
+    width: 18px;
+    height: 162px;
+    float: right;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+    .icon {
+        background: url('images/m-top@2x.jpg') no-repeat 0 0;
+        background-size: 1920px 162px;
+    }
+}
+
+/* responsive sprite */
+.stretchy {display:block; float:left; position:relative; overflow:hidden; max-width:160px;}
+.stretchy .spacer {width: 100%; height: auto;}
+.stretchy .sprite {position:absolute; top:0; left:0; max-width:none; max-height:100%;}
+.stretchy .sprite.s2 {left:-100%;}
+.stretchy .sprite.s3 {left:-200%;}
+.stretchy .sprite.s4 {left:-300%;}
+.stretchy .sprite.s5 {left:-400%;}
+.stretchy .sprite.s6 {left:-500%;}
+
+.stretchy.no-limit {max-width: none;} /*you could also set this to a pixel size, for example 320px, to limit the maximum*/
+.stretchy.no-limit .sprite {min-height: 100%;}
