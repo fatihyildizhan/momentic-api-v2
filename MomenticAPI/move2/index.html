@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <div style="position: relative; left: 0; top: 0; width:100%; height:100%;">
+        <img id="iphone" src="iphone-back.png" />
+        <img id="animate" src="story-top.png" />
+    </div>
+
+    <script>
+        $(document).ready(function (e) {
+            if ('devicePixelRatio' in window && window.devicePixelRatio == 2) {
+                width = "+=" + ($(document).width() * 28.9) / 100;
+                $("#animate").animate({
+                    right: width
+                }, 6500, function () {
+                });
+            }
+            else {
+                width = "+=" + ($(document).width() * 28.9) / 100;
+                $("#animate").animate({
+                    right: width
+                }, 6500, function () {
+                });
+            }
+        });
+    </script>
+    <!--
+        <script>
+        $(document).ready(function (e) {
+            width = "+=" + $(document).width();
+            $("#animate").animate({
+                right: width
+            }, 7000, function () {
+                alert('bitti');
+            });
+        });
+    </script>
+        556
+    -->
+
+    <script src="../js/retina.js"></script>
+</body>
+</html>

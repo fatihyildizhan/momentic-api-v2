@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>moving</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        <img src="iphone-back.png" />
+        <img id="animate" src="story-top.png" />
+    </div>
+    <script>
+        $(document).ready(function (e) {
+            width = "+=" + 888;
+            $("#animate").animate({
+                right: width
+            }, 6500, function () {
+                
+            });
+        });
+    </script>
+
+    <!--
+        <script>
+        $(document).ready(function (e) {
+            width = "+=" + $(document).width();
+            $("#animate").animate({
+                right: width
+            }, 7000, function () {
+                alert('bitti');
+            });
+        });
+    </script>
+    -->
+</body>
+</html>
