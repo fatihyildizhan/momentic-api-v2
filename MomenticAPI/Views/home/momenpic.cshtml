@@ -7,12 +7,43 @@
 <head>
     <meta name="description" content="Momenpic" />
     <link href="~/css/mtop.css" rel="stylesheet" />
+
+    <link href="~/css/component.css" rel="stylesheet" />
+    <link href="~/css/default.css" rel="stylesheet" />
+    <script src="~/js/modernizr.custom.js"></script>
 </head>
 <body>
     @section momentBody{
-    <img src="~/css/images/momenpic-s1.jpg" style='width: 100%; height:100%;' />
+        <div id="cbp-fwslider" class="cbp-fwslider">
+            <ul>
+                <li><img src="~/css/images/momenpic-s1.jpg" style='width: 100%; height:100%;' /></li>
+                <li><img src="~/css/images/momenpic-s2.jpg" style='width: 100%; height:100%;' /></li>
+            </ul>
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="~/js/jquery.cbpFWSlider.min.js"></script>
+        <script>
+            $(function () {
+                /*
+                - how to call the plugin:
+                $( selector ).cbpFWSlider( [options] );
+                - options:
+                {
+                    // default transition speed (ms)
+                    speed : 500,
+                    // default transition easing
+                    easing : 'ease'
+                }
+                - destroy:
+                $( selector ).cbpFWSlider( 'destroy' );
+                */
+
+                $('#cbp-fwslider').cbpFWSlider();
+
+            });
+        </script>
         <script src="~/js/retina.js"></script>
     }
-
 </body>
 </html>
