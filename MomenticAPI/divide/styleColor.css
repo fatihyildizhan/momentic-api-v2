@@ -1,0 +1,31 @@
+﻿/* =Structure Mobile
+-------------------------------------------------------------- */
+ 
+.wrap{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1em;
+}
+ 
+.wrap:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+ 
+#primary{
+    max-width: 720px;
+    margin: 0 auto;
+}
+ 
+#secondary,
+#tertiary{
+    max-width: 400px;
+    margin: 0 auto;
+}
+ 
+#secondary .widget,
+#tertiary .widget{
+    padding: 1em;
+    margin-bottom: 1em;
+}

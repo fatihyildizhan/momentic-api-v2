@@ -280,7 +280,7 @@
     <Compile Include="Controllers\DeviceTypeController.cs" />
     <Compile Include="Controllers\FeedbackCategoryController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\homeController.cs" />
     <Compile Include="Controllers\MomentController.cs" />
     <Compile Include="Controllers\MomentLikeController.cs" />
     <Compile Include="Controllers\MomentLikeDELETEController.cs" />
@@ -479,9 +479,14 @@
     <Content Include="css\component.css" />
     <Content Include="css\default.css" />
     <Content Include="css\demo.css" />
+    <Content Include="css\images\craft-s2%402x.jpg" />
+    <Content Include="css\images\craft-s2.jpg" />
     <Content Include="css\images\favicon%402x.png" />
     <Content Include="css\images\favicon.ico" />
     <Content Include="css\images\favicon.png" />
+    <Content Include="css\images\momenpic-s1%402x.jpg" />
+    <Content Include="css\images\momenpic-s1.jpg" />
+    <Content Include="css\images\poster.jpg" />
     <Content Include="css\images\s0%402x.jpg" />
     <Content Include="css\images\s0.jpg" />
     <Content Include="css\images\s1%402x.jpg" />
@@ -496,6 +501,14 @@
     <Content Include="css\images\slider-right.png" />
     <Content Include="css\mtop - Copy.css" />
     <Content Include="css\mtop.css" />
+    <Content Include="css\momenticapp.mp4" />
+    <Content Include="divide\content\center.PNG" />
+    <Content Include="divide\content\left.PNG" />
+    <Content Include="divide\content\right.PNG" />
+    <Content Include="divide\index.html" />
+    <Content Include="divide\style.css" />
+    <Content Include="divide\styleColor.css" />
+    <Content Include="divide\video.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome.svg" />
     <Content Include="Global.asax" />
@@ -520,17 +533,14 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="google3d5559c86a9a9e15.html" />
-    <Content Include="move2\index.html" />
-    <Content Include="move2\iphone-back%402x.png" />
-    <Content Include="move2\iphone-back.png" />
-    <Content Include="move2\story-top%402x.png" />
-    <Content Include="move2\story-top.png" />
-    <Content Include="move2\style.css" />
-    <Content Include="move\index.html" />
-    <Content Include="move\iphone-back.png" />
-    <Content Include="move\script.js" />
-    <Content Include="move\story-top.png" />
-    <Content Include="move\style.css" />
+    <Content Include="html5\index3.files\html5video\html5ext.js" />
+    <Content Include="html5\index3.files\html5video\m-r-2.jpg" />
+    <Content Include="html5\index3.files\html5video\m-r-2.m4v" />
+    <Content Include="html5\index3.files\html5video\m-r-2.mp4" />
+    <Content Include="html5\index3.html" />
+    <Content Include="html5\iphone-back.png" />
+    <Content Include="html5\mtop.css" />
+    <Content Include="html5\video4.mp4" />
     <Content Include="yandex_5dae31c8b5c73ef9.html" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -564,6 +574,9 @@
     <Content Include="fonts\fontawesome.ttf" />
     <Content Include="fonts\fontawesome.woff" />
     <Content Include="fonts\readme.md" />
+    <Content Include="html5\index3.files\html5video\.htaccess" />
+    <Content Include="html5\index3.files\html5video\m-r-2.ogv" />
+    <Content Include="html5\index3.files\html5video\m-r-2.webm" />
     <None Include="Properties\PublishProfiles\socialphotonetwork - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\socialphotonetwork - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\socialphotonetwork - Web Deploy %282%29.pubxml" />
@@ -607,12 +620,13 @@
     <Content Include="Views\People\Details.cshtml" />
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\Index.cshtml" />
-    <Content Include="Views\Home\Welcome.cshtml" />
     <Content Include="Views\Shared\_LayoutMomencraft.cshtml" />
+    <Content Include="Views\home\momencraft.cshtml" />
+    <Content Include="Views\home\momenpic.cshtml" />
+    <Content Include="Views\home\momentic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Welcome\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -16,7 +16,7 @@ body {
     height: 100%;
     text-align: center;
     display: block;
-    position:relative
+    position: relative;
 }
 
 .icon {
@@ -43,21 +43,21 @@ body {
     float: left;
 }
 
-.group {
+.momentic {
     background-position: -1429px 0px !important;
     width: 134px;
     height: 162px;
-    float: right; 
+    float: right;
 }
 
-.location {
+.momenpic {
     background-position: -1584px 0px !important;
     width: 113px;
     height: 162px;
     float: right;
 }
 
-.microphone {
+.momencraft {
     background-position: -1715px 0px !important;
     width: 205px;
     height: 162px;
