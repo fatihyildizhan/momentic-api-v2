@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+}
+	#wrapper{width:1080px; }
+		
+	p a{color:#A90000;}
+		
+	/* Menu */
+	ul#menu{margin:0; padding:0; list-style:none; clear:both;}
+		#menu li{overflow:hidden; text-indent:-9999px; display:inline; float:left; }
+			#menu li a{background:url('images/mobile-menu-2.jpg') no-repeat; width:100%; height:100%; display:block;}
+			
+			/* Momentic Button */
+			#menu li.momentic{width:366px; height:223px;}
+				#menu li.momentic a{background-position:0px -111px;}
+				#menu li.momentic a.selected{background-position:-1081px -111px;}
+			
+			/* Momenpic Button */
+			#menu li.momenpic{width:333px; height:223px;}
+				#menu li.momenpic a{background-position:-366px -111px;}
+				#menu li.momenpic a.selected{background-position:-1447px -111px;}
+				
+			/* Momencraft Button */
+			#menu li.momencraft{width:381px; height:223px;}
+				#menu li.momencraft a{background-position:-699px -111px;}
+				#menu li.momencraft a.selected{background-position:-1780px -111px;}
+
+
+    /* Logo */
+	ul#logo{margin:0; padding:0; list-style:none; clear:both;}
+		#logo li{overflow:hidden; text-indent:-9999px; display:inline; float:left; }
+			#logo li a{background:url('images/mobile-menu-2.jpg') no-repeat; width:100%; height:100%; display:block;}
+			
+			/* logo button */
+			#logo li.moment{width:1080px; height:111px;}
+			#logo li.moment a{background-position:0px 0px;}
