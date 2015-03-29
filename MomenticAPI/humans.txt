@@ -1,0 +1,21 @@
+﻿/* TEAM */
+	Human: Ertunç Kırgül
+	Contact: ertunc@momencraft.com
+	Facebook: https://tr-tr.facebook.com/ertunckirguliu
+	From:istanbul, Turkey
+	
+	Human: Fatih Yıldızhan
+	Contact: fatih@momencraft.com
+	Linkedin: https://tr.linkedin.com/in/fatihyildizhan
+	From:istanbul, Turkey
+	
+	Human: Murat Özer
+	Contact: murat@momencraft.com
+	Linkedin: http://tr.linkedin.com/in/ozermurat
+	From:istanbul, Turkey
+
+/* THANKS */		
+
+/* SITE */
+	Last update:2015/04/29
+	Language: English

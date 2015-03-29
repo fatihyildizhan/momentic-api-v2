@@ -10,8 +10,12 @@ namespace MomenticAPI.Controllers
     {
         public ActionResult momencraft()
         {
-            ViewBag.Title = "MomenCraft";
+            if (Request.Browser.IsMobileDevice)
+            {
+                 Response.RedirectToRoute("home", "mobile");
+            }
 
+            ViewBag.Title = "MomenCraft";
             return View();
         }
 
