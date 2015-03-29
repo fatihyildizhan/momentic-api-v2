@@ -1,0 +1,21 @@
+﻿/* Required code*/
+.responsive-image-menu{
+    width:100%;
+}
+.responsive-image-menu span {
+  display: inline-block;
+}
+.responsive-image-menu span img {
+  width: 100%;
+}
+
+/* app specific code */
+.panel-container{
+    width:100px;
+    height:550px;
+    float:left;
+}
+.panel-container.example2{
+    width:250px;
+    height:350px;
+}

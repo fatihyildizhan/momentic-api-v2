@@ -11,15 +11,10 @@
 </head>
 <body>
     @section momentBody{
-        <video autoplay='autoplay' loop='loop' width='100%'>
-            <source type='video/mp4' src='~/css/momenticapp.mp4' media='(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)'>
-            <source type='video/webm' src='~/css/momenticapp.webm' media='(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)'>
-            <source type='video/mp4' src='~/css/momenticapp.mp4' media='(max-device-pixel-ratio:1), (-webkit-max-device-pixel-ratio:1), (max--moz-device-pixel-ratio:1), (-o-max-device-pixel-ratio:1)'>
-            <source type='video/webm' src='~/css/momenticapp.webm' media='(max-device-pixel-ratio:1), (-webkit-max-device-pixel-ratio:1), (max--moz-device-pixel-ratio:1), (-o-max-device-pixel-ratio:1)'>
+        <video autoplay preload="auto" loop='loop' width='100%'>
+            <source src="~/css/mobile.m4v" type="video/quicktime" />
         </video>
-
         <script src="~/js/retina.js"></script>
     }
-
 </body>
 </html>
