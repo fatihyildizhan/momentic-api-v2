@@ -6,9 +6,46 @@
 <html>
 <head>
     <meta name="description" content="Momentic" />
-    <link href="~/css/mtop.css" rel="stylesheet" />
+    <link href="~/menu/stylesMenu.css" rel="stylesheet" />
 </head>
 <body>
+    <div id='cssmenu'>
+        <ul class="myleftitems">
+            <li>
+                <a href="@Url.Action("momencraft", "home")">
+                    <span>
+                        <img src="~/menu/logo.jpg" />
+                    </span>
+                </a>
+            </li>
+        </ul>
+        <ul class="myrightitems">
+            <li class='active'>
+                <a href="@Url.Action("momentic", "home")">
+                    <span>
+                        <img src="~/menu/1a.jpg" />
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("momenpic", "home")">
+                    <span>
+                        <img src="~/menu/2.jpg" />
+                    </span>
+                </a>
+            </li>
+            <li><a href='#'><span></span></a></li>
+            <li class='last'>
+                <a href="@Url.Action("momencraft", "home")">
+                    <span>
+                        <img src="~/menu/3.jpg" />
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br />
     @section momentBody{
         <video autoplay='autoplay' loop='loop' width='100%'>
             <source type='video/mp4' src='~/css/momenticapp.mp4' media='(min-device-pixel-ratio:2), (-webkit-min-device-pixel-ratio:2), (min--moz-device-pixel-ratio:2), (-o-min-device-pixel-ratio:2)'>

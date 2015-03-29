@@ -7,13 +7,34 @@
         }
 */
 
+.myleftitems {
+   position: absolute;
+    left: 0px;
+    top: 2%;
+    /*
+    background: url('logo.jpg') no-repeat center;
+    background-size: cover;
+    max-width: 162px;
+    width: 100%;
+    max-width: 162px;
+    max-height: 56px;
+    width: 100%;
+    height: 100%;
+*/
+}
+
+.myrightitems {
+    position: absolute;
+    right: 0px;
+}
+
 #cssmenu {
+    margin: 0;
+    padding: 0;
 }
 
     #cssmenu ul {
         list-style: none;
-        margin: 0;
-        padding: 0;
         line-height: 1;
         display: block;
         zoom: 1;

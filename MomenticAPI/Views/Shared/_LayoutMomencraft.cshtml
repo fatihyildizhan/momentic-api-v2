@@ -49,14 +49,6 @@
 </head>
 <body onselectstart="return false;" ondragstart="return false;">
     @RenderBody()
-    <div class="icons-wrapper">
-        <a href="@Url.Action("momencraft", "home")" class="icon logo">logo</a>
-        <a href="@Url.Action("momencraft", "home")" class="icon momencraft">momencraft</a>
-        <div class="icon vline1"></div>
-        <a href="@Url.Action("momenpic", "home")" class="icon momenpic">momenpic</a>
-        <div class="icon vline2"></div>
-        <a href="@Url.Action("momentic", "home")" class="icon momentic">momentic</a>
-    </div>
     @RenderSection("momentBody", required: true)
 
     <script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function () { try { w.yaCounter29333885 = new Ya.Metrika({ id: 29333885, webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true, params: window.yaParams || {} }); } catch (e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
