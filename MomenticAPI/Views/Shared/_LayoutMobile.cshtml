@@ -8,6 +8,40 @@
     <link rel="icon" type="image/png" href="~/css/images/favicon@2x.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="~/css/images/favicon.png" sizes="16x16" />
     <title>@ViewBag.Title</title>
+    @RenderSection("momentHeader", required: true)
+
+    <link href="~/css/images/mobile-menu/menuCentered.css" rel="stylesheet" />
+    <link href="~/css/images/mobile-menu/stylesMenu.css" rel="stylesheet" />
+    <script src="~/css/images/mobile-menu/swiper.js"></script>
+    <link href="~/css/images/mobile-menu/swiper.css" rel="stylesheet" />
+    <style>
+        .swiper-container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-slide {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    </style>
     <script type="text/javascript">
         var appInsights = window.appInsights || function (config) {
             function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
@@ -18,9 +52,6 @@
         window.appInsights = appInsights;
         appInsights.trackPageView();
     </script>
-    <link href="~/css/images/mobile-menu/css-sprites-nav.css" rel="stylesheet" />
-    @RenderSection("momentHeader", required: true)
-
     <script language='JavaScript' type='text/JavaScript'>
         // http://html-generator.weebly.com/html-right-click-disable-code.html
         var tenth = '';
@@ -58,12 +89,20 @@
         ga('create', 'UA-61273231-1', 'auto');
         ga('send', 'pageview');
     </script>
+
 </head>
 <body onselectstart="return false;" ondragstart="return false;">
     <center>
-
-        <img src="~/css/images/mobile-menu/moment-mobileweb-top.jpg" />
-
+        <ul>
+            <li>
+                <a href="@Url.Action("home", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/logo-mobile.jpg" width="100%" />
+                    </span>
+                </a>
+            </li>
+        </ul>
+        <br /><br />
         @RenderBody()
         @RenderSection("momentBody", required: true)
     </center>

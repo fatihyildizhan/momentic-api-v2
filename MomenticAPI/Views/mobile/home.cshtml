@@ -5,36 +5,34 @@
 
 @section momentHeader{
 
-    <link href="~/css/images/mobile-menu/mtopMobile.css" rel="stylesheet" />
-    <script src="~/css/images/mobile-menu/swiper.js"></script>
-    <link href="~/css/images/mobile-menu/swiper.css" rel="stylesheet" />
-    <style>
-        .swiper-container {
-        }
-
-        .swiper-slide {
-            text-align: center;
-            font-size: 18px;
-            background: #fff;
-            /* Center slide text vertically */
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-        }
-    </style>
 }
 
 @section momentBody{
-
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="@Url.Action("momentic", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/1.jpg" />
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("momenpic", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/2.jpg" />
+                    </span>
+                </a>
+            </li>
+            <li class='last'>
+                <a href="@Url.Action("home", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/3.jpg" />
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
     <!-- Swiper -->
     <div class="swiper-container">
         <div class="swiper-wrapper">

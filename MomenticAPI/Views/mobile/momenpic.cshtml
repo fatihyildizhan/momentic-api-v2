@@ -4,16 +4,35 @@
 }
 
 @section momentHeader{
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.min.js"></script>
 }
 
 
 @section momentBody{
-    <ul id="logo">
-        <li class="moment"><a href="@Url.Action("home", "mobile")">momencraft</a></li>
-    </ul>
-    <ul id="menu">
-        <li class="momentic"><a href="@Url.Action("momentic", "mobile")">momentic</a></li>
-        <li class="momenpic"><a class="selected" href="@Url.Action("momenpic", "mobile")">momenpic</a></li>
-        <li class="momencraft"><a href="@Url.Action("home", "mobile")">momencraft</a></li>
-    </ul>
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="@Url.Action("momentic", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/1.jpg" />
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("momenpic", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/2.jpg" />
+                    </span>
+                </a>
+            </li>
+            <li class='last'>
+                <a href="@Url.Action("home", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/3.jpg" />
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
 }

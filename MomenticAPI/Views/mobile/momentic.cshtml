@@ -5,19 +5,36 @@
 
 
 @section momentHeader{
+
 }
 
 
 @section momentBody{
-    <ul id="logo">
-        <li class="moment"><a href="@Url.Action("home", "mobile")">momencraft</a></li>
-    </ul>
-    <ul id="menu">
-        <li class="momentic"><a class="selected" href="@Url.Action("momentic", "mobile")">momentic</a></li>
-        <li class="momenpic"><a href="@Url.Action("momenpic", "mobile")">momenpic</a></li>
-        <li class="momencraft"><a href="@Url.Action("home", "mobile")">momencraft</a></li>
-    </ul>
-
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="@Url.Action("momentic", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/1.jpg" />
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("momenpic", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/2.jpg" />
+                    </span>
+                </a>
+            </li>
+            <li class='last'>
+                <a href="@Url.Action("home", "mobile")">
+                    <span>
+                        <img src="~/css/images/mobile-menu/3.jpg" />
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
     <video autoplay preload="auto" loop='loop' width='100%'>
         <source src="~/css/mobile.m4v" type="video/quicktime" />
     </video>
