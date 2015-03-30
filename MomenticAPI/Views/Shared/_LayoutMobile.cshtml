@@ -2,12 +2,24 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
     <meta name="description" content="Momencraft" />
     <meta http-equiv="imagetoolbar" content="no" />
     <link rel="icon" type="image/png" href="~/css/images/favicon@2x.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="~/css/images/favicon.png" sizes="16x16" />
     <title>@ViewBag.Title</title>
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (config) {
+            function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+        }({
+            instrumentationKey: "77271769-27a1-482c-a1a4-381005bf4995"
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+    <link href="~/css/images/mobile-menu/css-sprites-nav.css" rel="stylesheet" />
+    @RenderSection("momentHeader", required: true)
 
     <script language='JavaScript' type='text/JavaScript'>
         // http://html-generator.weebly.com/html-right-click-disable-code.html
@@ -48,17 +60,13 @@
     </script>
 </head>
 <body onselectstart="return false;" ondragstart="return false;">
-    @RenderBody()
-    <div class="icons-wrapper">
-        <a href="@Url.Action("home", "mobile")" class="icon logo">logo</a>
-        <a href="@Url.Action("home", "mobile")" class="icon momencraft">momencraft</a>
-        <div class="icon vline1"></div>
-        <a href="@Url.Action("momenpic", "mobile")" class="icon momenpic">momenpic</a>
-        <div class="icon vline2"></div>
-        <a href="@Url.Action("momentic", "mobile")" class="icon momentic">momentic</a>
-    </div>
-    @RenderSection("momentBody", required: true)
+    <center>
 
+        <img src="~/css/images/mobile-menu/moment-mobileweb-top.jpg" />
+
+        @RenderBody()
+        @RenderSection("momentBody", required: true)
+    </center>
     <script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function () { try { w.yaCounter29333885 = new Ya.Metrika({ id: 29333885, webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true, params: window.yaParams || {} }); } catch (e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
 </body>
 </html>

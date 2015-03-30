@@ -4,14 +4,15 @@
 }
 body{
 }
-	#wrapper{width:1080px; }
+	#wrapperCenter{
+	}
 		
 	p a{color:#A90000;}
 		
 	/* Menu */
 	ul#menu{margin:0; padding:0; list-style:none; clear:both;}
 		#menu li{overflow:hidden; text-indent:-9999px; display:inline; float:left; }
-			#menu li a{background:url('images/mobile-menu-2.jpg') no-repeat; width:100%; height:100%; display:block;}
+			#menu li a{background:url('mobile-menu-2.jpg') no-repeat; width:100%; height:100%; display:block;}
 			
 			/* Momentic Button */
 			#menu li.momentic{width:366px; height:223px;}
@@ -32,7 +33,7 @@ body{
     /* Logo */
 	ul#logo{margin:0; padding:0; list-style:none; clear:both;}
 		#logo li{overflow:hidden; text-indent:-9999px; display:inline; float:left; }
-			#logo li a{background:url('images/mobile-menu-2.jpg') no-repeat; width:100%; height:100%; display:block;}
+			#logo li a{background:url('mobile-menu-2.jpg') no-repeat; width:100%; height:100%; display:block;}
 			
 			/* logo button */
 			#logo li.moment{width:1080px; height:111px;}

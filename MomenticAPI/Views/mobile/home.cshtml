@@ -1,108 +1,60 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "Momencraft";
+    Layout = "~/Views/Shared/_LayoutMobile.cshtml";
 }
 
-<!DOCTYPE html>
+@section momentHeader{
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Momencraft" />
-    <meta http-equiv="imagetoolbar" content="no" />
-    <link rel="icon" type="image/png" href="~/css/images/favicon@2x.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="~/css/images/favicon.png" sizes="16x16" />
-    <title>Momencraft</title>
-
-    <link href="~/css/mtop.css" rel="stylesheet" />
-
-    <link href="~/css/component.css" rel="stylesheet" />
-    <link href="~/css/default.css" rel="stylesheet" />
-    <script src="~/js/modernizr.custom.js"></script>
-
-    <script language='JavaScript' type='text/JavaScript'>
-        // http://html-generator.weebly.com/html-right-click-disable-code.html
-        var tenth = '';
-        function ninth() {
-            if (document.all) {
-                (tenth);
-                return false;
-            }
+    <link href="~/css/images/mobile-menu/mtopMobile.css" rel="stylesheet" />
+    <script src="~/css/images/mobile-menu/swiper.js"></script>
+    <link href="~/css/images/mobile-menu/swiper.css" rel="stylesheet" />
+    <style>
+        .swiper-container {
         }
-        function twelfth(e) {
-            if (document.layers || (document.getElementById && !document.all)) {
-                if (e.which == 2 || e.which == 3) {
-                    (tenth);
-                    return false;
-                }
-            }
-        }
-        if (document.layers) {
-            document.captureEvents(Event.MOUSEDOWN);
-            document.onmousedown = twelfth;
-        } else {
-            document.onmouseup = twelfth;
-            document.oncontextmenu = ninth;
-        }
-        document.oncontextmenu = new Function('return false')
-    </script>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-61273231-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-</head>
-<body onselectstart="return false;" ondragstart="return false;">
-    <div class="icons-wrapper">
-        <a href="@Url.Action("home", "mobile")" class="icon logo">logo</a>
-        <a href="@Url.Action("home", "mobile")" class="icon momencraft">momencraft</a>
-        <div class="icon vline1"></div>
-        <a href="@Url.Action("momenpic", "mobile")" class="icon momenpic">momenpic</a>
-        <div class="icon vline2"></div>
-        <a href="@Url.Action("momentic", "mobile")" class="icon momentic">momentic</a>
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+    </style>
+}
+
+@section momentBody{
+
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="~/css/images/mobile-menu/moment-mobile-hero.jpg" /></div>
+            <div class="swiper-slide"><img src="~/css/images/mobile-menu/moment-mobile-hero.jpg" /></div>
+            <div class="swiper-slide"><img src="~/css/images/mobile-menu/moment-mobile-hero.jpg" /></div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
     </div>
-
-    <div id="cbp-fwslider" class="cbp-fwslider">
-        <ul>
-            <li><img src="~/css/images/s0.jpg" style='width: 100%; height:100%;' /></li>
-            <li><img src="~/css/images/s1.jpg" style='width: 100%; height:100%;' /></li>
-            <li><img src="~/css/images/s2.jpg" style='width: 100%; height:100%;' /></li>
-            <li><img src="~/css/images/s3.jpg" style='width: 100%; height:100%;' /></li>
-            <li><img src="~/css/images/s4.jpg" style='width: 100%; height:100%;' /></li>
-        </ul>
-    </div>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="~/js/jquery.cbpFWSlider.min.js"></script>
+    <!-- Initialize Swiper -->
     <script>
-        $(function () {
-            /*
-            - how to call the plugin:
-            $( selector ).cbpFWSlider( [options] );
-            - options:
-            {
-                // default transition speed (ms)
-                speed : 500,
-                // default transition easing
-                easing : 'ease'
-            }
-            - destroy:
-            $( selector ).cbpFWSlider( 'destroy' );
-            */
-
-            $('#cbp-fwslider').cbpFWSlider();
-
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 1,
+            paginationClickable: true,
+            spaceBetween: 30,
+            loop: true
         });
     </script>
-    <img src="~/css/images/craft-s2.jpg" style='width: 100%; height:100%;' />
-
-    <script src="~/js/retina.js"></script>
-
-    <script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function () { try { w.yaCounter29333885 = new Ya.Metrika({ id: 29333885, webvisor: true, clickmap: true, trackLinks: true, accurateTrackBounce: true, params: window.yaParams || {} }); } catch (e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
-</body>
-</html>
+}

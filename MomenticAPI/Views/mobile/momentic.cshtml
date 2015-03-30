@@ -3,18 +3,22 @@
     Layout = "~/Views/Shared/_LayoutMobile.cshtml";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="description" content="Momentic" />
-    <link href="~/css/mtop.css" rel="stylesheet" />
-</head>
-<body>
-    @section momentBody{
-        <video autoplay preload="auto" loop='loop' width='100%'>
-            <source src="~/css/mobile.m4v" type="video/quicktime" />
-        </video>
-        <script src="~/js/retina.js"></script>
-    }
-</body>
-</html>
+
+@section momentHeader{
+}
+
+
+@section momentBody{
+    <ul id="logo">
+        <li class="moment"><a href="@Url.Action("home", "mobile")">momencraft</a></li>
+    </ul>
+    <ul id="menu">
+        <li class="momentic"><a class="selected" href="@Url.Action("momentic", "mobile")">momentic</a></li>
+        <li class="momenpic"><a href="@Url.Action("momenpic", "mobile")">momenpic</a></li>
+        <li class="momencraft"><a href="@Url.Action("home", "mobile")">momencraft</a></li>
+    </ul>
+
+    <video autoplay preload="auto" loop='loop' width='100%'>
+        <source src="~/css/mobile.m4v" type="video/quicktime" />
+    </video>
+}

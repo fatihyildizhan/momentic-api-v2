@@ -486,6 +486,7 @@
     <Content Include="Content\ThemeImages\theme-3-pattern.png" />
     <Content Include="css\bjqs.css" />
     <Content Include="css\component.css" />
+    <Content Include="css\images\mobile-menu\css-sprites-nav.css" />
     <Content Include="css\default.css" />
     <Content Include="css\demo.css" />
     <Content Include="css\images\craft-s2%402x.jpg" />
@@ -493,6 +494,14 @@
     <Content Include="css\images\favicon%402x.png" />
     <Content Include="css\images\favicon.ico" />
     <Content Include="css\images\favicon.png" />
+    <Content Include="css\images\mobile-menu\mobile-menu-2.jpg" />
+    <Content Include="css\images\mobile-menu\moment-mobile-hero.jpg" />
+    <Content Include="css\images\mobile-menu\logo.png" />
+    <Content Include="css\images\mobile-menu\moment-mobileweb-top.jpg" />
+    <Content Include="css\images\mobile-menu\swiper.css" />
+    <Content Include="css\images\mobile-menu\swiper.js" />
+    <Content Include="css\images\mobile-menu\swiper.min.css" />
+    <Content Include="css\images\mobile-menu\swiper.min.js" />
     <Content Include="css\images\momenpic-s1%402x.jpg" />
     <Content Include="css\images\momenpic-s1.jpg" />
     <Content Include="css\images\momenpic-s2%402x.jpg" />
@@ -532,14 +541,6 @@
     <Content Include="html5\video4.mp4" />
     <Content Include="humans.txt" />
     <Content Include="Icon.png" />
-    <Content Include="menu\css-sprites-nav.css" />
-    <Content Include="menu\images\bg-gradient.jpg" />
-    <Content Include="menu\images\menu-sprite.jpg" />
-    <Content Include="menu\images\mobile-menu-2.jpg" />
-    <Content Include="menu\images\moment-mobile-menu.jpg" />
-    <Content Include="menu\page1.html" />
-    <Content Include="menu\page3.html" />
-    <Content Include="menu\page4.html" />
     <Content Include="mywot227c9363ad1ae820a921.html" />
     <Content Include="nortonsw_3eea5c10-b7db-0.html" />
     <Content Include="Scripts\bootstrap.js" />
@@ -608,7 +609,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="51Degrees.config" />
+    <Content Include="51Degrees.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Properties\PublishProfiles\socialphotonetwork - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\socialphotonetwork - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\socialphotonetwork - Web Deploy %282%29.pubxml" />
