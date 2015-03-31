@@ -516,6 +516,15 @@
     <Content Include="css\images\mobile-menu\swiper.js" />
     <Content Include="css\images\mobile-menu\swiper.min.css" />
     <Content Include="css\images\mobile-menu\swiper.min.js" />
+    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide0.jpg" />
+    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide1.jpg" />
+    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide2.jpg" />
+    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide3.jpg" />
+    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide4.jpg" />
+    <Content Include="css\images\mobile-sliders\momenpic-mobile-slide1.jpg" />
+    <Content Include="css\images\mobile-sliders\momenpic-mobile-slide2.jpg" />
+    <Content Include="css\images\mobile-sliders\momentic-mobile-slide0.jpg" />
+    <Content Include="css\images\mobile-sliders\momentic-mobile-slide1.jpg" />
     <Content Include="css\images\momenpic-s1%402x.jpg" />
     <Content Include="css\images\momenpic-s1.jpg" />
     <Content Include="css\images\momenpic-s2%402x.jpg" />

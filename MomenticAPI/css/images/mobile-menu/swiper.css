@@ -174,12 +174,12 @@
     }
 
 .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
+    width: 13px;
+    height: 13px;
     display: inline-block;
     border-radius: 100%;
-    background: #000;
-    opacity: 0.2;
+    background-color:white;
+    opacity: 0.7;
 }
 
 .swiper-pagination-clickable .swiper-pagination-bullet {
@@ -192,7 +192,7 @@
 
 .swiper-pagination-bullet-active {
     opacity: 1;
-    background: #007aff;
+    background-color:black;
 }
 
 .swiper-pagination-white .swiper-pagination-bullet-active {
@@ -219,7 +219,7 @@
     }
 
 .swiper-container-horizontal > .swiper-pagination {
-    bottom: 10px;
+    bottom: 16%;
     left: 0;
     width: 100%;
 }
