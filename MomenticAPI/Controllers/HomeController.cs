@@ -12,7 +12,7 @@ namespace MomenticAPI.Controllers
         {
             if (Request.Browser.IsMobileDevice)
             {
-                 Response.RedirectToRoute("home", "mobile");
+                 Response.RedirectToRoute("home", "m");
             }
 
             ViewBag.Title = "MomenCraft";
