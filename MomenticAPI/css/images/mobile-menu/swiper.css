@@ -113,13 +113,29 @@
     -ms-touch-action: pan-x;
     touch-action: pan-x;
 }
-
-.swiper-button-prev.swiper-button-disabled,
-.swiper-button-next.swiper-button-disabled {
-    opacity: 0.35;
-    cursor: auto;
-    pointer-events: none;
+/* Arrows */
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 50%;
+    width: 27px;
+    height: 44px;
+    margin-top: -22px;
+    z-index: 10;
+    cursor: pointer;
+    -moz-background-size: 27px 44px;
+    -webkit-background-size: 27px 44px;
+    background-size: 27px 44px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+    .swiper-button-prev.swiper-button-disabled,
+    .swiper-button-next.swiper-button-disabled {
+        opacity: 0.35;
+        cursor: auto;
+        pointer-events: none;
+    }
 
 .swiper-button-prev,
 .swiper-container-rtl .swiper-button-next {
@@ -178,7 +194,7 @@
     height: 13px;
     display: inline-block;
     border-radius: 100%;
-    background-color:white;
+    background-color: white;
     opacity: 0.7;
 }
 
@@ -192,15 +208,15 @@
 
 .swiper-pagination-bullet-active {
     opacity: 1;
-    background-color:black;
+    background-color: black;
 }
 
 .swiper-pagination-white .swiper-pagination-bullet-active {
-    background: #fff;
+    background-color: black;
 }
 
 .swiper-pagination-black .swiper-pagination-bullet-active {
-    background: #000;
+    background-color: black;
 }
 
 .swiper-container-vertical > .swiper-pagination {
