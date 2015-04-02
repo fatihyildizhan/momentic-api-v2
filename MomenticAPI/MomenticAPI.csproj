@@ -766,9 +766,11 @@
     <Content Include="slide\src\less\scrollbar.less" />
     <Content Include="slide\src\less\swiper.less" />
     <Content Include="Views\m\bcanboy_okaya.cshtml" />
+    <Content Include="Views\m\ycombinator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\y\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

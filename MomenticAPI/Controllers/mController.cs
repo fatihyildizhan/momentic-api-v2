@@ -27,5 +27,10 @@ namespace MomenticAPI.Controllers
         {
             return View();
         }
+
+        public ActionResult ycombinator()
+        {
+            return View();
+        }
     }
 }
