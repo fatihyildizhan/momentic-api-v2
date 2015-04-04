@@ -32,5 +32,10 @@ namespace MomenticAPI.Controllers
         {
             return View();
         }
+
+        public ActionResult slider()
+        {
+            return View();
+        }
     }
 }

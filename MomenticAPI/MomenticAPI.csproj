@@ -435,6 +435,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="587d67ff69150ecc4cc17b19894adf20ae99eafb.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -516,8 +517,6 @@
     <Content Include="css\images\mobile-menu\swiper.js" />
     <Content Include="css\images\mobile-menu\swiper.min.css" />
     <Content Include="css\images\mobile-menu\swiper.min.js" />
-    <Content Include="css\images\mobile-sliders\750-momenpic-mobile-slide1.jpg" />
-    <Content Include="css\images\mobile-sliders\750-momenpic-mobile-slide2.jpg" />
     <Content Include="css\images\mobile-sliders\momencraft-mobile-slide0.jpg" />
     <Content Include="css\images\mobile-sliders\momencraft-mobile-slide1.jpg" />
     <Content Include="css\images\mobile-sliders\momencraft-mobile-slide2.jpg" />
@@ -767,10 +766,10 @@
     <Content Include="slide\src\less\swiper.less" />
     <Content Include="Views\m\bcanboy_okaya.cshtml" />
     <Content Include="Views\m\ycombinator.cshtml" />
+    <Content Include="Views\m\slider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\y\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
