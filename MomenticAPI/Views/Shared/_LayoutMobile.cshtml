@@ -5,43 +5,10 @@
     <meta charset="utf-8" />
     <meta name="description" content="Social photo network with storytelling, 1-day delivery photo print service, consumer electronics" />
     <meta http-equiv="imagetoolbar" content="no" />
-    <link rel="icon" type="image/png" href="~/css/images/favicon@2x.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="~/css/images/favicon.png" sizes="16x16" />
     <title>@ViewBag.Title</title>
     @RenderSection("momentHeader", required: true)
 
-    <link href="~/css/images/mobile-menu/menuCentered.css" rel="stylesheet" />
-    <link href="~/css/images/mobile-menu/stylesMenu.css" rel="stylesheet" />
-    <script src="~/css/images/mobile-menu/swiper.js"></script>
-    <link href="~/css/images/mobile-menu/swiper.css" rel="stylesheet" />
-    <!-- Demo styles -->
-    <style>
-        .swiper-container {
-            width: 100%;
-            height: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .swiper-slide {
-            text-align: center;
-            font-size: 18px;
-            background: #fff;
-            /* Center slide text vertically */
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-        }
-    </style>
     <!-- Start Alexa Certify Javascript -->
     <script type="text/javascript">
         _atrk_opts = { atrk_acct: "gT17l1aoHvD070", domain: "momencraft.com", dynamic: true };
@@ -58,32 +25,6 @@
         window.appInsights = appInsights;
         appInsights.trackPageView();
     </script>
-    <script language='JavaScript' type='text/JavaScript'>
-        // http://html-generator.weebly.com/html-right-click-disable-code.html
-        var tenth = '';
-        function ninth() {
-            if (document.all) {
-                (tenth);
-                return false;
-            }
-        }
-        function twelfth(e) {
-            if (document.layers || (document.getElementById && !document.all)) {
-                if (e.which == 2 || e.which == 3) {
-                    (tenth);
-                    return false;
-                }
-            }
-        }
-        if (document.layers) {
-            document.captureEvents(Event.MOUSEDOWN);
-            document.onmousedown = twelfth;
-        } else {
-            document.onmouseup = twelfth;
-            document.oncontextmenu = ninth;
-        }
-        document.oncontextmenu = new Function('return false')
-    </script>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -97,7 +38,7 @@
     </script>
 
 </head>
-<body onselectstart="return false;" ondragstart="return false;">
+<body>
     <center>
         <ul>
             <li>

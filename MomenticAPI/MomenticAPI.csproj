@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MomenticAPI</RootNamespace>
     <AssemblyName>MomenticAPI</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -24,6 +24,9 @@
     <ApplicationInsightsResourceId>/subscriptions/78354e0d-af7c-4dce-8776-7f635b40fae3/resourcegroups/SocialPhotoNetwork/providers/microsoft.insights/components/socialphotonetwork</ApplicationInsightsResourceId>
     <NuGetPackageImportStamp>ca14216a</NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,6 +50,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.9.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.9.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -54,6 +60,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel.Labs, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Excel.Labs.2.0.0\lib\netstandard2.0\Excel.Labs.dll</HintPath>
     </Reference>
     <Reference Include="FiftyOne.Foundation">
       <HintPath>..\packages\51Degrees.mobi.3.1.11.1\lib\NET40\FiftyOne.Foundation.dll</HintPath>
@@ -154,7 +163,16 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.5.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -165,11 +183,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Spatial.5.6.3\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -214,7 +232,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
@@ -232,10 +249,12 @@
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Owin">
@@ -285,7 +304,6 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\DeviceController.cs" />
     <Compile Include="Controllers\DeviceTypeController.cs" />
-    <Compile Include="Controllers\eController.cs" />
     <Compile Include="Controllers\FeedbackCategoryController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\homeController.cs" />
@@ -469,87 +487,17 @@
     <Content Include="Content\ThemeImages\theme-1-white.png" />
     <Content Include="Content\ThemeImages\theme-2-black.png" />
     <Content Include="Content\ThemeImages\theme-3-pattern.png" />
-    <Content Include="css\bjqs.css" />
-    <Content Include="css\component.css" />
-    <Content Include="css\e\momencraft-w-1%402x.jpg" />
-    <Content Include="css\e\momencraft-w-1.jpg" />
-    <Content Include="css\e\momencraft-w-2%402x.jpg" />
-    <Content Include="css\e\momencraft-w-2.jpg" />
-    <Content Include="css\e\momencraft-w-3%402x.jpg" />
-    <Content Include="css\e\momencraft-w-3.jpg" />
-    <Content Include="css\e\momencraft-w-4%402x.jpg" />
-    <Content Include="css\e\momencraft-w-4.jpg" />
-    <Content Include="css\e\style.css" />
-    <Content Include="css\images\mobile-menu\1.jpg" />
-    <Content Include="css\images\mobile-menu\2.jpg" />
-    <Content Include="css\images\mobile-menu\3.jpg" />
-    <Content Include="css\images\mobile-menu\css-sprites-nav.css" />
-    <Content Include="css\default.css" />
-    <Content Include="css\demo.css" />
-    <Content Include="css\images\craft-s2%402x.jpg" />
-    <Content Include="css\images\craft-s2.jpg" />
-    <Content Include="css\images\favicon%402x.png" />
-    <Content Include="css\images\favicon.ico" />
-    <Content Include="css\images\favicon.png" />
-    <Content Include="css\images\mobile-menu\logo-mobile.jpg" />
-    <Content Include="css\images\mobile-menu\menuCentered.css" />
-    <Content Include="css\images\mobile-menu\mobile-menu-2.jpg" />
-    <Content Include="css\images\mobile-menu\moment-mobile-hero.jpg" />
-    <Content Include="css\images\mobile-menu\moment-mobileweb-top.jpg" />
-    <Content Include="css\images\mobile-menu\stylesMenu.css" />
-    <Content Include="css\images\mobile-menu\swiper.css" />
-    <Content Include="css\images\mobile-menu\swiper.js" />
-    <Content Include="css\images\mobile-menu\swiper.min.css" />
-    <Content Include="css\images\mobile-menu\swiper.min.js" />
-    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide0.jpg" />
-    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide1.jpg" />
-    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide2.jpg" />
-    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide3.jpg" />
-    <Content Include="css\images\mobile-sliders\momencraft-mobile-slide4.jpg" />
-    <Content Include="css\images\mobile-sliders\momenpic-mobile-slide1.jpg" />
-    <Content Include="css\images\mobile-sliders\momenpic-mobile-slide2.jpg" />
-    <Content Include="css\images\mobile-sliders\momentic-mobile-slide0.jpg" />
-    <Content Include="css\images\mobile-sliders\momentic-mobile-slide1.jpg" />
-    <Content Include="css\images\momenpic-s1%402x.jpg" />
-    <Content Include="css\images\momenpic-s1.jpg" />
-    <Content Include="css\images\momenpic-s2%402x.jpg" />
-    <Content Include="css\images\momenpic-s2.jpg" />
-    <Content Include="css\images\momenraft-w.png" />
-    <Content Include="css\images\poster.jpg" />
-    <Content Include="css\images\s0%402x.jpg" />
-    <Content Include="css\images\s0.jpg" />
-    <Content Include="css\images\s1%402x.jpg" />
-    <Content Include="css\images\s1.jpg" />
-    <Content Include="css\images\s2%402x.jpg" />
-    <Content Include="css\images\s2.jpg" />
-    <Content Include="css\images\s3%402x.jpg" />
-    <Content Include="css\images\s3.jpg" />
-    <Content Include="css\images\s4%402x.jpg" />
-    <Content Include="css\images\s4.jpg" />
-    <Content Include="css\images\slider-left.png" />
-    <Content Include="css\images\slider-right.png" />
-    <Content Include="css\mobile.m4v" />
-    <Content Include="css\mtop - Copy.css" />
-    <Content Include="css\mtop.css" />
-    <Content Include="css\momenticapp.mp4" />
-    <Content Include="css\momenticappmobile.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="googlef7a4e4423ec30532.html" />
-    <Content Include="html5\index3.files\html5video\html5ext.js" />
-    <Content Include="html5\index3.files\html5video\m-r-2.jpg" />
-    <Content Include="html5\index3.files\html5video\m-r-2.m4v" />
-    <Content Include="html5\index3.files\html5video\m-r-2.mp4" />
-    <Content Include="html5\index3.html" />
-    <Content Include="html5\iphone-back.png" />
-    <Content Include="html5\mtop.css" />
-    <Content Include="html5\video4.mp4" />
     <Content Include="humans.txt" />
     <Content Include="Icon.png" />
     <Content Include="mywot227c9363ad1ae820a921.html" />
+    <Content Include="new\momentic-main.jpg" />
+    <Content Include="new\new-m-top.png" />
     <Content Include="nortonsw_3eea5c10-b7db-0.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -622,8 +570,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="css\images\m-top%402x.jpg" />
-    <Content Include="css\images\m-top.jpg" />
     <Content Include="js\bjqs-1.3.js" />
     <Content Include="js\bjqs-1.3.min.js" />
     <Content Include="js\jquery.cbpFWSlider.js" />
@@ -648,10 +594,6 @@
     <Content Include="fonts\fontawesome.ttf" />
     <Content Include="fonts\fontawesome.woff" />
     <Content Include="fonts\readme.md" />
-    <Content Include="html5\index3.files\html5video\.htaccess" />
-    <Content Include="html5\index3.files\html5video\m-r-2.ogv" />
-    <Content Include="html5\index3.files\html5video\m-r-2.webm" />
-    <Content Include="css\momenticapp.webm" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -713,20 +655,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\People\Create.cshtml" />
-    <Content Include="Views\People\Delete.cshtml" />
-    <Content Include="Views\People\Details.cshtml" />
-    <Content Include="Views\People\Edit.cshtml" />
-    <Content Include="Views\People\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMomencraft.cshtml" />
     <Content Include="Views\home\momencraft.cshtml" />
-    <Content Include="Views\home\momenpic.cshtml" />
-    <Content Include="Views\home\momentic.cshtml" />
     <Content Include="Views\Shared\_LayoutMobile.cshtml" />
     <Content Include="Views\Shared\_LayoutE.cshtml" />
-    <Content Include="Views\e\bcanboy_okaya.cshtml" />
-    <Content Include="Views\m\momenpic.cshtml" />
-    <Content Include="Views\m\momentic.cshtml" />
     <Content Include="Views\m\home.cshtml" />
     <Content Include="slide\.gitignore" />
     <Content Include="slide\.jshintrc" />
@@ -748,9 +680,6 @@
     <Content Include="slide\src\less\preloader.less" />
     <Content Include="slide\src\less\scrollbar.less" />
     <Content Include="slide\src\less\swiper.less" />
-    <Content Include="Views\m\bcanboy_okaya.cshtml" />
-    <Content Include="Views\m\ycombinator.cshtml" />
-    <Content Include="Views\m\slider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

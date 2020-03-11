@@ -1,55 +1,19 @@
 ﻿@{
-    ViewBag.Title = "Momencraft";
-    Layout = "~/Views/Shared/_LayoutMomencraft.cshtml";
+    Layout = null;
 }
+
 <!DOCTYPE html>
+
 <html>
 <head>
+    <meta name="viewport" content="width=device-width" />
     <meta name="description" content="Momencraft" />
-    <link href="~/css/mtop.css" rel="stylesheet" />
-
-    <link href="~/css/component.css" rel="stylesheet" />
-    <link href="~/css/default.css" rel="stylesheet" />
-    <script src="~/js/modernizr.custom.js"></script>
+    <title>Momencraft</title>
 </head>
 <body>
-    @section momentBody{
-        <div id="cbp-fwslider" class="cbp-fwslider">
-            <ul>
-                <li><img src="~/css/images/s0.jpg" style='width: 100%; height:100%;' /></li>
-                <li><img src="~/css/images/s1.jpg" style='width: 100%; height:100%;' /></li>
-                <li><img src="~/css/images/s2.jpg" style='width: 100%; height:100%;' /></li>
-                <li><img src="~/css/images/s3.jpg" style='width: 100%; height:100%;' /></li>
-                <li><img src="~/css/images/s4.jpg" style='width: 100%; height:100%;' /></li>
-            </ul>
-        </div>
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="~/js/jquery.cbpFWSlider.min.js"></script>
-        <script>
-            $(function () {
-                /*
-                - how to call the plugin:
-                $( selector ).cbpFWSlider( [options] );
-                - options:
-                {
-                    // default transition speed (ms)
-                    speed : 500,
-                    // default transition easing
-                    easing : 'ease'
-                }
-                - destroy:
-                $( selector ).cbpFWSlider( 'destroy' );
-                */
-
-                $('#cbp-fwslider').cbpFWSlider();
-
-            });
-        </script>
-        <img src="~/css/images/craft-s2.jpg" style='width: 100%; height:100%;' />
-
-        <script src="~/js/retina.js"></script>
-    }
-
+    <center>
+        <img src="~/new/new-m-top.png" />
+        <img src="~/new/momentic-main.jpg" style='width: 100%; height:100%;' />
+    </center>
 </body>
 </html>
